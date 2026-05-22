@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>নাজিহ - ই-বুক লাইব্রেরি</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap');
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Noto Serif Bengali', serif;
+            background-color: #0b0b0d;
+            color: #cdd6f4;
+            padding: 50px 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #f38ba8;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        .subtitle {
+            text-align: center;
+            color: #a6adc8;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+        .library-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .book-card {
+            background: #16161f;
+            border: 1px solid #313244;
+            border-radius: 8px;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .book-card:hover {
+            transform: translateY(-5px);
+            border-color: #f38ba8;
+        }
+        .cover-wrapper {
+            width: 100%;
+            height: 320px;
+            background: #11111b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .cover-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .book-info {
+            padding: 15px;
+            text-align: center;
+        }
+        .book-title { font-size: 1.1rem; font-weight: 600; color: #cdd6f4; margin-bottom: 5px; }
+        .book-author { font-size: 0.9rem; color: #a6adc8; }
+    </style>
+</head>
+<body>
+
+    <h1>নাজিহ সাহিত্য সংকলন</h1>
+    <p class="subtitle">ডিজিটাল ই-বুক পোর্টাল</p>
+
+    <div class="library-grid" id="library">
+        <!-- জাভাস্ক্রিপ্ট দিয়ে এখানে বইগুলো অটো লোড হবে -->
+    </div>
+
+    <script>
+        // json ফাইল থেকে ডাটা রিড করে হোমপেজে বই সাজানো
+        fetch('books.json')
+            .then(res => res.json())
+            .then(books => {
+                const library = document.getElementById('library');
+                books.forEach(book => {
+                    library.innerHTML += `
+                        <a href="reader.html?book=${book.id}" class="book-card">
+                            <div class="cover-wrapper">
+                                <img src="${book.cover}" alt="${book.title}" onerror="this.src='https://via.placeholder.com/220x320/11111b/f38ba8?text=No+Cover'">
+                            </div>
+                            <div class="book-info">
+                                <div class="book-title">${book.title}</div>
+                                <div class="book-author">${book.author}</div>
+                            </div>
+                        </a>
+                    `;
+                });
+            });
+    </script>
+</body>
+</html>
