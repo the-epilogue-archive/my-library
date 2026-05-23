@@ -75,7 +75,7 @@
     </header>
 
     <div class="reader-container" id="reader-container">
-        <!-- জাভাস্ক্রিপ্ট ডাইনামিক্যালি বাটন ও ডিটেইলস বসাবে -->
+        <!-- জাভাস্ক্রিপ্ট এখানে বাটন ও ডিটেইলস বসাবে -->
     </div>
 
     <script>
@@ -83,7 +83,7 @@
         const bookId = urlParams.get('book');
 
         if (bookId) {
-            // সাব-ডিরেক্টরি ক্যাচাল এড়াতে './' দিয়ে ফেচ করা হচ্ছে
+            // কারেন্ট ফোল্ডার থেকে books.json নেওয়া
             fetch('./books.json')
                 .then(res => res.json())
                 .then(books => {
@@ -92,11 +92,14 @@
                     if (currentBook) {
                         document.getElementById('book-title').innerText = currentBook.title;
                         
-                        // গিটহাব পেজেস ফ্রেম পলিসি এড়াতে ডাইনামিক বাটন সলিউশন
+                        // গিটহাব পেজেস এর ফুল লিংক ডাইনামিক্যালি তৈরি করার ট্রিক
+                        const currentPath = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
+                        const fullPdfUrl = `${currentPath}/${currentBook.pdf}`;
+                        
                         document.getElementById('reader-container').innerHTML = `
                             <h2 style="margin-bottom: 10px; color: #cdd6f4;">${currentBook.title}</h2>
                             <p style="color: #a6adc8; margin-bottom: 30px;">লেখক: ${currentBook.author}</p>
-                            <a href="./${currentBook.pdf}" target="_blank" class="read-now-btn">গল্পটি পড়ুন (PDF)</a>
+                            <a href="${fullPdfUrl}" target="_blank" class="read-now-btn">গল্পটি পড়ুন (PDF)</a>
                         `;
                     } else {
                         document.getElementById('reader-container').innerHTML = `<p class="error-msg">দুঃখিত, বইটি খুঁজে পাওয়া যায়নি।</p>`;
