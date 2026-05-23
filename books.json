@@ -1,8 +1,7 @@
-[
-  {
-    "id": "1",
-    "title": "নিস্তব্ধতার প্রতিধ্বনি",
-    "author": "সামির মাহমুদ নাজিহ",
-    "cover": "book-cover/cover.png"
-  }
-]
+{
+  "id": "1",
+  "title": "নিস্তব্ধতার প্রতিধ্বনি",
+  "author": "সামির মাহমুদ নাজিহ",
+  "cover": "book-cover/cover.png",
+  "pdf": "story.pdf" 
+}
