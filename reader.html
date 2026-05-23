@@ -15,7 +15,6 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
-            overflow: hidden;
         }
         header {
             background-color: #16161f;
@@ -34,19 +33,34 @@
         }
         .back-btn:hover { color: #f5e0dc; }
         .book-header-title { font-size: 1.2rem; font-weight: 600; color: #cdd6f4; }
+        
         .reader-container {
             flex: 1;
-            width: 100%;
-            height: calc(100vh - 60px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            text-align: center;
         }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .read-now-btn {
+            display: inline-block;
+            background-color: #f38ba8;
+            color: #11111b;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(243, 139, 168, 0.2);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .read-now-btn:hover {
+            transform: translateY(-3px);
+            background-color: #f5e0dc;
         }
         .error-msg {
-            text-align: center;
-            padding: 50px;
             color: #f38ba8;
             font-size: 1.2rem;
         }
@@ -57,32 +71,32 @@
     <header>
         <a href="index.html" class="back-btn">← লাইব্রেরিতে ফিরুন</a>
         <div class="book-header-title" id="book-title">বই লোড হচ্ছে...</div>
-        <div style="width: 100px;"></div> <!-- ব্যালেন্স রাখার জন্য ডামি ডাইভ -->
+        <div style="width: 100px;"></div>
     </header>
 
     <div class="reader-container" id="reader-container">
-        <!-- জাভাস্ক্রিপ্ট দিয়ে এখানে পিডিএফ লোড হবে -->
+        <!-- জাভাস্ক্রিপ্ট ডাইনামিক্যালি বাটন ও ডিটেইলস বসাবে -->
     </div>
 
     <script>
-        // ইউআরএল থেকে বইয়ের আইডি (ID) নেওয়া
         const urlParams = new URLSearchParams(window.location.search);
         const bookId = urlParams.get('book');
 
         if (bookId) {
-            fetch('books.json')
+            // সাব-ডিরেক্টরি ক্যাচাল এড়াতে './' দিয়ে ফেচ করা হচ্ছে
+            fetch('./books.json')
                 .then(res => res.json())
                 .then(books => {
-                    // আইডি অনুযায়ী নির্দিষ্ট বইটি খোঁজা
                     const currentBook = books.find(b => b.id === bookId);
 
                     if (currentBook) {
-                        // হেডার টাইটেল চেঞ্জ করা
                         document.getElementById('book-title').innerText = currentBook.title;
                         
-                        // আইফ্রেম দিয়ে পিডিএফ ফাইল লোড করা
+                        // গিটহাব পেজেস ফ্রেম পলিসি এড়াতে ডাইনামিক বাটন সলিউশন
                         document.getElementById('reader-container').innerHTML = `
-                            <iframe src="${currentBook.pdf}" width="100%" height="100%"></iframe>
+                            <h2 style="margin-bottom: 10px; color: #cdd6f4;">${currentBook.title}</h2>
+                            <p style="color: #a6adc8; margin-bottom: 30px;">লেখক: ${currentBook.author}</p>
+                            <a href="./${currentBook.pdf}" target="_blank" class="read-now-btn">গল্পটি পড়ুন (PDF)</a>
                         `;
                     } else {
                         document.getElementById('reader-container').innerHTML = `<p class="error-msg">দুঃখিত, বইটি খুঁজে পাওয়া যায়নি।</p>`;
