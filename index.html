@@ -81,15 +81,17 @@
     </div>
 
     <script>
-        fetch('books.json')
+        // লিঙ্ক জটলা এড়াতে কারেন্ট ডিরেক্টরি (./) থেকে ডাটা ফেচ করা হচ্ছে
+        fetch('./books.json')
             .then(res => res.json())
             .then(books => {
                 const library = document.getElementById('library');
+                library.innerHTML = ''; // আগের ডেটা ক্লিন করা
                 books.forEach(book => {
                     library.innerHTML += `
                         <a href="reader.html?book=${book.id}" class="book-card">
                             <div class="cover-wrapper">
-                                <img src="${book.cover}" alt="${book.title}">
+                                <img src="./${book.cover}" alt="${book.title}">
                             </div>
                             <div class="book-info">
                                 <div class="book-title">${book.title}</div>
@@ -98,7 +100,8 @@
                         </a>
                     `;
                 });
-            });
+            })
+            .catch(err => console.error("Error loading books:", err));
     </script>
 </body>
 </html>
