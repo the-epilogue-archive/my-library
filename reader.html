@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-book reader</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <title>E-book Reader</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap');
+        
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Noto Serif Bengali', serif;
@@ -14,98 +14,86 @@
             color: #cdd6f4;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            height: 100vh;
+            overflow: hidden;
         }
-        .top-bar {
-            width: 100%;
-            background: #16161f;
-            padding: 15px;
+        header {
+            background-color: #16161f;
+            border-bottom: 1px solid #313244;
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #313244;
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
-        .back-btn { color: #89b4fa; text-decoration: none; font-size: 0.9rem; }
-        .controls { display: flex; gap: 15px; align-items: center; }
-        .btn { background: none; border: none; color: #89b4fa; font-size: 1rem; cursor: pointer; }
-        .btn:hover { color: #f38ba8; }
-        #page-info { font-size: 0.9rem; color: #a6adc8; }
-        #pdf-render {
-            background: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin: 30px 0;
-            max-width: 100%;
-            height: auto;
+        .back-btn {
+            color: #f38ba8;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+        .back-btn:hover { color: #f5e0dc; }
+        .book-header-title { font-size: 1.2rem; font-weight: 600; color: #cdd6f4; }
+        .reader-container {
+            flex: 1;
+            width: 100%;
+            height: calc(100vh - 60px);
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .error-msg {
+            text-align: center;
+            padding: 50px;
+            color: #f38ba8;
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">
-        <a href="index.html" class="back-btn">◀ লাইব্রেরিতে ফিরুন</a>
-        <div class="controls">
-            <button class="btn" id="prev-page">পূর্ববর্তী</button>
-            <span id="page-info">পাতা: <span id="page-num">1</span> / <span id="page-count">0</span></span>
-            <button class="btn" id="next-page">পরবর্তী</button>
-        </div>
-        <div style="width: 100px;"></div> <!-- জাস্ট ব্যালেন্সের জন্য -->
+    <header>
+        <a href="index.html" class="back-btn">← লাইব্রেরিতে ফিরুন</a>
+        <div class="book-header-title" id="book-title">বই লোড হচ্ছে...</div>
+        <div style="width: 100px;"></div> <!-- ব্যালেন্স রাখার জন্য ডামি ডাইভ -->
+    </header>
+
+    <div class="reader-container" id="reader-container">
+        <!-- জাভাস্ক্রিপ্ট দিয়ে এখানে পিডিএফ লোড হবে -->
     </div>
 
-    <canvas id="pdf-render"></canvas>
-
     <script>
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-
-        let pdfDoc = null, pageNum = 1, pageIsRendering = false, pageNumPending = null;
-        const scale = 1.5, canvas = document.getElementById('pdf-render'), ctx = canvas.getContext('2d');
-
-        // URL থেকে বইয়ের আইডি খোঁজা
+        // ইউআরএল থেকে বইয়ের আইডি (ID) নেওয়া
         const urlParams = new URLSearchParams(window.location.search);
         const bookId = urlParams.get('book');
 
-        const renderPage = num => {
-            pageIsRendering = true;
-            pdfDoc.getPage(num).then(page => {
-                const viewport = page.getViewport({ scale });
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-                const renderCtx = { canvasContext: ctx, viewport: viewport };
-                page.render(renderCtx).promise.then(() => {
-                    pageIsRendering = false;
-                    if (pageNumPending !== null) { renderPage(pageNumPending); pageNumPending = null; }
+        if (bookId) {
+            fetch('books.json')
+                .then(res => res.json())
+                .then(books => {
+                    // আইডি অনুযায়ী নির্দিষ্ট বইটি খোঁজা
+                    const currentBook = books.find(b => b.id === bookId);
+
+                    if (currentBook) {
+                        // হেডার টাইটেল চেঞ্জ করা
+                        document.getElementById('book-title').innerText = currentBook.title;
+                        
+                        // আইফ্রেম দিয়ে পিডিএফ ফাইল লোড করা
+                        document.getElementById('reader-container').innerHTML = `
+                            <iframe src="${currentBook.pdf}" width="100%" height="100%"></iframe>
+                        `;
+                    } else {
+                        document.getElementById('reader-container').innerHTML = `<p class="error-msg">দুঃখিত, বইটি খুঁজে পাওয়া যায়নি।</p>`;
+                    }
+                })
+                .catch(err => {
+                    document.getElementById('reader-container').innerHTML = `<p class="error-msg">ডাটা লোড করতে সমস্যা হচ্ছে।</p>`;
                 });
-                document.getElementById('page-num').textContent = num;
-            });
-        };
-
-        const queueRenderPage = num => { if (pageIsRendering) { pageNumPending = num; } else { renderPage(num); } };
-        const showPrevPage = () => { if (pageNum <= 1) return; pageNum--; queueRenderPage(pageNum); window.scrollTo(0,0); };
-        const showNextPage = () => { if (pageNum >= pdfDoc.numPages) return; pageNum++; queueRenderPage(pageNum); window.scrollTo(0,0); };
-
-        // JSON থেকে আইডি মিলিয়ে PDF লোড করা
-        fetch('books.json')
-            .then(res => res.json())
-            .then(books => {
-                const currentBook = books.find(b => b.id === bookId);
-                if(currentBook) {
-                    pdfjsLib.getDocument(currentBook.pdf).promise.then(pdfDoc_ => {
-                        pdfDoc = pdfDoc_;
-                        document.getElementById('page-count').textContent = pdfDoc.numPages;
-                        renderPage(pageNum);
-                    });
-                }
-            });
-
-        document.getElementById('prev-page').addEventListener('click', showPrevPage);
-        document.getElementById('next-page').addEventListener('click', showNextPage);
-        window.addEventListener('keydown', e => {
-            if (e.key === 'ArrowRight') showNextPage();
-            if (e.key === 'ArrowLeft') showPrevPage();
-        });
+        } else {
+            document.getElementById('reader-container').innerHTML = `<p class="error-msg">কোনো বই সিলেক্ট করা হয়নি।</p>`;
+        }
     </script>
 </body>
 </html>
