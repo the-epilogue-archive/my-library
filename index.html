@@ -77,11 +77,10 @@
     <p class="subtitle">Digital E-book Portal</p>
 
     <div class="library-grid" id="library">
-        <!-- জাভাস্ক্রিপ্ট দিয়ে এখানে বইগুলো অটো লোড হবে -->
+        <!-- জাভাস্ক্রিপ্ট দিয়ে বই লোড হবে -->
     </div>
 
     <script>
-        // json ফাইল থেকে ডাটা রিড করে হোমপেজে বই সাজানো
         fetch('books.json')
             .then(res => res.json())
             .then(books => {
@@ -90,7 +89,7 @@
                     library.innerHTML += `
                         <a href="reader.html?book=${book.id}" class="book-card">
                             <div class="cover-wrapper">
-                                <img src="book-cover/cover.png" alt="Book Cover">
+                                <img src="${book.cover}" alt="${book.title}">
                             </div>
                             <div class="book-info">
                                 <div class="book-title">${book.title}</div>
