@@ -1,10 +1,11 @@
 [
   {
     "id": "nistobdhotar-protidhhoni",
-    "title": "অবেলার নীল চিরকুট ",
-    "subtitle": "রোমান্টিক উপাখ্যান ",
+    "title": "অবেলার নীল চিরকুট",
+    "subtitle": "রোমান্টিক উপাখ্যান",
     "author": "তাহসিন আবরার রাদ",
-    "cover": "covers/cover1.png",
+    "cover": "./covers/cover1.png",
     "pdf": "https://drive.google.com/file/d/1dmfGsTU_vhnX-ertBXg9Kqea8JlykQNH/preview"
   }
 ]
+
