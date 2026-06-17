@@ -1,9 +1,10 @@
 [
   {
-    "id": "1",
-    "title": "নিস্তব্ধতার প্রতিধ্বনি",
-    "author": "সামির মাহমুদ নাজিহ",
-    "cover": "book-cover/cover.png",
-    "pdf": "pdfs/story.pdf"
+    "id": "nistobdhotar-protidhhoni",
+    "title": "তাহসিন আবরার রাদ",
+    "subtitle": "সাইবার-সাইকো থ্রিলার সংকলন",
+    "author": "নাজিহ",
+    "cover": "covers/cover1.jpg",
+    "pdf": "https://drive.google.com/file/d/1dmfGsTU_vhnX-ertBXg9Kqea8JlykQNH/preview"
   }
 ]
