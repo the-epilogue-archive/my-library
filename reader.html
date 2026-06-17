@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-book Reader</title>
+    <title>ই-বুক রিডার</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap');
-        
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Noto Serif Bengali', serif;
@@ -14,103 +13,80 @@
             color: #cdd6f4;
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* স্ক্রিনের বাড়তি স্ক্রল বন্ধ রাখার জন্য */
         }
-        header {
-            background-color: #16161f;
-            border-bottom: 1px solid #313244;
-            padding: 15px 20px;
+        .top-bar {
+            width: 100%;
+            background: #16161f;
+            padding: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid #313244;
         }
-        .back-btn {
-            color: #f38ba8;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: color 0.2s;
-        }
-        .back-btn:hover { color: #f5e0dc; }
-        .book-header-title { font-size: 1.2rem; font-weight: 600; color: #cdd6f4; }
+        .back-btn { color: #89b4fa; text-decoration: none; font-size: 0.9rem; }
+        .book-title-display { font-size: 1rem; color: #a6adc8; font-weight: 600; }
         
-        .reader-container {
-            flex: 1;
+        #reader-container {
+            width: 100%;
+            height: calc(100vh - 53px); /* টপ-বার বাদে পুরো স্ক্রিন */
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            padding: 30px;
-            text-align: center;
+            align-items: center;
+            background: #11111b;
         }
-        .read-now-btn {
-            display: inline-block;
-            background-color: #f38ba8;
-            color: #11111b;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 8px;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(243, 139, 168, 0.2);
-            transition: transform 0.2s, background-color 0.2s;
-        }
-        .read-now-btn:hover {
-            transform: translateY(-3px);
-            background-color: #f5e0dc;
-        }
-        .error-msg {
-            color: #f38ba8;
-            font-size: 1.2rem;
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="index.html" class="back-btn">← লাইব্রেরিতে ফিরুন</a>
-        <div class="book-header-title" id="book-title">বই লোড হচ্ছে...</div>
-        <div style="width: 100px;"></div>
-    </header>
+    <div class="top-bar">
+        <a href="index.html" class="back-btn">◀ লাইব্রেরিতে ফিরুন</a>
+        <div class="book-title-display" id="current-title">লোডিং...</div>
+        <div style="width: 100px;"></div> <!-- ব্যালেন্সের জন্য -->
+    </div>
 
-    <div class="reader-container" id="reader-container">
-        <!-- জাভাস্ক্রিপ্ট এখানে বাটন ও ডিটেইলস বসাবে -->
+    <div id="reader-container">
+        <!-- এখানে গুগল ড্রাইভের বা লোকাল PDF রিডার লোড হবে -->
     </div>
 
     <script>
+        // URL থেকে বইয়ের আইডি খোঁজা
         const urlParams = new URLSearchParams(window.location.search);
         const bookId = urlParams.get('book');
 
-        if (bookId) {
-            // কারেন্ট ফোল্ডার থেকে books.json নেওয়া
-            fetch('./books.json')
-                .then(res => res.json())
-                .then(books => {
-                    const currentBook = books.find(b => b.id === bookId);
-
-                    if (currentBook) {
-                        document.getElementById('book-title').innerText = currentBook.title;
-                        
-                        // গিটহাব পেজেস এর ফুল লিংক ডাইনামিক্যালি তৈরি করার ট্রিক
-                        const currentPath = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
-                        const fullPdfUrl = `${currentPath}/${currentBook.pdf}`;
-                        
-                        document.getElementById('reader-container').innerHTML = `
-                            <h2 style="margin-bottom: 10px; color: #cdd6f4;">${currentBook.title}</h2>
-                            <p style="color: #a6adc8; margin-bottom: 30px;">লেখক: ${currentBook.author}</p>
-                            <a href="${fullPdfUrl}" target="_blank" class="read-now-btn">গল্পটি পড়ুন (PDF)</a>
-                        `;
-                    } else {
-                        document.getElementById('reader-container').innerHTML = `<p class="error-msg">দুঃখিত, বইটি খুঁজে পাওয়া যায়নি।</p>`;
-                    }
-                })
-                .catch(err => {
-                    document.getElementById('reader-container').innerHTML = `<p class="error-msg">ডাটা লোড করতে সমস্যা হচ্ছে।</p>`;
-                });
-        } else {
-            document.getElementById('reader-container').innerHTML = `<p class="error-msg">কোনো বই সিলেক্ট করা হয়নি।</p>`;
-        }
+        // JSON থেকে আইডি মিলিয়ে PDF এবং নাম লোড করা
+        fetch('books.json')
+            .then(res => res.json())
+            .then(books => {
+                const currentBook = books.find(b => b.id === bookId);
+                if(currentBook) {
+                    // বইয়ের নাম টপ-বারে সেট করা
+                    document.getElementById('current-title').textContent = currentBook.title;
+                    
+                    // রিডার কন্টেইনারে ড্রাইভ বা পিডিএফ লিংক আইফ্রেম হিসেবে পুশ করা
+                    const container = document.getElementById('reader-container');
+                    container.innerHTML = `
+                        <iframe 
+                            src="${currentBook.pdf}" 
+                            allow="autoplay">
+                        </iframe>
+                    `;
+                } else {
+                    document.getElementById('current-title').textContent = "ভুল লিঙ্ক";
+                    document.getElementById('reader-container').innerHTML = "<p style='color: #f38ba8;'>বইটি খুঁজে পাওয়া যায়নি!</p>";
+                }
+            })
+            .catch(err => {
+                console.error("Error loading JSON:", err);
+                document.getElementById('reader-container').innerHTML = "<p style='color: #f38ba8;'>উপাত্ত লোড করতে সমস্যা হয়েছে।</p>";
+            });
     </script>
 </body>
 </html>
