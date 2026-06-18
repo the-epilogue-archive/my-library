@@ -4,6 +4,7 @@
     "title": "নিস্তব্ধতার প্রতিধ্বনি",
     "subtitle": "সাইবার-সাইকো থ্রিলার সংকলন",
     "author": "তাহসিন আবরার রাদ",
+    "category": "story",
     "cover": "./covers/cover1.png",
     "pdf": "https://drive.google.com/file/d/1DAKjmzu2WJNfBTuWMNVjtHYq9TtWLEWs/preview"
   },
@@ -12,8 +13,18 @@
     "title": "A Favorite Verse",
     "subtitle": "English poetry",
     "author": "Tahsin Abrar Rad",
+    "category": "poetry",
     "cover": "./covers/cover2.png",
     "pdf": " https://drive.google.com/file/d/1tL3l0OiPmpR8MugStTxDVha2lFh8HPTU/preview"
+  },
+  {
+    "id": "wajood-e-khamoshi",
+    "title": "WAJOOD-E-KHAMOSHI",
+    "subtitle": "Urdu poetry",
+    "author": "Tahsin Abrar Rad",
+    "category": "poetry",
+    "cover": "./covers/cover3.png",
+    "pdf": " https://drive.google.com/file/d/1rMSdfCchF744_PsFpptEPIHFQHMliP7j/preview"
   }
 ]
 
