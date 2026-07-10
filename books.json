@@ -1,5 +1,14 @@
 [
   {
+    "id": "dukkho-bilash",
+    "title": "দুঃখবিলাস",
+    "subtitle": "একটি কাল্পনিক উপাখ্যান",
+    "author": "উদয় রহমান ",
+    "category": "story",
+    "cover": "./covers/দুঃখবিলাস.png",
+    "pdf": " https://drive.google.com/file/d/1ZoO-H-a8j2dtvFNZbvq7DrgP7XsrHGtk/preview"
+  },
+  {
     "id": "sur-udairahman",
     "title": "সুর",
     "subtitle": "একটি কাল্পনিক উপাখ্যান",
