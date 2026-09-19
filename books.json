@@ -3,28 +3,28 @@
     "id": "dukkho-bilash",
     "title": "দুঃখবিলাস",
     "subtitle": "একটি কাল্পনিক উপাখ্যান",
-    "author": "উদয় রহমান ",
+    "author": "উদয় রহমান",
     "category": "story",
-    "cover": "./covers/দুঃখবিলাস.png",
-    "pdf": " https://drive.google.com/file/d/1ZoO-H-a8j2dtvFNZbvq7DrgP7XsrHGtk/preview"
+    "cover": "covers/দুঃখবিলাস.png",
+    "pdf": "https://drive.google.com/file/d/1ZoO-H-a8j2dtvFNZbvq7DrgP7XsrHGtk/preview"
   },
   {
     "id": "sur-udairahman",
     "title": "সুর",
     "subtitle": "একটি কাল্পনিক উপাখ্যান",
-    "author": "উদয় রহমান ",
+    "author": "উদয় রহমান",
     "category": "story",
-    "cover": "./covers/সুর ০৯০৭২০২৬.png",
-    "pdf": " https://drive.google.com/file/d/1vMKI-fpffEUurWfOm4DIabqvKNvW2qVD/preview"
+    "cover": "covers/সুর ০৯০৭২০২৬.png",
+    "pdf": "https://drive.google.com/file/d/1vMKI-fpffEUurWfOm4DIabqvKNvW2qVD/preview"
   },
   {
     "id": "obelarnil-cirkut",
-    "title": "অবেলার নীল চিরকুট ",
+    "title": "অবেলার নীল চিরকুট",
     "subtitle": "একটি রোমান্টিক উপাখ্যান",
-    "author": "তাহসিন আবরার রাদ ",
+    "author": "তাহসিন আবরার রাদ",
     "category": "story",
-    "cover": "./covers/Obelaar Neel cirkoot - Google Docs.pdf (1).png",
-    "pdf": " https://drive.google.com/file/d/1JIqeioQnMzBKYMXTdhPSbaEOuY0EIUIt/preview"
+    "cover": "covers/Obelaar Neel cirkoot - Google Docs.pdf (1).png",
+    "pdf": "https://drive.google.com/file/d/1JIqeioQnMzBKYMXTdhPSbaEOuY0EIUIt/preview"
   },
   {
     "id": "majmuae-kalam",
@@ -32,8 +32,8 @@
     "subtitle": "Urdu poetry",
     "author": "Tahsin Abrar Rad",
     "category": "poetry",
-    "cover": "./covers/A Favorite Verse.png",
-    "pdf": " https://drive.google.com/file/d/1c-UNjPopo5huAWdUb_5xu0AfEPP7XyYm/preview"
+    "cover": "covers/A Favorite Verse.png",
+    "pdf": "https://drive.google.com/file/d/1c-UNjPopo5huAWdUb_5xu0AfEPP7XyYm/preview"
   },
   {
     "id": "nistobdhotar-protidhhoni",
@@ -41,17 +41,16 @@
     "subtitle": "সাইবার-সাইকো থ্রিলার সংকলন",
     "author": "তাহসিন আবরার রাদ",
     "category": "story",
-    "cover": "./covers/cover1.png",
+    "cover": "covers/cover1.png",
     "pdf": "https://drive.google.com/file/d/1DAKjmzu2WJNfBTuWMNVjtHYq9TtWLEWs/preview"
   },
   {
-    "id": "a favorite-verse",
+    "id": "a-favorite-verse",
     "title": "A Favorite Verse",
     "subtitle": "English poetry",
     "author": "Tahsin Abrar Rad",
     "category": "poetry",
-    "cover": "./covers/cover2.png",
-    "pdf": " https://drive.google.com/file/d/1tL3l0OiPmpR8MugStTxDVha2lFh8HPTU/preview"
+    "cover": "covers/cover2.png",
+    "pdf": "https://drive.google.com/file/d/1tL3l0OiPmpR8MugStTxDVha2lFh8HPTU/preview"
   }
 ]
-
