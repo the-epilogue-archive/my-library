@@ -3,90 +3,466 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ই-বুক রিডার</title>
+    <title>পাঠকক্ষ — The Epilogue Archive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap');
+        :root {
+            --wood-dark: #2b1d14;
+            --wood: #3d2817;
+            --cream: #f4e9d4;
+            --cream-dim: #d8c9ab;
+            --gold: #d4a24c;
+            --gold-bright: #f0c674;
+            --ink: #140a05;
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { height: 100%; }
+
         body {
             font-family: 'Noto Serif Bengali', serif;
-            background-color: #0b0b0d;
-            color: #cdd6f4;
+            color: var(--cream);
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(212, 162, 76, 0.15) 0%, transparent 55%),
+                linear-gradient(180deg, #1a0f08 0%, #241610 60%, #1a0f08 100%);
             display: flex;
             flex-direction: column;
-            align-items: center;
             min-height: 100vh;
-            overflow: hidden; /* স্ক্রিনের বাড়তি স্ক্রল বন্ধ রাখার জন্য */
+            overflow: hidden;
         }
+
+        /* ====== TOP BAR ====== */
         .top-bar {
-            width: 100%;
-            background: #16161f;
-            padding: 15px;
+            position: relative;
+            z-index: 3;
+            background:
+                linear-gradient(180deg, #3d2817 0%, #2b1d14 100%);
+            border-bottom: 1px solid rgba(212, 162, 76, 0.35);
+            padding: 14px 22px;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #313244;
+            gap: 16px;
+            box-shadow:
+                0 6px 20px rgba(0,0,0,0.6),
+                inset 0 1px 0 rgba(240, 198, 116, 0.15),
+                inset 0 -1px 0 rgba(0,0,0,0.4);
         }
-        .back-btn { color: #89b4fa; text-decoration: none; font-size: 0.9rem; }
-        .book-title-display { font-size: 1rem; color: #a6adc8; font-weight: 600; }
-        
-        #reader-container {
-            width: 100%;
-            height: calc(100vh - 53px); /* টপ-বার বাদে পুরো স্ক্রিন */
+
+        .top-bar::before {
+            content: "";
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(240, 198, 116, 0.5) 20%,
+                rgba(240, 198, 116, 0.7) 50%,
+                rgba(240, 198, 116, 0.5) 80%,
+                transparent);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold-bright);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 8px 14px;
+            border: 1px solid rgba(212, 162, 76, 0.4);
+            border-radius: 4px;
+            background: rgba(26, 15, 8, 0.5);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        .back-btn:hover {
+            background: rgba(212, 162, 76, 0.15);
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(212, 162, 76, 0.25);
+            transform: translateX(-2px);
+        }
+        .back-btn .arrow {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+        .back-btn:hover .arrow {
+            transform: translateX(-3px);
+        }
+
+        .book-title-display {
+            flex: 1;
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--gold-bright);
+            text-shadow: 0 0 12px rgba(240, 198, 116, 0.35), 0 1px 2px rgba(0,0,0,0.9);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding: 0 12px;
+            position: relative;
+        }
+        .book-title-display .author {
+            display: block;
+            font-family: 'Cinzel', serif;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            color: var(--cream-dim);
+            opacity: 0.75;
+            margin-top: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            text-shadow: none;
+        }
+
+        .top-actions {
             display: flex;
-            justify-content: center;
+            gap: 8px;
             align-items: center;
-            background: #11111b;
+            white-space: nowrap;
         }
+
+        .icon-btn {
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(26, 15, 8, 0.55);
+            border: 1px solid rgba(212, 162, 76, 0.35);
+            border-radius: 4px;
+            color: var(--gold-bright);
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .icon-btn:hover {
+            background: rgba(212, 162, 76, 0.15);
+            border-color: var(--gold);
+            box-shadow: 0 0 16px rgba(212, 162, 76, 0.3);
+            color: var(--cream);
+        }
+
+        /* ====== READER FRAME ====== */
+        .reader-stage {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 22px;
+            overflow: hidden;
+            background:
+                radial-gradient(ellipse at 50% 45%, rgba(212, 162, 76, 0.08) 0%, transparent 65%),
+                linear-gradient(180deg, #140a05 0%, #1a0f08 100%);
+        }
+
+        /* Book-style frame around the PDF */
+        .book-frame {
+            position: relative;
+            width: 100%;
+            max-width: 1150px;
+            height: 100%;
+            border-radius: 8px;
+            background: #0d0805;
+            overflow: hidden;
+            box-shadow:
+                0 30px 70px -20px rgba(0,0,0,0.9),
+                0 0 0 1px rgba(212, 162, 76, 0.4),
+                0 0 0 8px rgba(43, 29, 20, 0.85),
+                0 0 0 9px rgba(212, 162, 76, 0.25),
+                0 0 60px rgba(212, 162, 76, 0.15);
+            animation: fadeUp 0.8s ease both;
+        }
+
+        /* Corner ornaments */
+        .book-frame::before,
+        .book-frame::after {
+            content: "";
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            border: 2px solid var(--gold);
+            opacity: 0.55;
+            pointer-events: none;
+            z-index: 5;
+        }
+        .book-frame::before {
+            top: 12px; left: 12px;
+            border-right: none; border-bottom: none;
+            border-top-left-radius: 4px;
+        }
+        .book-frame::after {
+            bottom: 12px; right: 12px;
+            border-left: none; border-top: none;
+            border-bottom-right-radius: 4px;
+        }
+
         iframe {
             width: 100%;
             height: 100%;
             border: none;
+            background: #1a0f08;
+            display: block;
+        }
+
+        /* ====== LOADING STATE ====== */
+        .loading-state {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+            background: #140a05;
+            z-index: 4;
+            color: var(--cream-dim);
+        }
+
+        .loader-book {
+            width: 60px;
+            height: 80px;
+            position: relative;
+            perspective: 300px;
+        }
+        .loader-book::before,
+        .loader-book::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 3px;
+            background: linear-gradient(180deg, #7a2e2e 0%, #4a1a1a 100%);
+            box-shadow: inset -3px 0 8px rgba(0,0,0,0.6), 0 4px 12px rgba(0,0,0,0.6);
+        }
+        .loader-book::before {
+            transform-origin: left center;
+            animation: pageFlip 1.4s ease-in-out infinite;
+        }
+        .loader-book::after {
+            transform: rotateY(-25deg) translateX(2px);
+            background: linear-gradient(180deg, #d4a24c 0%, #8a5a2a 100%);
+            opacity: 0.4;
+        }
+
+        .loading-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.05rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            opacity: 0.85;
+        }
+
+        /* ====== ERROR STATE ====== */
+        .error-state {
+            position: absolute;
+            inset: 0;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            background: #140a05;
+            z-index: 6;
+            text-align: center;
+            padding: 30px;
+        }
+        .error-state.show { display: flex; }
+        .error-state .icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            opacity: 0.7;
+        }
+        .error-state h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            letter-spacing: 3px;
+            color: var(--gold-bright);
+            text-transform: uppercase;
+        }
+        .error-state p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--cream-dim);
+            max-width: 380px;
+            line-height: 1.6;
+        }
+        .error-state a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+            padding: 10px 22px;
+            background: rgba(212, 162, 76, 0.15);
+            border: 1px solid var(--gold);
+            color: var(--gold-bright);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .error-state a:hover {
+            background: rgba(212, 162, 76, 0.3);
+            box-shadow: 0 0 20px rgba(212, 162, 76, 0.35);
+        }
+
+        /* ====== ANIMATIONS ====== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pageFlip {
+            0%, 100% { transform: rotateY(0deg); }
+            50% { transform: rotateY(-160deg); }
+        }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 700px) {
+            .top-bar { padding: 10px 12px; gap: 8px; }
+            .back-btn span.label { display: none; }
+            .back-btn { padding: 8px 12px; }
+            .book-title-display { font-size: 0.95rem; letter-spacing: 0.5px; }
+            .book-title-display .author { font-size: 0.52rem; letter-spacing: 2px; }
+            .icon-btn { width: 34px; height: 34px; font-size: 0.9rem; }
+            .reader-stage { padding: 8px; }
+            .book-frame { border-radius: 6px; }
+            .book-frame::before, .book-frame::after { width: 20px; height: 20px; }
         }
     </style>
 </head>
 <body>
 
     <div class="top-bar">
-        <a href="index.html" class="back-btn">◀ লাইব্রেরিতে ফিরুন</a>
-        <div class="book-title-display" id="current-title">লোডিং...</div>
-        <div style="width: 100px;"></div> <!-- ব্যালেন্সের জন্য -->
+        <a href="index.html" class="back-btn">
+            <span class="arrow">◀</span>
+            <span class="label">লাইব্রেরি</span>
+        </a>
+
+        <div class="book-title-display" id="current-title">
+            লোড হচ্ছে…
+            <span class="author" id="current-author"></span>
+        </div>
+
+        <div class="top-actions">
+            <a href="#" class="icon-btn" id="openOriginal" title="নতুন ট্যাবে খুলুন" target="_blank" rel="noopener">⤢</a>
+            <button class="icon-btn" id="refreshBtn" title="রিফ্রেশ">↻</button>
+            <button class="icon-btn" id="fullscreenBtn" title="ফুলস্ক্রিন">⛶</button>
+        </div>
     </div>
 
-    <div id="reader-container">
-        <!-- এখানে গুগল ড্রাইভের বা লোকাল PDF রিডার লোড হবে -->
+    <div class="reader-stage">
+        <div class="book-frame" id="bookFrame">
+            <div class="loading-state" id="loadingState">
+                <div class="loader-book"></div>
+                <div class="loading-text">opening the volume…</div>
+            </div>
+
+            <div class="error-state" id="errorState">
+                <div class="icon">✦</div>
+                <h2>ভলিউমটি খুঁজে পাওয়া যায়নি</h2>
+                <p id="errorMessage">এই বইটি লাইব্রেরিতে নেই। অনুগ্রহ করে লাইব্রেরিতে ফিরে যান।</p>
+                <a href="index.html">◀ লাইব্রেরিতে ফিরে যান</a>
+            </div>
+        </div>
     </div>
 
     <script>
-        // URL থেকে বইয়ের আইডি খোঁজা
         const urlParams = new URLSearchParams(window.location.search);
         const bookId = urlParams.get('book');
 
-        // JSON থেকে আইডি মিলিয়ে PDF এবং নাম লোড করা
-        fetch('books.json')
-            .then(res => res.json())
-            .then(books => {
-                const currentBook = books.find(b => b.id === bookId);
-                if(currentBook) {
-                    // বইয়ের নাম টপ-বারে সেট করা
-                    document.getElementById('current-title').textContent = currentBook.title;
-                    
-                    // রিডার কন্টেইনারে ড্রাইভ বা পিডিএফ লিংক আইফ্রেম হিসেবে পুশ করা
-                    const container = document.getElementById('reader-container');
-                    container.innerHTML = `
-                        <iframe 
-                            src="${currentBook.pdf}" 
-                            allow="autoplay">
-                        </iframe>
-                    `;
-                } else {
-                    document.getElementById('current-title').textContent = "ভুল লিঙ্ক";
-                    document.getElementById('reader-container').innerHTML = "<p style='color: #f38ba8;'>বইটি খুঁজে পাওয়া যায়নি!</p>";
-                }
-            })
-            .catch(err => {
-                console.error("Error loading JSON:", err);
-                document.getElementById('reader-container').innerHTML = "<p style='color: #f38ba8;'>উপাত্ত লোড করতে সমস্যা হয়েছে।</p>";
+        const bookFrame = document.getElementById('bookFrame');
+        const loadingState = document.getElementById('loadingState');
+        const errorState = document.getElementById('errorState');
+        const errorMessage = document.getElementById('errorMessage');
+        const titleEl = document.getElementById('current-title');
+        const authorEl = document.getElementById('current-author');
+        const openOriginal = document.getElementById('openOriginal');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+        function cleanUrl(u) {
+            return (u || '').trim().replace(/^["']|["']$/g, '');
+        }
+
+        function showError(msg) {
+            loadingState.style.display = 'none';
+            errorState.classList.add('show');
+            if (msg) errorMessage.textContent = msg;
+        }
+
+        function mountIframe(src) {
+            const iframe = document.createElement('iframe');
+            iframe.src = src;
+            iframe.allow = 'autoplay; fullscreen';
+            iframe.setAttribute('allowfullscreen', 'true');
+            iframe.loading = 'eager';
+
+            iframe.addEventListener('load', () => {
+                loadingState.style.opacity = '0';
+                loadingState.style.transition = 'opacity 0.6s ease';
+                setTimeout(() => loadingState.style.display = 'none', 650);
             });
+
+            bookFrame.appendChild(iframe);
+            openOriginal.href = src;
+        }
+
+        if (!bookId) {
+            titleEl.textContent = 'কোনো বই নির্বাচিত হয়নি';
+            showError('URL-এ বইয়ের আইডি পাওয়া যায়নি। লাইব্রেরি থেকে একটি বই বেছে নিন।');
+        } else {
+            fetch('./books.json')
+                .then(res => res.json())
+                .then(books => {
+                    const book = (books || []).find(b => b.id === bookId);
+                    if (!book) {
+                        titleEl.textContent = 'ভলিউমটি পাওয়া যায়নি';
+                        showError('এই আইডির কোনো বই লাইব্রেরিতে নেই।');
+                        return;
+                    }
+
+                    document.title = `${book.title} — The Epilogue Archive`;
+                    titleEl.textContent = book.title;
+                    if (book.author) authorEl.textContent = 'by ' + book.author;
+
+                    const pdfUrl = cleanUrl(book.pdf);
+                    if (!pdfUrl) {
+                        showError('এই বইয়ের কোনো PDF সংযুক্ত নেই।');
+                        return;
+                    }
+
+                    mountIframe(pdfUrl);
+                })
+                .catch(err => {
+                    console.error('Error loading book:', err);
+                    titleEl.textContent = 'ত্রুটি';
+                    showError('তথ্য লোড করা যায়নি। ইন্টারনেট সংযোগ পরীক্ষা করে আবার চেষ্টা করুন।');
+                });
+        }
+
+        refreshBtn.addEventListener('click', () => window.location.reload());
+
+        fullscreenBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen?.().catch(() => {});
+            } else {
+                document.exitFullscreen?.();
+            }
+        });
     </script>
 </body>
 </html>
