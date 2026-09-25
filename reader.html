@@ -11,8 +11,6 @@
 <link rel="preconnect" href="https://fonts.maateen.me" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Noto+Serif+Bengali:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<!-- 🇧🇩 Bengali Handwriting font — BenSen -->
 <link href="https://fonts.maateen.me/bensen-handwriting/font.css" rel="stylesheet">
 
 <style>
@@ -84,43 +82,242 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
 .page-content .h1{font-family:'Cormorant Garamond','Noto Serif Bengali',serif;font-weight:600;font-style:italic;font-size:1.65rem;color:var(--ink);margin:2.4em 0 .9em;text-align:center;text-indent:0;line-height:1.3}
 .page-content .h2{font-family:'Cormorant Garamond','Noto Serif Bengali',serif;font-weight:600;font-size:1.22rem;color:var(--ink);margin:2em 0 .7em;text-indent:0;letter-spacing:.01em;line-height:1.4}
 .page-content .divider{text-align:center;color:var(--gold);letter-spacing:.9em;margin:2.8em 0;font-size:.8rem;opacity:.75}
-.page-content blockquote{margin:2em 0;padding:1.1em 1.5em;border-left:3px solid var(--gold);background:rgba(201,168,106,.06);font-style:italic;color:var(--ink-soft);text-indent:0;line-height:1.9;border-radius:0 4px 4px 0}
-.page-content .poem{text-indent:0;text-align:center;font-style:italic;line-height:2.15;margin:2em 0;color:var(--ink-soft);font-size:1.12rem}
 
 .page-footer{text-align:center;margin-top:90px;padding-top:44px;border-top:1px solid rgba(184,137,75,.25)}
 .page-footer .orn{font-size:1.05rem;color:var(--gold);margin-bottom:12px}
 .page-footer p{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);opacity:.7}
 
-/* ===== QUOTE ===== */
-.book-page[data-cat="quote"] .page-content{display:flex;flex-direction:column;gap:2.4em;margin-top:1em}
-.book-page[data-cat="quote"] .page-content p{text-align:center;font-style:italic;font-size:1.3rem;line-height:1.75;color:var(--ink);padding:0 20px;margin:0}
-.book-page[data-cat="quote"] .quote-card{position:relative;text-align:center;padding:30px 44px;background:rgba(201,168,106,.05);border-top:1px solid rgba(184,137,75,.25);border-bottom:1px solid rgba(184,137,75,.25)}
-.book-page[data-cat="quote"] .quote-card .qmark{position:absolute;font-family:Georgia,serif;font-size:3.6rem;line-height:1;color:var(--gold);opacity:.4;pointer-events:none}
-.book-page[data-cat="quote"] .quote-card .qmark.open{top:-8px;left:10px}
-.book-page[data-cat="quote"] .quote-card .qmark.close{bottom:-34px;right:10px}
-.book-page[data-cat="quote"] .quote-card .qtext{font-family:'Cormorant Garamond','Noto Serif Bengali',serif;font-style:italic;font-size:1.42rem;line-height:1.7;color:var(--ink);margin:0}
-.book-page[data-cat="quote"] .page-content blockquote{text-align:center;border:none;background:rgba(201,168,106,.08);padding:22px 30px;font-size:1.35rem;border-radius:4px;margin:0}
+/* =========================================================
+   STORY — enhanced
+   ========================================================= */
+.book-page[data-cat="story"] .page-content p{font-size:1.18rem;line-height:1.95;text-indent:1.4em}
+.book-page[data-cat="story"] .page-content p:first-of-type{text-indent:0}
+.book-page[data-cat="story"] .page-content p:first-of-type::first-letter{
+  font-family:'Cormorant Garamond','Noto Serif Bengali',serif;
+  font-size:3.4em;
+  font-weight:600;
+  float:left;
+  line-height:.85;
+  margin:.06em .14em 0 0;
+  color:#8a5f28;
+  padding:2px 4px 0 0;
+}
+.book-page[data-cat="story"] .page-content p:first-of-type::first-line{
+  font-variant:small-caps;
+  letter-spacing:.02em;
+  color:#4a3a24;
+}
 
-/* ===== POETRY ===== */
-.book-page[data-cat="poetry"] .page-content{font-size:1.2rem}
-.book-page[data-cat="poetry"] .page-content p{text-align:center;font-style:italic;line-height:2.25;color:var(--ink);margin-bottom:2.2em;letter-spacing:.01em}
-.book-page[data-cat="poetry"] .page-content .poem{line-height:2.3;margin:2.4em 0;font-size:1.2rem}
-.book-page[data-cat="poetry"] .page-content .h1{font-size:1.5rem;margin:2.6em 0 1em;letter-spacing:.02em}
-.book-page[data-cat="poetry"] .page-content .h2{font-size:1.15rem;text-align:center;font-style:italic;margin:2.2em 0 1em}
-.book-page[data-cat="poetry"] .page-content blockquote{text-align:center;border:none;border-top:1px solid rgba(184,137,75,.3);border-bottom:1px solid rgba(184,137,75,.3);background:transparent;padding:1.3em 2em;font-size:1.15rem;border-radius:0}
+/* Toggle off states */
+.book-page.no-dropcap[data-cat="story"] .page-content p:first-of-type::first-letter{
+  font-family:inherit;font-size:inherit;font-weight:inherit;
+  float:none;line-height:inherit;margin:0;color:inherit;padding:0;
+}
+.book-page.no-dropcap[data-cat="story"] .page-content p:first-of-type{text-indent:1.4em}
+.book-page.no-smallcaps[data-cat="story"] .page-content p:first-of-type::first-line{
+  font-variant:normal;letter-spacing:0;color:inherit;
+}
 
-/* ===== STORY ===== */
-.book-page[data-cat="story"] .page-content p{font-size:1.18rem;line-height:1.95}
-.book-page[data-cat="story"] .page-content blockquote{font-size:1.15rem;padding-left:1.6em}
+/* Scene divider */
+.book-page .scene-div{
+  text-align:center;
+  color:var(--gold);
+  letter-spacing:1.2em;
+  margin:2em 0 2em -1.2em;
+  font-size:.85rem;
+  opacity:.72;
+  text-indent:0;
+}
+.book-page.no-divider .scene-div{display:none}
 
-/* ===== ESSAY ===== */
-.book-page[data-cat="essay"] .page-content p{font-size:1.15rem;line-height:1.85;margin-bottom:1.4em}
-.book-page[data-cat="essay"] .page-content .h1{text-align:left;font-size:1.7rem;letter-spacing:-.005em;margin:2.2em 0 .6em}
-.book-page[data-cat="essay"] .page-content .h2{font-size:1.22rem;margin:1.9em 0 .5em}
-.book-page[data-cat="essay"] .page-content blockquote{background:transparent;border-left:2px solid var(--gold);padding-left:1.3em;font-size:1.1rem}
+/* Pull quote */
+.book-page .pull-quote{
+  margin:1.8em 0;
+  padding:1em 1.4em;
+  border-left:3px solid var(--gold);
+  background:rgba(201,168,106,.07);
+  font-style:italic;
+  color:#4a3a24;
+  font-size:1.05rem;
+  line-height:1.8;
+  text-indent:0;
+  border-radius:0 4px 4px 0;
+}
+.book-page.no-pullquote .pull-quote{
+  border-left:none;
+  background:transparent;
+  padding:0;
+  font-style:normal;
+  color:inherit;
+}
 
 /* =========================================================
-   LETTER
+   POETRY — enhanced
+   ========================================================= */
+.book-page[data-cat="poetry"] .poem-wrap{
+  position:relative;
+  padding-left:24px;
+  border-left:2px solid rgba(184,137,75,.4);
+  margin:1em 0;
+}
+.book-page.no-vline[data-cat="poetry"] .poem-wrap{
+  padding-left:0;
+  border-left:none;
+}
+.book-page[data-cat="poetry"] .stanza{
+  text-align:left;
+  font-size:1.15rem;
+  font-style:italic;
+  line-height:2;
+  color:#2a1c10;
+  letter-spacing:.005em;
+  margin-bottom:2.4em;
+  text-indent:0;
+}
+.book-page[data-cat="poetry"] .stanza:last-child{margin-bottom:0}
+.book-page[data-cat="poetry"] .stanza .num{
+  display:block;
+  font-family:'IBM Plex Mono',monospace;
+  font-style:normal;
+  font-size:.55rem;
+  letter-spacing:.28em;
+  color:#8a5f28;
+  opacity:.7;
+  margin-bottom:8px;
+}
+.book-page.no-stanzanum[data-cat="poetry"] .stanza .num{display:none}
+.book-page[data-cat="poetry"] .poem-attr{
+  margin-top:2.4em;
+  padding-top:1em;
+  border-top:1px dashed rgba(139,90,45,.25);
+  font-style:normal;
+  font-size:1rem;
+  color:#6e5f4a;
+  letter-spacing:.02em;
+  text-indent:0;
+}
+.book-page[data-cat="poetry"] .poem-attr::before{content:"— ";color:var(--gold);font-size:1.1em}
+.book-page.no-attribution[data-cat="poetry"] .poem-attr{display:none}
+
+/* =========================================================
+   ESSAY — enhanced
+   ========================================================= */
+.book-page[data-cat="essay"] .page-content p{font-size:1.15rem;line-height:1.85;margin-bottom:1.4em;text-indent:0}
+.book-page[data-cat="essay"] .essay-sec{margin-bottom:2em}
+.book-page[data-cat="essay"] .essay-sec h4{
+  font-family:'Cormorant Garamond','Noto Serif Bengali',serif;
+  font-weight:600;
+  font-size:1.25rem;
+  color:#3a2510;
+  margin-bottom:.6em;
+  letter-spacing:.005em;
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+}
+.book-page[data-cat="essay"] .essay-sec h4 .n{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.68rem;
+  letter-spacing:.22em;
+  color:#8a5f28;
+  opacity:.85;
+  font-weight:600;
+  min-width:24px;
+}
+.book-page.no-secnum[data-cat="essay"] .essay-sec h4 .n{display:none}
+.book-page[data-cat="essay"] p.opening::first-line{
+  font-variant:small-caps;
+  letter-spacing:.06em;
+  color:#4a3a24;
+  font-weight:500;
+}
+.book-page.no-essaycaps[data-cat="essay"] p.opening::first-line{
+  font-variant:normal;letter-spacing:0;color:inherit;font-weight:inherit;
+}
+
+/* =========================================================
+   QUOTE — enhanced
+   ========================================================= */
+.book-page[data-cat="quote"] .page-content{display:flex;flex-direction:column;gap:0}
+.book-page[data-cat="quote"] .q{
+  position:relative;
+  margin-bottom:2.6em;
+  text-indent:0;
+}
+.book-page[data-cat="quote"] .q:last-child{margin-bottom:0}
+
+.book-page[data-cat="quote"] .q .qn{
+  position:absolute;
+  top:-4px;left:-4px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.55rem;
+  letter-spacing:.22em;
+  color:#8a5f28;
+  opacity:.65;
+  font-style:normal;
+  font-weight:600;
+}
+.book-page.no-quotenum[data-cat="quote"] .q .qn{display:none}
+
+.book-page[data-cat="quote"] .q.small{
+  text-align:center;
+  font-family:'Cormorant Garamond','Noto Serif Bengali',serif;
+  font-style:italic;
+  font-size:1.5rem;
+  line-height:1.5;
+  color:#3a2510;
+  padding:20px 24px;
+  letter-spacing:.005em;
+}
+.book-page[data-cat="quote"] .q.small::before,
+.book-page[data-cat="quote"] .q.small::after{
+  content:"❝";
+  font-family:Georgia,serif;font-style:normal;
+  color:var(--gold);opacity:.55;font-size:1.2em;
+  vertical-align:-.15em;padding:0 .1em;
+}
+.book-page[data-cat="quote"] .q.small::after{content:"❞"}
+
+.book-page[data-cat="quote"] .q.big{
+  padding:20px 26px 22px 30px;
+  background:rgba(201,168,106,.07);
+  border-left:3px solid var(--gold);
+  border-radius:0 4px 4px 0;
+  font-style:italic;
+  font-size:1.1rem;
+  line-height:1.8;
+  color:#3a2510;
+}
+
+/* Size-aware off — all quotes become card style */
+.book-page.no-sizeaware[data-cat="quote"] .q.small{
+  font-size:1.1rem;
+  text-align:left;
+  padding:20px 26px 22px 30px;
+  background:rgba(201,168,106,.07);
+  border-left:3px solid var(--gold);
+  border-radius:0 4px 4px 0;
+  line-height:1.8;
+}
+.book-page.no-sizeaware[data-cat="quote"] .q.small::before,
+.book-page.no-sizeaware[data-cat="quote"] .q.small::after{content:"";padding:0}
+
+/* Attribution inside quotes */
+.book-page[data-cat="quote"] .q .attr{
+  display:block;
+  text-align:right;
+  margin-top:12px;
+  font-family:'Cormorant Garamond','Noto Serif Bengali',serif;
+  font-style:normal;
+  font-size:.85rem;
+  color:#8a5f28;
+  letter-spacing:.12em;
+}
+.book-page[data-cat="quote"] .q .attr::before{content:"— ";color:var(--gold)}
+.book-page.no-quoteattr[data-cat="quote"] .q .attr{display:none}
+
+/* =========================================================
+   LETTER (unchanged — fixed style)
    ========================================================= */
 .book-page[data-cat="letter"]{
   background:
@@ -135,155 +332,29 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
     repeating-linear-gradient(0deg, rgba(120,80,40,.014) 0 1px, transparent 1px 3px),
     repeating-linear-gradient(90deg, rgba(120,80,40,.008) 0 1px, transparent 1px 5px),
     linear-gradient(180deg, #f9f1dc 0%, #f2e6c5 40%, #ecdcb0 100%);
-  box-shadow:
-    inset 0 0 100px rgba(139,90,45,.14),
-    inset 0 0 0 1px rgba(139,90,45,.06);
-  padding:70px 52px 90px;
-  max-width:760px;
+  box-shadow:inset 0 0 100px rgba(139,90,45,.14),inset 0 0 0 1px rgba(139,90,45,.06);
+  padding:70px 52px 90px;max-width:760px;
 }
-
-.book-page[data-cat="letter"]::before{
-  content:"";position:absolute;left:0;right:0;top:34%;height:1px;
-  background:linear-gradient(90deg,transparent 0%,rgba(139,90,45,.16) 20%,rgba(139,90,45,.16) 80%,transparent 100%);
-  pointer-events:none;z-index:0;
-}
-.book-page[data-cat="letter"]::after{
-  content:"";position:absolute;left:0;right:0;top:68%;height:1px;
-  background:linear-gradient(90deg,transparent 0%,rgba(139,90,45,.14) 20%,rgba(139,90,45,.14) 80%,transparent 100%);
-  pointer-events:none;z-index:0;
-}
-
-.book-page[data-cat="letter"] .page-header{
-  border-bottom:none;padding-bottom:16px;margin-bottom:30px;
-  position:relative;z-index:1;
-}
-.book-page[data-cat="letter"] .page-header::after{
-  content:"";display:block;width:100px;height:1px;
-  background:linear-gradient(90deg,transparent,var(--gold) 30%,var(--gold) 70%,transparent);
-  margin:24px auto 0;opacity:.7;
-}
-.book-page[data-cat="letter"] .page-header h1{
-  font-style:normal;font-weight:600;letter-spacing:-.005em;
-}
+.book-page[data-cat="letter"]::before{content:"";position:absolute;left:0;right:0;top:34%;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(139,90,45,.16) 20%,rgba(139,90,45,.16) 80%,transparent 100%);pointer-events:none;z-index:0}
+.book-page[data-cat="letter"]::after{content:"";position:absolute;left:0;right:0;top:68%;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(139,90,45,.14) 20%,rgba(139,90,45,.14) 80%,transparent 100%);pointer-events:none;z-index:0}
+.book-page[data-cat="letter"] .page-header{border-bottom:none;padding-bottom:16px;margin-bottom:30px;position:relative;z-index:1}
+.book-page[data-cat="letter"] .page-header::after{content:"";display:block;width:100px;height:1px;background:linear-gradient(90deg,transparent,var(--gold) 30%,var(--gold) 70%,transparent);margin:24px auto 0;opacity:.7}
+.book-page[data-cat="letter"] .page-header h1{font-style:normal;font-weight:600;letter-spacing:-.005em}
 .book-page[data-cat="letter"] .page-header .orn{color:var(--gold);opacity:.75}
-
-/* Official postmark — top-left corner */
 .book-page .postmark{display:none}
-.book-page[data-cat="letter"] .postmark{
-  display:block;
-  position:absolute;
-  top:52px;
-  left:32px;
-  width:108px;
-  height:108px;
-  opacity:.6;
-  transform:rotate(-9deg);
-  pointer-events:none;
-  z-index:2;
-}
-
-/* Date — same font as body, color same as before */
-.letter-date{
-  display:block;
-  text-align:right;
-  font-family:'Cormorant Garamond','Noto Serif Bengali',Georgia,serif;
-  font-size:1.15rem;
-  font-weight:500;
-  color:#5a3d20;
-  margin-bottom:32px;
-  padding-bottom:12px;
-  border-bottom:1px dashed rgba(139,90,45,.28);
-  font-style:normal;
-  opacity:.92;
-  letter-spacing:.01em;
-  position:relative;
-  z-index:1;
-}
-
-.book-page[data-cat="letter"] .page-content{
-  font-family:'Cormorant Garamond','Noto Serif Bengali',Georgia,serif;
-  position:relative;z-index:1;
-}
-.book-page[data-cat="letter"] .page-content p{
-  font-size:1.22rem;
-  line-height:2.05;
-  margin-bottom:1.6em;
-  text-indent:0;
-  color:#2a1c10;
-  letter-spacing:.005em;
-}
-
-/* ===== Greeting ===== */
-.book-page[data-cat="letter"] .page-content .greeting{
-  font-style:normal;
-  font-weight:400;
-  color:#3a2510;
-  margin-bottom:1.7em;
-  line-height:1.5;
-  letter-spacing:.005em;
-}
-.book-page[data-cat="letter"] .page-content .greeting.bn{
-  font-family:'BenSen Handwriting','Noto Serif Bengali',cursive;
-  font-size:1.55rem;
-  font-weight:400;
-  line-height:1.6;
-}
-.book-page[data-cat="letter"] .page-content .greeting.en{
-  font-family:'Caveat',cursive;
-  font-size:1.8rem;
-  font-weight:600;
-}
-
-/* ===== Valediction ===== */
-.book-page[data-cat="letter"] .page-content .valediction{
-  font-style:normal;
-  font-weight:400;
-  color:#3a2510;
-  margin-top:2em;
-  margin-bottom:.7em;
-  line-height:1.5;
-}
-.book-page[data-cat="letter"] .page-content .valediction.bn{
-  font-family:'BenSen Handwriting','Noto Serif Bengali',cursive;
-  font-size:1.4rem;
-  font-weight:400;
-  line-height:1.6;
-}
-.book-page[data-cat="letter"] .page-content .valediction.en{
-  font-family:'Caveat',cursive;
-  font-size:1.55rem;
-  font-weight:600;
-}
-
-/* ===== Signature ===== */
-.book-page[data-cat="letter"] .page-content p.signature{
-  font-style:normal;
-  text-align:right;
-  color:#241708;
-  line-height:1.4;
-  letter-spacing:.005em;
-  margin-top:2.2em;
-  margin-bottom:.4em;
-  padding-top:1.6em;
-  padding-right:1.2em;
-  border-top:1px dashed rgba(139,90,45,.32);
-  position:relative;
-  z-index:1;
-  transform:rotate(-1.6deg);
-  transform-origin:right center;
-}
-.book-page[data-cat="letter"] .page-content p.signature.bn{
-  font-family:'BenSen Handwriting','Noto Serif Bengali',cursive;
-  font-size:1.7rem;
-  font-weight:400;
-  line-height:1.5;
-}
-.book-page[data-cat="letter"] .page-content p.signature.en{
-  font-family:'Caveat',cursive;
-  font-size:1.95rem;
-  font-weight:600;
-}
-
+.book-page[data-cat="letter"] .postmark{display:block;position:absolute;top:52px;left:32px;width:108px;height:108px;opacity:.6;transform:rotate(-9deg);pointer-events:none;z-index:2}
+.letter-date{display:block;text-align:right;font-family:'Cormorant Garamond','Noto Serif Bengali',Georgia,serif;font-size:1.15rem;font-weight:500;color:#5a3d20;margin-bottom:32px;padding-bottom:12px;border-bottom:1px dashed rgba(139,90,45,.28);font-style:normal;opacity:.92;letter-spacing:.01em;position:relative;z-index:1}
+.book-page[data-cat="letter"] .page-content{font-family:'Cormorant Garamond','Noto Serif Bengali',Georgia,serif;position:relative;z-index:1}
+.book-page[data-cat="letter"] .page-content p{font-size:1.22rem;line-height:2.05;margin-bottom:1.6em;text-indent:0;color:#2a1c10;letter-spacing:.005em}
+.book-page[data-cat="letter"] .page-content .greeting{font-style:normal;font-weight:400;color:#3a2510;margin-bottom:1.7em;line-height:1.5}
+.book-page[data-cat="letter"] .page-content .greeting.bn{font-family:'BenSen Handwriting','Noto Serif Bengali',cursive;font-size:1.55rem;font-weight:400;line-height:1.6}
+.book-page[data-cat="letter"] .page-content .greeting.en{font-family:'Caveat',cursive;font-size:1.8rem;font-weight:600}
+.book-page[data-cat="letter"] .page-content .valediction{font-style:normal;font-weight:400;color:#3a2510;margin-top:2em;margin-bottom:.7em;line-height:1.5}
+.book-page[data-cat="letter"] .page-content .valediction.bn{font-family:'BenSen Handwriting','Noto Serif Bengali',cursive;font-size:1.4rem;font-weight:400;line-height:1.6}
+.book-page[data-cat="letter"] .page-content .valediction.en{font-family:'Caveat',cursive;font-size:1.55rem;font-weight:600}
+.book-page[data-cat="letter"] .page-content p.signature{font-style:normal;text-align:right;color:#241708;line-height:1.4;margin-top:2.2em;margin-bottom:.4em;padding-top:1.6em;padding-right:1.2em;border-top:1px dashed rgba(139,90,45,.32);position:relative;z-index:1;transform:rotate(-1.6deg);transform-origin:right center}
+.book-page[data-cat="letter"] .page-content p.signature.bn{font-family:'BenSen Handwriting','Noto Serif Bengali',cursive;font-size:1.7rem;font-weight:400;line-height:1.5}
+.book-page[data-cat="letter"] .page-content p.signature.en{font-family:'Caveat',cursive;font-size:1.95rem;font-weight:600}
 .book-page[data-cat="letter"] .page-footer{display:none}
 
 /* ===== ANIMATIONS ===== */
@@ -308,10 +379,9 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
   .sk-book{width:52px;height:70px}
   .book-page{padding:48px 22px 80px;font-size:1.05rem;line-height:1.85}
   .page-header{margin-bottom:44px;padding-bottom:30px}
-  .book-page[data-cat="quote"] .quote-card{padding:22px 26px}
-  .book-page[data-cat="quote"] .quote-card .qtext{font-size:1.2rem}
-  .book-page[data-cat="quote"] .quote-card .qmark{font-size:2.6rem}
-  .book-page[data-cat="poetry"] .page-content p{line-height:2.15}
+  .book-page[data-cat="poetry"] .poem-wrap{padding-left:16px}
+  .book-page[data-cat="poetry"] .stanza{font-size:1.05rem;line-height:1.9}
+  .book-page[data-cat="quote"] .q.small{font-size:1.25rem}
   .book-page[data-cat="letter"]{padding:52px 24px 70px}
   .book-page[data-cat="letter"] .postmark{width:78px;height:78px;top:36px;left:18px;opacity:.5}
   .book-page[data-cat="letter"] .page-content p{font-size:1.08rem;line-height:1.95}
@@ -378,120 +448,54 @@ function mountIframe(src){
   frame.insertBefore(iframe,loading);ext.href=src;
 }
 
-/* =========================================================
-   LANGUAGE DETECTION
-   ========================================================= */
+/* ===== LANGUAGE ===== */
 function isBengali(text){return /[\u0980-\u09FF]/.test(String(text||''));}
 function langSuffix(text){return isBengali(text) ? ' bn' : ' en';}
 
-/* =========================================================
-   LETTER PATTERNS
-   ========================================================= */
-const GREETING_PATTERNS = [
-  /^(প্রিয়|প্রিয়তম|প্রিয়তমা|সুপ্রিয়|আদরের|ওগো|হে|Dear|My dear|Dearest|Hello|To)\b(?=\s|,|$)/i
-];
-const VALEDICTION_PATTERNS = [
-  /^(ভালো\s*থেকো|ভালো\s*থাকো|ভাল\s*থেকো|ভালবাসা|সবটুকু\s*ভালোবাসা|আন্তরিকভাবে|তোমার\s*সুহৃদ|অনুগত|বিদায়|শুভেচ্ছা|সশ্রদ্ধ|শ্রদ্ধা|ইতি|Regards|Best|Yours|Sincerely|Love|With love|Warmly|Thanks|Farewell|Goodbye)\b/i
-];
+/* ===== LETTER PATTERNS ===== */
+const GREETING_PATTERNS = [/^(প্রিয়|প্রিয়তম|প্রিয়তমা|সুপ্রিয়|আদরের|ওগো|হে|Dear|My dear|Dearest|Hello|To)\b(?=\s|,|$)/i];
+const VALEDICTION_PATTERNS = [/^(ভালো\s*থেকো|ভালো\s*থাকো|ভাল\s*থেকো|ভালবাসা|সবটুকু\s*ভালোবাসা|আন্তরিকভাবে|তোমার\s*সুহৃদ|অনুগত|বিদায়|শুভেচ্ছা|সশ্রদ্ধ|শ্রদ্ধা|ইতি|Regards|Best|Yours|Sincerely|Love|With love|Warmly|Thanks|Farewell|Goodbye)\b/i];
 function isGreeting(t){return GREETING_PATTERNS.some(p=>p.test(String(t||'').trim()))}
 function isValediction(t){return VALEDICTION_PATTERNS.some(p=>p.test(String(t||'').trim()))}
 
-/* =========================================================
-   DATE HELPERS
-   ========================================================= */
+/* ===== DATE ===== */
 function extractDate(blocks){
   if(!blocks.length) return {date:null,rest:blocks};
   const first = blocks[0].trim();
   const m = first.match(/^(?:DATE|তারিখ|Date)\s*[:\-]\s*(.+)$/i);
   if(m) return {date:m[1].trim(), rest:blocks.slice(1)};
-  if(first.length < 45 && /^[\d\-\/\s.,আ-হ০-৯ইং]+$/.test(first) && /\d/.test(first)){
-    return {date:first, rest:blocks.slice(1)};
-  }
+  if(first.length < 45 && /^[\d\-\/\s.,আ-হ০-৯ইং]+$/.test(first) && /\d/.test(first)) return {date:first, rest:blocks.slice(1)};
   return {date:null, rest:blocks};
 }
+function toBengaliDigits(n){const map=['০','১','২','৩','৪','৫','৬','৭','৮','৯'];return String(n).replace(/\d/g,d=>map[+d])}
+function bengaliOrdinalSuffix(d){if(d===1)return 'লা';if(d===2||d===3)return 'রা';if(d===4)return 'ঠা';if(d>=5&&d<=18)return 'ই';return 'শে'}
+function todayBengali(){const t=new Date();const months=['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];const d=t.getDate();return toBengaliDigits(d)+bengaliOrdinalSuffix(d)+' '+months[t.getMonth()]+' '+toBengaliDigits(t.getFullYear())}
+function todayEnglish(){const t=new Date();const months=['January','February','March','April','May','June','July','August','September','October','November','December'];const d=t.getDate();const s=(d%10===1&&d!==11)?'st':(d%10===2&&d!==12)?'nd':(d%10===3&&d!==13)?'rd':'th';return d+s+' '+months[t.getMonth()]+', '+t.getFullYear()}
 
-/* --- Bengali digits --- */
-function toBengaliDigits(n){
-  const map = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
-  return String(n).replace(/\d/g, d => map[+d]);
+/* ===== ROMAN ===== */
+function roman(n){
+  const map=[[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']];
+  let out='';
+  for(const [v,s] of map){while(n>=v){out+=s;n-=v}}
+  return out;
 }
 
-/* --- Bengali ordinal suffix, grammar-correct --- */
-function bengaliOrdinalSuffix(d){
-  if(d === 1) return 'লা';
-  if(d === 2) return 'রা';
-  if(d === 3) return 'রা';
-  if(d === 4) return 'ঠা';
-  if(d >= 5 && d <= 18) return 'ই';
-  return 'শে'; // 19–31
-}
-
-/* --- Bengali date: ২৫শে সেপ্টেম্বর ২০২৬ --- */
-function todayBengali(){
-  const t = new Date();
-  const months = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
-  const d = t.getDate();
-  return toBengaliDigits(d) + bengaliOrdinalSuffix(d) + ' ' + months[t.getMonth()] + ' ' + toBengaliDigits(t.getFullYear());
-}
-
-/* --- English date: 25th September, 2026 --- */
-function todayEnglish(){
-  const t = new Date();
-  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  const d = t.getDate();
-  const s = (d%10===1 && d!==11) ? 'st' : (d%10===2 && d!==12) ? 'nd' : (d%10===3 && d!==13) ? 'rd' : 'th';
-  return d + s + ' ' + months[t.getMonth()] + ', ' + t.getFullYear();
+/* ===== FEATURE CHECK ===== */
+function featOn(features, key){
+  const f = features || {};
+  return f[key] !== false;
 }
 
 /* =========================================================
-   TEXT RENDERER
+   RENDER: STORY
    ========================================================= */
-function renderTextContent(raw, category){
-  if(!raw) return '';
-  const t = esc(raw).trim();
-  if(!t) return '';
-  let blocks = t.split(/\n\s*\n/);
-  const cat = (category || '').toLowerCase();
+function renderStory(blocks, features){
+  const dropcap = featOn(features,'dropcap');
+  const smallcaps = featOn(features,'smallcaps');
+  const divider = featOn(features,'divider');
+  const pullquote = featOn(features,'pullquote');
 
-  if(cat === 'letter'){
-    let dateHtml = '';
-    const d = extractDate(blocks);
-    if(d.date){
-      dateHtml = '<span class="letter-date">' + d.date + '</span>';
-      blocks = d.rest;
-    } else {
-      const hasBengali = /[\u0980-\u09FF]/.test(raw);
-      const dateStr = hasBengali ? todayBengali() : todayEnglish();
-      dateHtml = '<span class="letter-date">' + dateStr + '</span>';
-    }
-
-    const total = blocks.length;
-    const rendered = blocks.map((block, i) => {
-      const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
-      if(!lines.length) return '';
-      const first = lines[0];
-
-      if(first.startsWith('# ')) return '<h2 class="h1">' + first.slice(2).trim() + '</h2>';
-      if(first.startsWith('## ')) return '<h3 class="h2">' + first.slice(3).trim() + '</h3>';
-      if(first.startsWith('>')){
-        const q = lines.map(l => l.replace(/^>\s?/,'').trim()).join(' ');
-        return '<blockquote>' + q + '</blockquote>';
-      }
-      if(/^([*\-_]\s*){3,}$/.test(block.trim())) return '<div class="divider">✦ ✦ ✦</div>';
-
-      const text = lines.join(' ');
-      const textBr = lines.join('<br>');
-      const suffix = langSuffix(text);
-
-      if(i === 0 && isGreeting(text)) return '<p class="greeting'+suffix+'">' + textBr + '</p>';
-      if(i === total - 1 && total > 1) return '<p class="signature'+suffix+'">' + textBr + '</p>';
-      if(isValediction(text)) return '<p class="valediction'+suffix+'">' + textBr + '</p>';
-      return '<p>' + text + '</p>';
-    }).join('');
-
-    return dateHtml + rendered;
-  }
-
+  let firstParaSeen = false;
   return blocks.map(block => {
     const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
     if(!lines.length) return '';
@@ -501,50 +505,194 @@ function renderTextContent(raw, category){
     if(first.startsWith('## ')) return '<h3 class="h2">' + first.slice(3).trim() + '</h3>';
     if(first.startsWith('>')){
       const q = lines.map(l => l.replace(/^>\s?/,'').trim()).join(' ');
+      return divider || pullquote ? '<div class="pull-quote">' + q + '</div>' : '<p>' + q + '</p>';
+    }
+    if(/^([*\-_]\s*){3,}$/.test(block.trim())) return '<div class="scene-div">· · · · ·</div>';
+
+    const text = lines.join(' ');
+    firstParaSeen = true;
+    return '<p>' + text + '</p>';
+  }).join('');
+}
+
+/* =========================================================
+   RENDER: POETRY
+   ========================================================= */
+function renderPoetry(blocks, features){
+  const vline = featOn(features,'vline');
+  const stanzanum = featOn(features,'stanzanum');
+  const attribution = featOn(features,'attribution');
+
+  const realBlocks = blocks.slice();
+  let attrText = null;
+  if(realBlocks.length && /^[—\-]/.test(realBlocks[realBlocks.length-1].trim())){
+    attrText = realBlocks.pop().trim().replace(/^[—\-]\s*/,'');
+  }
+
+  const stanzaHtml = realBlocks.map((block, i) => {
+    const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
+    if(!lines.length) return '';
+    const num = stanzanum ? '<span class="num">' + roman(i+1) + '</span>' : '';
+    return '<div class="stanza">' + num + lines.join('<br>') + '</div>';
+  }).join('');
+
+  const attrHtml = (attribution && attrText) ? '<div class="poem-attr">' + attrText + '</div>' : '';
+
+  return '<div class="poem-wrap">' + stanzaHtml + attrHtml + '</div>';
+}
+
+/* =========================================================
+   RENDER: ESSAY
+   ========================================================= */
+function renderEssay(blocks, features){
+  const secnum = featOn(features,'secnum');
+  const essaycaps = featOn(features,'essaycaps');
+
+  let secCount = 0;
+  return blocks.map(block => {
+    const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
+    if(!lines.length) return '';
+    const first = lines[0];
+
+    if(first.startsWith('## ')){
+      secCount++;
+      const heading = first.slice(3).trim();
+      const bodyLines = lines.slice(1);
+      const nHtml = secnum ? '<span class="n">' + toBengaliDigits(secCount) + '.</span>' : '';
+      let bodyHtml = '';
+      if(bodyLines.length){
+        const firstPara = bodyLines.shift();
+        bodyHtml += '<p class="opening">' + firstPara + '</p>';
+        if(bodyLines.length) bodyHtml += '<p>' + bodyLines.join(' ') + '</p>';
+      }
+      return '<div class="essay-sec"><h4>' + nHtml + heading + '</h4>' + bodyHtml + '</div>';
+    }
+    if(first.startsWith('# ')) return '<h2 class="h1">' + first.slice(2).trim() + '</h2>';
+    if(first.startsWith('>')){
+      const q = lines.map(l => l.replace(/^>\s?/,'').trim()).join(' ');
       return '<blockquote>' + q + '</blockquote>';
     }
     if(/^([*\-_]\s*){3,}$/.test(block.trim())) return '<div class="divider">✦ ✦ ✦</div>';
-
-    if(cat === 'quote'){
-      const text = lines.join(' ');
-      return '<div class="quote-card"><span class="qmark open">❝</span><p class="qtext">' + text + '</p><span class="qmark close">❞</span></div>';
-    }
-    if(cat === 'poetry' || (lines.length >= 2 && lines.every(l => l.length < 70))){
-      return '<p class="poem">' + lines.join('<br>') + '</p>';
-    }
     return '<p>' + lines.join(' ') + '</p>';
   }).join('');
 }
 
 /* =========================================================
-   POST OFFICE STAMP
+   RENDER: QUOTE
+   ========================================================= */
+function renderQuote(blocks, features){
+  const sizeaware = featOn(features,'sizeaware');
+  const quotenum = featOn(features,'quotenum');
+  const quoteattr = featOn(features,'quoteattr');
+
+  return blocks.map((block, i) => {
+    const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
+    if(!lines.length) return '';
+
+    // Extract attribution if last line starts with — or -
+    let attrText = null;
+    if(lines.length > 1 && /^[—\-]/.test(lines[lines.length-1])){
+      attrText = lines.pop().trim().replace(/^[—\-]\s*/,'');
+    }
+
+    const text = lines.join(' ');
+    const isShort = lines.length === 1 && text.length < 90;
+    const cls = (sizeaware && isShort) ? 'small' : 'big';
+    const numHtml = quotenum ? '<span class="qn">' + roman(i+1) + '</span>' : '';
+    const attrHtml = (quoteattr && attrText) ? '<span class="attr">' + attrText + '</span>' : '';
+
+    return '<div class="q ' + cls + '">' + numHtml + text + attrHtml + '</div>';
+  }).join('');
+}
+
+/* =========================================================
+   RENDER: LETTER (unchanged)
+   ========================================================= */
+function renderLetter(blocks, raw){
+  let dateHtml = '';
+  const d = extractDate(blocks);
+  if(d.date){ dateHtml = '<span class="letter-date">' + d.date + '</span>'; blocks = d.rest; }
+  else {
+    const hasBn = /[\u0980-\u09FF]/.test(raw);
+    dateHtml = '<span class="letter-date">' + (hasBn ? todayBengali() : todayEnglish()) + '</span>';
+  }
+  const total = blocks.length;
+  const rendered = blocks.map((block, i) => {
+    const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
+    if(!lines.length) return '';
+    const first = lines[0];
+    if(first.startsWith('# ')) return '<h2 class="h1">' + first.slice(2).trim() + '</h2>';
+    if(first.startsWith('## ')) return '<h3 class="h2">' + first.slice(3).trim() + '</h3>';
+    if(first.startsWith('>')){
+      const q = lines.map(l => l.replace(/^>\s?/,'').trim()).join(' ');
+      return '<blockquote>' + q + '</blockquote>';
+    }
+    if(/^([*\-_]\s*){3,}$/.test(block.trim())) return '<div class="divider">✦ ✦ ✦</div>';
+    const text = lines.join(' ');
+    const textBr = lines.join('<br>');
+    const suffix = langSuffix(text);
+    if(i === 0 && isGreeting(text)) return '<p class="greeting'+suffix+'">' + textBr + '</p>';
+    if(i === total - 1 && total > 1) return '<p class="signature'+suffix+'">' + textBr + '</p>';
+    if(isValediction(text)) return '<p class="valediction'+suffix+'">' + textBr + '</p>';
+    return '<p>' + text + '</p>';
+  }).join('');
+  return dateHtml + rendered;
+}
+
+/* =========================================================
+   MAIN RENDERER
+   ========================================================= */
+function renderTextContent(raw, category, features){
+  if(!raw) return '';
+  const t = esc(raw).trim();
+  if(!t) return '';
+  const blocks = t.split(/\n\s*\n/).map(b => b.trim()).filter(Boolean);
+  const cat = (category || '').toLowerCase();
+
+  if(cat === 'letter') return renderLetter(blocks, raw);
+  if(cat === 'poetry') return renderPoetry(blocks, features);
+  if(cat === 'essay') return renderEssay(blocks, features);
+  if(cat === 'quote') return renderQuote(blocks, features);
+  return renderStory(blocks, features);
+}
+
+/* =========================================================
+   FEATURE CLASSES
+   ========================================================= */
+function buildPageClasses(cat, features){
+  const classes = ['book-page'];
+  const f = features || {};
+  const check = {
+    story: ['dropcap','smallcaps','divider','pullquote'],
+    poetry: ['vline','stanzanum','attribution'],
+    essay: ['secnum','essaycaps'],
+    quote: ['sizeaware','quotenum','quoteattr']
+  };
+  const keys = check[cat] || [];
+  keys.forEach(k => {
+    if(f[k] === false) classes.push('no-' + k);
+  });
+  return classes.join(' ');
+}
+
+/* =========================================================
+   POSTMARK
    ========================================================= */
 function postmarkSvg(){
-  return `
-    <svg class="postmark" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs>
-        <path id="pmPath" d="M 60 60 m -43 0 a 43 43 0 1 1 86 0 a 43 43 0 1 1 -86 0"/>
-      </defs>
-      <circle cx="60" cy="60" r="55" fill="none" stroke="#8b3a2a" stroke-width="1.9" opacity="0.75"/>
-      <circle cx="60" cy="60" r="48" fill="none" stroke="#8b3a2a" stroke-width="0.6" opacity="0.55"/>
-      <text font-family="'IBM Plex Mono', monospace" font-size="7" font-weight="500" letter-spacing="1.5" fill="#8b3a2a" opacity="0.85">
-        <textPath href="#pmPath" startOffset="0%">· EPILOGUE · POST OFFICE · EST · MMXXV ·</textPath>
-      </text>
-      <g transform="translate(60 60)" fill="#8b3a2a" opacity="0.85">
-        <path d="M 0 -13 L 2.4 -2.4 L 13 0 L 2.4 2.4 L 0 13 L -2.4 2.4 L -13 0 L -2.4 -2.4 Z"/>
-        <circle cx="0" cy="0" r="2" fill="#f2e6c5" opacity="0.6"/>
-      </g>
-    </svg>`;
+  return '<svg class="postmark" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><path id="pmPath" d="M 60 60 m -43 0 a 43 43 0 1 1 86 0 a 43 43 0 1 1 -86 0"/></defs><circle cx="60" cy="60" r="55" fill="none" stroke="#8b3a2a" stroke-width="1.9" opacity="0.75"/><circle cx="60" cy="60" r="48" fill="none" stroke="#8b3a2a" stroke-width="0.6" opacity="0.55"/><text font-family="IBM Plex Mono, monospace" font-size="7" font-weight="500" letter-spacing="1.5" fill="#8b3a2a" opacity="0.85"><textPath href="#pmPath" startOffset="0%">· EPILOGUE · POST OFFICE · EST · MMXXV ·</textPath></text><g transform="translate(60 60)" fill="#8b3a2a" opacity="0.85"><path d="M 0 -13 L 2.4 -2.4 L 13 0 L 2.4 2.4 L 0 13 L -2.4 2.4 L -13 0 L -2.4 -2.4 Z"/><circle cx="0" cy="0" r="2" fill="#f2e6c5" opacity="0.6"/></g></svg>';
 }
 
 function mountTextReader(book){
   const cat = (book.category||'story').toLowerCase();
+  const features = book.features || {};
   const isLetter = cat === 'letter';
-  const html = renderTextContent(book.content || '', cat);
+  const html = renderTextContent(book.content || '', cat, features);
+  const pageClass = buildPageClasses(cat, features);
+
   const view = document.createElement('div');
   view.className='text-reader';
   view.innerHTML =
-    '<article class="book-page" data-cat="'+cat+'">' +
+    '<article class="' + pageClass + '" data-cat="'+cat+'">' +
       (isLetter ? postmarkSvg() : '') +
       '<header class="page-header">' +
         '<div class="orn">✦</div>' +
@@ -577,6 +725,7 @@ function attachProgress(scroller){
   scroller.addEventListener('scroll', onScroll, {passive:true});
 }
 
+/* ===== LOAD ===== */
 async function loadArchive(){
   const CFG=window.EA_CONFIG||{};
   let base=[];
