@@ -5,9 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Epilogue Archive — A Collector's Library</title>
 <meta name="description" content="A quiet collection of tales, poetry & forgotten letters.">
+
+<!-- ⚡ PERFORMANCE -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://drive.google.com" crossorigin>
+<link rel="dns-prefetch" href="https://drive.google.com">
+<link rel="prefetch" href="reader.html" as="document">
+<link rel="prefetch" href="./books.json" as="fetch" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Noto+Serif+Bengali:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
 :root{
   --bg:#0f0c09;
@@ -21,7 +29,19 @@
   --gold-bright:#e4c084;
   --gold-soft:rgba(201,168,106,.4);
   --line:rgba(201,168,106,.2);
-  --cream:#f7edd8;
+}
+body.light{
+  --bg:#f6efe2;
+  --bg-2:#ece2cb;
+  --paper:#1c1610;
+  --paper-2:#2a2118;
+  --ink:#6e5f4a;
+  --ink-soft:#5a4a36;
+  --ink-mute:#8a7658;
+  --gold:#a87a3a;
+  --gold-bright:#8a5f28;
+  --gold-soft:rgba(168,122,58,.35);
+  --line:rgba(28,22,16,.15);
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -36,9 +56,9 @@ body{
   position:relative;
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
+  transition:background .4s ease,color .4s ease;
 }
 
-/* Warm wood texture + light from above */
 body::before{
   content:"";
   position:fixed;
@@ -52,18 +72,49 @@ body::before{
       rgba(0,0,0,.02) 5px),
     radial-gradient(ellipse at 50% -20%, rgba(201,168,106,.18) 0%, transparent 55%),
     radial-gradient(ellipse at 50% 120%, rgba(139,40,40,.12) 0%, transparent 60%),
-    linear-gradient(180deg, #0f0c09 0%, #17110c 50%, #0f0c09 100%);
+    linear-gradient(180deg,var(--bg) 0%, var(--bg-2) 50%, var(--bg) 100%);
   pointer-events:none;
+  transition:background .4s ease;
 }
-
-/* Vignette */
 body::after{
   content:"";
   position:fixed;
   inset:0;
   z-index:-1;
-  background:radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.65) 100%);
+  background:radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.6) 100%);
   pointer-events:none;
+}
+body.light::after{
+  background:radial-gradient(ellipse at center, transparent 50%, rgba(120,80,40,.15) 100%);
+}
+
+/* ==================== THEME TOGGLE ==================== */
+.theme-btn{
+  position:fixed;
+  top:26px;
+  right:26px;
+  width:42px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(30,22,14,.7);
+  border:1px solid var(--gold-soft);
+  color:var(--gold-bright);
+  font-size:1.05rem;
+  cursor:pointer;
+  z-index:50;
+  transition:all .3s ease;
+  backdrop-filter:blur(8px);
+}
+.theme-btn:hover{
+  background:rgba(201,168,106,.15);
+  border-color:var(--gold);
+  transform:rotate(15deg);
+}
+body.light .theme-btn{
+  background:rgba(255,255,255,.6);
+  color:var(--gold-bright);
 }
 
 /* ==================== HEADER ==================== */
@@ -73,7 +124,6 @@ body::after{
   text-align:center;
   animation:fadeUp .7s ease both;
 }
-
 .monogram{
   width:58px;
   height:58px;
@@ -97,7 +147,6 @@ body::after{
   border:1px solid rgba(201,168,106,.2);
   border-radius:50%;
 }
-
 .eyebrow{
   font-family:'IBM Plex Mono',monospace;
   font-size:.62rem;
@@ -116,7 +165,6 @@ body::after{
   vertical-align:middle;
   margin:0 14px;
 }
-
 h1{
   font-family:'Cormorant Garamond',serif;
   font-weight:400;
@@ -132,7 +180,6 @@ h1 em{
   font-weight:500;
   color:var(--gold-bright);
 }
-
 .tagline{
   font-size:1.05rem;
   font-style:italic;
@@ -140,7 +187,6 @@ h1 em{
   color:var(--ink-mute);
   letter-spacing:.02em;
 }
-
 .flourish{
   display:flex;
   align-items:center;
@@ -172,7 +218,6 @@ h1 em{
   flex-wrap:wrap;
   animation:fadeUp .7s ease .1s both;
 }
-
 .search{
   flex:1 1 240px;
   position:relative;
@@ -191,6 +236,10 @@ h1 em{
   transition:border-color .25s ease, background .25s ease;
   border-radius:1px;
 }
+body.light .search input{
+  background:rgba(255,255,255,.6);
+  color:var(--ink);
+}
 .search input::placeholder{
   color:var(--ink-mute);
   font-style:italic;
@@ -199,6 +248,7 @@ h1 em{
   border-color:var(--gold);
   background:rgba(40,28,16,.85);
 }
+body.light .search input:focus{background:#fff}
 .search::after{
   content:"⌕";
   position:absolute;
@@ -209,12 +259,7 @@ h1 em{
   font-size:1.05rem;
   pointer-events:none;
 }
-
-.filters{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
 .pill{
   font-family:'IBM Plex Mono',monospace;
   font-size:.62rem;
@@ -234,6 +279,116 @@ h1 em{
   background:var(--gold);
   border-color:var(--gold);
   font-weight:500;
+}
+
+/* ==================== CONTINUE READING ==================== */
+.continue{
+  max-width:1140px;
+  margin:0 auto 60px;
+  animation:fadeUp .7s ease .12s both;
+}
+.continue[hidden]{display:none}
+.continue-head{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.6rem;
+  letter-spacing:.42em;
+  text-transform:uppercase;
+  color:var(--gold-soft);
+  margin-bottom:18px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.continue-head::after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,var(--gold-soft),transparent);
+}
+.continue-list{
+  display:flex;
+  gap:16px;
+  overflow-x:auto;
+  padding-bottom:8px;
+  scrollbar-width:thin;
+}
+.continue-list::-webkit-scrollbar{height:5px}
+.continue-list::-webkit-scrollbar-thumb{background:var(--gold-soft)}
+.cr-item{
+  flex:0 0 auto;
+  width:120px;
+  text-decoration:none;
+  color:inherit;
+  transition:transform .3s ease;
+}
+.cr-item:hover{transform:translateY(-4px)}
+.cr-cover{
+  width:100%;
+  aspect-ratio:2/3;
+  background:linear-gradient(160deg,var(--c-bg) 0%,var(--c-bg2) 100%);
+  border-radius:2px 4px 4px 2px;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:14px 10px;
+  box-shadow:
+    inset 4px 0 8px -4px rgba(0,0,0,.5),
+    0 6px 16px -6px rgba(0,0,0,.7);
+  overflow:hidden;
+}
+.cr-cover::before{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border:1px solid var(--c-accent);
+  opacity:.5;
+}
+.cr-cover span{
+  font-family:'Cormorant Garamond','Noto Serif Bengali',serif;
+  font-weight:600;
+  font-size:.68rem;
+  color:var(--c-text);
+  text-align:center;
+  text-transform:uppercase;
+  line-height:1.15;
+  z-index:1;
+  overflow:hidden;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+}
+.cr-meta{
+  padding:10px 2px 0;
+  text-align:center;
+}
+.cr-meta h4{
+  font-family:'Cormorant Garamond','Noto Serif Bengali',serif;
+  font-size:.82rem;
+  font-weight:600;
+  color:var(--paper);
+  overflow:hidden;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  line-height:1.2;
+}
+.cr-progress{
+  margin-top:8px;
+  height:2px;
+  background:rgba(201,168,106,.15);
+  position:relative;
+  overflow:hidden;
+}
+.cr-progress::after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  height:100%;
+  width:var(--p,0%);
+  background:linear-gradient(90deg,var(--gold),var(--gold-bright));
 }
 
 /* ==================== FEATURED ==================== */
@@ -259,7 +414,6 @@ h1 em{
   height:1px;
   background:linear-gradient(90deg,var(--gold-soft),transparent);
 }
-
 .featured-book{
   display:grid;
   grid-template-columns:260px 1fr;
@@ -268,14 +422,8 @@ h1 em{
   text-decoration:none;
   color:inherit;
 }
-
-.featured-cover{
-  perspective:1200px;
-}
-
-.featured-info{
-  padding-right:20px;
-}
+.featured-cover{perspective:1200px}
+.featured-info{padding-right:20px}
 .featured-info .num{
   font-family:'IBM Plex Mono',monospace;
   font-size:.62rem;
@@ -331,7 +479,7 @@ h1 em{
   letter-spacing:.38em;
 }
 
-/* ==================== SECTION ==================== */
+/* ==================== SECTION HEAD ==================== */
 .section-head{
   max-width:1140px;
   margin:0 auto 26px;
@@ -374,10 +522,55 @@ h1 em{
   opacity:0;
   animation:cardIn .55s ease both;
   contain:layout style paint;
+  position:relative;
 }
-.book-inner{
+.book-inner{display:flex;flex-direction:column}
+
+.bookmark{
+  position:absolute;
+  top:8px;
+  right:8px;
+  width:32px;
+  height:32px;
   display:flex;
-  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background:rgba(15,12,9,.55);
+  border:1px solid var(--gold-soft);
+  color:var(--gold-bright);
+  font-size:.9rem;
+  cursor:pointer;
+  z-index:5;
+  border-radius:50%;
+  transition:all .25s ease;
+  opacity:0;
+  backdrop-filter:blur(6px);
+}
+.book:hover .bookmark,
+.bookmark.on{opacity:1}
+.bookmark:hover{
+  background:rgba(201,168,106,.25);
+  transform:scale(1.1);
+}
+.bookmark.on{
+  background:var(--gold);
+  color:var(--bg);
+  border-color:var(--gold);
+}
+
+.new-badge{
+  position:absolute;
+  top:8px;
+  left:8px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.5rem;
+  letter-spacing:.2em;
+  padding:3px 8px;
+  background:var(--gold);
+  color:var(--bg);
+  font-weight:600;
+  z-index:5;
+  border-radius:1px;
 }
 
 /* -- The COVER -- */
@@ -391,24 +584,20 @@ h1 em{
   justify-content:space-between;
   border-radius:2px 5px 5px 2px;
   background:
-    /* spine shadow (left) */
     linear-gradient(90deg,
       rgba(0,0,0,.55) 0%,
       rgba(0,0,0,.2) 3%,
       rgba(0,0,0,0) 8%),
-    /* page edge (right) */
     linear-gradient(270deg,
       rgba(0,0,0,.22) 0%,
       rgba(0,0,0,.06) 2%,
       rgba(0,0,0,0) 6%),
-    /* fabric weave */
     repeating-linear-gradient(45deg,
       rgba(255,255,255,.018) 0 1px,
       transparent 1px 3px),
     repeating-linear-gradient(-45deg,
       rgba(0,0,0,.022) 0 1px,
       transparent 1px 3px),
-    /* base leather color */
     linear-gradient(160deg,
       var(--c-bg) 0%,
       var(--c-bg2) 100%);
@@ -423,8 +612,6 @@ h1 em{
   transform-origin:center bottom;
   overflow:hidden;
 }
-
-/* Gold foil frame */
 .cover::before{
   content:"";
   position:absolute;
@@ -434,7 +621,6 @@ h1 em{
   pointer-events:none;
   border-radius:1px;
 }
-/* Second thin inner line */
 .cover::after{
   content:"";
   position:absolute;
@@ -443,8 +629,6 @@ h1 em{
   opacity:.22;
   pointer-events:none;
 }
-
-/* Corner ornaments — subtle */
 .cover-orn-tl,
 .cover-orn-br{
   position:absolute;
@@ -455,16 +639,13 @@ h1 em{
   pointer-events:none;
 }
 .cover-orn-tl{
-  top:16px; left:16px;
-  border-right:none;
-  border-bottom:none;
+  top:16px;left:16px;
+  border-right:none;border-bottom:none;
 }
 .cover-orn-br{
-  bottom:16px; right:16px;
-  border-left:none;
-  border-top:none;
+  bottom:16px;right:16px;
+  border-left:none;border-top:none;
 }
-
 .cover-top{
   z-index:2;
   font-size:.6rem;
@@ -474,7 +655,6 @@ h1 em{
   text-align:center;
   margin-top:2px;
 }
-
 .cover-title{
   z-index:2;
   flex:1;
@@ -497,7 +677,6 @@ h1 em{
     0 1px 0 rgba(0,0,0,.4),
     0 0 24px rgba(0,0,0,.35);
 }
-
 .cover-bottom{
   z-index:2;
   display:flex;
@@ -507,14 +686,12 @@ h1 em{
   width:100%;
   margin-bottom:2px;
 }
-
 .cover-divider{
   width:32px;
   height:1px;
   background:var(--c-accent);
   opacity:.75;
 }
-
 .cover-author{
   font-family:'Cormorant Garamond',serif;
   font-style:italic;
@@ -532,7 +709,7 @@ h1 em{
   line-height:1.15;
 }
 
-/* ==================== META (below cover) ==================== */
+/* ==================== META ==================== */
 .meta{
   padding:16px 4px 0;
   text-align:center;
@@ -571,6 +748,7 @@ h1 em{
 /* ==================== HOVER ==================== */
 .book:hover .cover{
   transform:translateY(-8px) rotate(-.8deg);
+  will-change:transform;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.12),
     inset 0 0 44px rgba(0,0,0,.24),
@@ -578,11 +756,6 @@ h1 em{
     0 28px 50px -18px rgba(0,0,0,.95),
     0 0 0 1px var(--gold-soft),
     0 0 40px rgba(201,168,106,.15);
-}
-.book:hover .cover-title{
-  text-shadow:
-    0 1px 0 rgba(0,0,0,.4),
-    0 0 24px rgba(228,192,132,.35);
 }
 
 /* ==================== SKELETON ==================== */
@@ -643,7 +816,7 @@ footer::before{
 
 /* ==================== SCROLLBAR ==================== */
 ::-webkit-scrollbar{width:10px}
-::-webkit-scrollbar-track{background:#0a0806}
+::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:rgba(201,168,106,.18)}
 ::-webkit-scrollbar-thumb:hover{background:rgba(201,168,106,.32)}
 
@@ -660,20 +833,14 @@ footer::before{
 
 /* ==================== RESPONSIVE ==================== */
 @media (max-width:880px){
-  .featured-book{
-    grid-template-columns:1fr;
-    gap:28px;
-  }
-  .featured-cover{
-    max-width:220px;
-    margin:0 auto;
-  }
+  .featured-book{grid-template-columns:1fr;gap:28px}
+  .featured-cover{max-width:220px;margin:0 auto}
   .featured-info{text-align:center;padding-right:0}
   .featured-info .desc{margin-left:auto;margin-right:auto}
 }
-
 @media (max-width:600px){
   body{padding:52px 16px 60px}
+  .theme-btn{top:14px;right:14px;width:36px;height:36px;font-size:.9rem}
   .masthead{margin-bottom:44px}
   .monogram{width:48px;height:48px;font-size:.82rem;margin-bottom:18px}
   .eyebrow{font-size:.55rem;letter-spacing:.34em;margin-bottom:16px}
@@ -686,6 +853,7 @@ footer::before{
   .featured-cover{max-width:180px}
   .featured-info h2{font-size:1.6rem}
   .featured-info .desc{font-size:.95rem}
+  .continue-list .cr-item{width:100px}
   .library{
     grid-template-columns:repeat(auto-fill,minmax(135px,1fr));
     gap:32px 18px;
@@ -700,10 +868,13 @@ footer::before{
   .meta .cat{font-size:.48rem;letter-spacing:.18em;padding:2px 6px}
   .section-head h2{font-size:1.1rem}
   .count{font-size:.52rem}
+  .bookmark{width:28px;height:28px;font-size:.8rem}
 }
 </style>
 </head>
 <body>
+
+<button class="theme-btn" id="themeBtn" aria-label="Toggle theme">☾</button>
 
 <header class="masthead">
   <div class="monogram">Epilogue</div>
@@ -723,6 +894,11 @@ footer::before{
     <button class="pill" data-cat="poetry">Poetry</button>
   </div>
 </div>
+
+<section class="continue" id="continueSection" hidden>
+  <div class="continue-head">Continue Reading</div>
+  <div class="continue-list" id="continueList"></div>
+</section>
 
 <section class="featured" id="featured" hidden>
   <div class="featured-label">Featured Volume</div>
@@ -749,58 +925,38 @@ footer::before{
 
 <script>
 /* =========================================================
-   AUTO COVER PALETTES — 12 rich leather bindings
-   Each: {bg1, bg2, accent, text}
+   PALETTES
    ========================================================= */
 const PALETTES = [
-  {bg1:'#5c1f24', bg2:'#3a1014', accent:'#e4c084', text:'#f5e6c8'}, // Oxblood
-  {bg1:'#1f3a2a', bg2:'#12241a', accent:'#d4b26a', text:'#ecdfc0'}, // Forest
-  {bg1:'#182a45', bg2:'#0e1a2c', accent:'#e0b878', text:'#eadfc0'}, // Navy
-  {bg1:'#4a2a14', bg2:'#2c1808', accent:'#e8c878', text:'#f5ead0'}, // Chestnut
-  {bg1:'#3a1d33', bg2:'#22111e', accent:'#d4a666', text:'#ecdfc0'}, // Plum
-  {bg1:'#22201c', bg2:'#0f0e0c', accent:'#c9a668', text:'#e8ddb8'}, // Charcoal
-  {bg1:'#1a3a3a', bg2:'#0e2222', accent:'#d4b266', text:'#ecdfc0'}, // Teal
-  {bg1:'#3a2c10', bg2:'#221808', accent:'#e8c878', text:'#f5ead0'}, // Ochre
-  {bg1:'#2a1d3d', bg2:'#160f24', accent:'#cfa865', text:'#ecdfc0'}, // Violet
-  {bg1:'#3d1a1a', bg2:'#220d0d', accent:'#e0b060', text:'#f5e8ce'}, // Russet
-  {bg1:'#0f2830', bg2:'#07161c', accent:'#cfa35c', text:'#e5d8b8'}, // Midnight
-  {bg1:'#2e1f10', bg2:'#180f06', accent:'#d4b068', text:'#f0e4ca'}  // Tobacco
+  {bg1:'#5c1f24', bg2:'#3a1014', accent:'#e4c084', text:'#f5e6c8'},
+  {bg1:'#1f3a2a', bg2:'#12241a', accent:'#d4b26a', text:'#ecdfc0'},
+  {bg1:'#182a45', bg2:'#0e1a2c', accent:'#e0b878', text:'#eadfc0'},
+  {bg1:'#4a2a14', bg2:'#2c1808', accent:'#e8c878', text:'#f5ead0'},
+  {bg1:'#3a1d33', bg2:'#22111e', accent:'#d4a666', text:'#ecdfc0'},
+  {bg1:'#22201c', bg2:'#0f0e0c', accent:'#c9a668', text:'#e8ddb8'},
+  {bg1:'#1a3a3a', bg2:'#0e2222', accent:'#d4b266', text:'#ecdfc0'},
+  {bg1:'#3a2c10', bg2:'#221808', accent:'#e8c878', text:'#f5ead0'},
+  {bg1:'#2a1d3d', bg2:'#160f24', accent:'#cfa865', text:'#ecdfc0'},
+  {bg1:'#3d1a1a', bg2:'#220d0d', accent:'#e0b060', text:'#f5e8ce'},
+  {bg1:'#0f2830', bg2:'#07161c', accent:'#cfa35c', text:'#e5d8b8'},
+  {bg1:'#2e1f10', bg2:'#180f06', accent:'#d4b068', text:'#f0e4ca'}
 ];
 
-/* Deterministic hash */
-function hash(s){
-  let h = 5381;
-  for(let i=0;i<s.length;i++) h = ((h<<5)+h+s.charCodeAt(i))|0;
-  return Math.abs(h);
-}
-function pickPalette(book){
-  return PALETTES[hash((book.title||'')+'·'+(book.author||'')) % PALETTES.length];
-}
+function hash(s){let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return Math.abs(h)}
+function pickPalette(b){return PALETTES[hash((b.title||'')+'·'+(b.author||''))%PALETTES.length]}
 function titleSize(t){
-  const n = (t||'').length;
-  if(n<=5)  return '1.25rem';
-  if(n<=8)  return '1.1rem';
-  if(n<=12) return '.95rem';
-  if(n<=18) return '.82rem';
-  if(n<=25) return '.72rem';
-  if(n<=32) return '.64rem';
+  const n=(t||'').length;
+  if(n<=5)return '1.25rem'; if(n<=8)return '1.1rem'; if(n<=12)return '.95rem';
+  if(n<=18)return '.82rem'; if(n<=25)return '.72rem'; if(n<=32)return '.64rem';
   return '.58rem';
 }
-function esc(s){
-  return String(s||'').replace(/[&<>"']/g,c=>({
-    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-  }[c]));
-}
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 
-/* =========================================================
-   BUILD COVER — pure CSS, no images
-   ========================================================= */
 function buildCover(book){
   const p = pickPalette(book);
   const size = titleSize(book.title);
   return `
-    <div class="cover"
-         style="--c-bg:${p.bg1};--c-bg2:${p.bg2};--c-accent:${p.accent};--c-text:${p.text};--c-size:${size};">
+    <div class="cover" style="--c-bg:${p.bg1};--c-bg2:${p.bg2};--c-accent:${p.accent};--c-text:${p.text};--c-size:${size};">
       <span class="cover-orn-tl"></span>
       <span class="cover-orn-br"></span>
       <div class="cover-top">✦</div>
@@ -813,7 +969,28 @@ function buildCover(book){
 }
 
 /* =========================================================
-   BUILD BOOK CARD
+   LOCALSTORAGE
+   ========================================================= */
+const LS = {
+  read(k,f){try{return JSON.parse(localStorage.getItem(k))??f}catch{return f}},
+  write(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}
+};
+const FAV_KEY='ea:favs', RECENT_KEY='ea:recent', THEME_KEY='ea:theme';
+
+function getFavs(){return LS.read(FAV_KEY,[])}
+function isFav(id){return getFavs().includes(id)}
+function toggleFav(id){
+  const list=getFavs();
+  const i=list.indexOf(id);
+  if(i===-1)list.unshift(id);
+  else list.splice(i,1);
+  LS.write(FAV_KEY,list);
+  return isFav(id);
+}
+function getRecent(){return LS.read(RECENT_KEY,[])}
+
+/* =========================================================
+   BUILD CARD
    ========================================================= */
 function buildCard(book, i){
   const a = document.createElement('a');
@@ -822,7 +999,13 @@ function buildCard(book, i){
   a.setAttribute('role','listitem');
   a.setAttribute('aria-label', book.title + ' by ' + (book.author||''));
   a.style.animationDelay = (i * 0.035) + 's';
+
+  const fav = isFav(book.id);
+  const isNewBook = book.new === true;
+
   a.innerHTML = `
+    ${isNewBook ? '<span class="new-badge">New</span>' : ''}
+    <button class="bookmark ${fav?'on':''}" data-id="${esc(book.id)}" aria-label="Bookmark" type="button">${fav?'♥':'♡'}</button>
     <div class="book-inner">
       ${buildCover(book)}
       <div class="meta">
@@ -831,15 +1014,65 @@ function buildCard(book, i){
         <span class="cat">${esc((book.category||'tale').toUpperCase())}</span>
       </div>
     </div>`;
+
+  const bm = a.querySelector('.bookmark');
+  bm.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const on = toggleFav(book.id);
+    bm.classList.toggle('on', on);
+    bm.textContent = on ? '♥' : '♡';
+    renderContinue();
+  });
+
+  a.addEventListener('click', () => {
+    const recent = getRecent().filter(r => r.id !== book.id);
+    recent.unshift({ id: book.id, title: book.title, author: book.author, ts: Date.now() });
+    LS.write(RECENT_KEY, recent.slice(0, 8));
+  });
+
   return a;
+}
+
+/* =========================================================
+   CONTINUE READING
+   ========================================================= */
+function renderContinue(){
+  const recent = getRecent();
+  const section = document.getElementById('continueSection');
+  const list = document.getElementById('continueList');
+
+  if(!recent.length){ section.hidden = true; return; }
+
+  const items = recent
+    .map(r => ALL.find(b => b.id === r.id))
+    .filter(Boolean)
+    .slice(0, 6);
+
+  if(!items.length){ section.hidden = true; return; }
+
+  list.innerHTML = items.map(book => {
+    const p = pickPalette(book);
+    const size = titleSize(book.title);
+    return `
+      <a class="cr-item" href="reader.html?book=${encodeURIComponent(book.id)}">
+        <div class="cr-cover" style="--c-bg:${p.bg1};--c-bg2:${p.bg2};--c-accent:${p.accent};--c-text:${p.text};">
+          <span style="font-size:${size};transform:scale(.85);">${esc(book.title)}</span>
+        </div>
+        <div class="cr-meta">
+          <h4>${esc(book.title)}</h4>
+          <div class="cr-progress" style="--p:35%"></div>
+        </div>
+      </a>`;
+  }).join('');
+
+  section.hidden = false;
 }
 
 /* =========================================================
    RENDER
    ========================================================= */
-let ALL = [];
-let CUR = 'all';
-let Q = '';
+let ALL = [], CUR = 'all', Q = '';
 
 function applyFilters(){
   let list = ALL.slice();
@@ -859,42 +1092,31 @@ function render(){
   const list = applyFilters();
   const lib = document.getElementById('library');
   const countEl = document.getElementById('count');
-
   countEl.textContent = list.length + ' volume' + (list.length === 1 ? '' : 's');
   lib.innerHTML = '';
-
   if(!list.length){
-    lib.innerHTML = `
-      <div class="empty">
-        <div class="mark">✦</div>
-        <h3>No volumes match</h3>
-        <p>try a different title, author, or category...</p>
-      </div>`;
+    lib.innerHTML = `<div class="empty"><div class="mark">✦</div><h3>No volumes match</h3><p>try a different title, author, or category...</p></div>`;
     return;
   }
-
   const frag = document.createDocumentFragment();
   list.forEach((b,i) => frag.appendChild(buildCard(b,i)));
   lib.appendChild(frag);
 }
 
 /* =========================================================
-   FEATURED BOOK
+   FEATURED
    ========================================================= */
 function renderFeatured(){
   if(!ALL.length) return;
-  // Prefer book with featured:true, else first
   const feat = ALL.find(b => b.featured) || ALL[0];
   const wrap = document.getElementById('featured');
   const link = document.getElementById('featLink');
   const coverBox = document.getElementById('featCover');
-
   link.href = 'reader.html?book=' + encodeURIComponent(feat.id);
   coverBox.innerHTML = buildCover(feat);
   document.getElementById('featTitle').textContent = feat.title;
   document.getElementById('featAuthor').textContent = 'by ' + (feat.author || 'Anonymous');
   document.getElementById('featDesc').textContent = feat.subtitle || feat.description || 'A quiet volume from the archive.';
-
   wrap.hidden = false;
 }
 
@@ -910,6 +1132,22 @@ function skeleton(){
 }
 
 /* =========================================================
+   THEME
+   ========================================================= */
+const themeBtn = document.getElementById('themeBtn');
+function applyTheme(t){
+  document.body.classList.toggle('light', t === 'light');
+  themeBtn.textContent = t === 'light' ? '☀' : '☾';
+}
+applyTheme(LS.read(THEME_KEY, 'dark'));
+themeBtn.addEventListener('click', () => {
+  const cur = document.body.classList.contains('light') ? 'light' : 'dark';
+  const next = cur === 'light' ? 'dark' : 'light';
+  applyTheme(next);
+  LS.write(THEME_KEY, next);
+});
+
+/* =========================================================
    LOAD
    ========================================================= */
 skeleton();
@@ -918,26 +1156,17 @@ fetch('./books.json', {cache:'no-cache'})
   .then(r => r.json())
   .then(data => {
     ALL = Array.isArray(data) ? data : [];
-
-    const go = () => {
-      renderFeatured();
-      render();
-    };
+    const go = () => { renderFeatured(); renderContinue(); render(); };
     if('requestIdleCallback' in window) requestIdleCallback(go, {timeout:250});
     else setTimeout(go, 0);
 
-    /* Search (debounced) */
     const input = document.getElementById('q');
     let t;
     input.addEventListener('input', e => {
       clearTimeout(t);
-      t = setTimeout(() => {
-        Q = e.target.value.trim();
-        render();
-      }, 140);
+      t = setTimeout(() => { Q = e.target.value.trim(); render(); }, 140);
     });
 
-    /* Category filter */
     document.getElementById('filters').addEventListener('click', e => {
       const btn = e.target.closest('.pill');
       if(!btn) return;
@@ -950,11 +1179,7 @@ fetch('./books.json', {cache:'no-cache'})
   .catch(err => {
     console.error('Load failed:', err);
     document.getElementById('library').innerHTML = `
-      <div class="empty">
-        <div class="mark">⚠</div>
-        <h3>The archive is closed</h3>
-        <p>please check your connection and try again</p>
-      </div>`;
+      <div class="empty"><div class="mark">⚠</div><h3>The archive is closed</h3><p>please check your connection and try again</p></div>`;
   });
 </script>
 </body>
