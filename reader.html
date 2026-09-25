@@ -412,10 +412,18 @@ function extractDate(blocks){
   return {date:null, rest:blocks};
 }
 
-function bengaliToday(){
+function todayBengali(){
   const t = new Date();
   const months = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
   return t.getDate() + 'ই ' + months[t.getMonth()] + ' ' + t.getFullYear();
+}
+
+function todayEnglish(){
+  const t = new Date();
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const d = t.getDate();
+  const s = (d%10===1 && d!==11) ? 'st' : (d%10===2 && d!==12) ? 'nd' : (d%10===3 && d!==13) ? 'rd' : 'th';
+  return d + s + ' ' + months[t.getMonth()] + ', ' + t.getFullYear();
 }
 
 /* =========================================================
@@ -432,7 +440,12 @@ function renderTextContent(raw, category){
     let dateHtml = '';
     const d = extractDate(blocks);
     if(d.date){ dateHtml = '<span class="letter-date">' + d.date + '</span>'; blocks = d.rest; }
-    else { dateHtml = '<span class="letter-date">' + bengaliToday() + '</span>'; }
+    else {
+      // ভাষা দেখে date বাছাই — বাংলা হলে বাংলা, English হলে English
+      const hasBengali = /[\u0980-\u09FF]/.test(raw);
+      const dateStr = hasBengali ? todayBengali() : todayEnglish();
+      dateHtml = '<span class="letter-date">' + dateStr + '</span>';
+    }
 
     const total = blocks.length;
     const rendered = blocks.map((block, i) => {
