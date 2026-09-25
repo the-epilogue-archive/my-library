@@ -54,6 +54,7 @@ body::after{
   pointer-events:none;
 }
 
+/* ==================== TOP BAR ==================== */
 .topbar{
   flex-shrink:0;position:relative;z-index:3;
   display:flex;align-items:center;gap:18px;
@@ -106,6 +107,7 @@ body::after{
 }
 .ib:active{transform:scale(.94)}
 
+/* ==================== STAGE ==================== */
 .stage{flex:1;min-height:0;padding:22px;display:flex;align-items:center;justify-content:center;position:relative}
 .frame{
   position:relative;width:100%;max-width:1250px;height:100%;
@@ -142,6 +144,7 @@ iframe{
   position:relative;z-index:1;border-radius:1px;
 }
 
+/* ==================== LOADING ==================== */
 .loading{
   position:absolute;inset:0;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -167,6 +170,7 @@ iframe{
   color:var(--ink-soft);opacity:.85;
 }
 
+/* ==================== ERROR ==================== */
 .err{
   position:absolute;inset:0;display:none;
   flex-direction:column;align-items:center;justify-content:center;
@@ -192,19 +196,21 @@ iframe{
 }
 .err a:hover{background:var(--gold);color:var(--paper);letter-spacing:.4em}
 
-/* TEXT READER */
+/* ==================== TEXT READER ==================== */
 .text-reader{
   position:absolute;inset:0;background:var(--paper);
   overflow-y:auto;z-index:1;padding:0;scroll-behavior:smooth;
 }
 .text-reader::-webkit-scrollbar{width:8px}
 .text-reader::-webkit-scrollbar-thumb{background:rgba(184,137,75,.4);border-radius:4px}
+
 .book-page{
   max-width:720px;margin:0 auto;
   padding:70px 42px 100px;color:var(--ink);
   font-family:'Cormorant Garamond','Noto Serif Bengali',Georgia,serif;
-  font-size:1.15rem;line-height:1.85;
+  font-size:1.15rem;line-height:1.9;
 }
+
 .page-header{
   text-align:center;margin-bottom:60px;
   padding-bottom:40px;border-bottom:1px solid rgba(184,137,75,.3);
@@ -225,39 +231,49 @@ iframe{
   letter-spacing:.32em;text-transform:uppercase;color:var(--gold);
 }
 .page-header .hr{width:60px;height:1px;background:var(--gold);margin:26px auto 0;opacity:.6}
+
+/* --- Content typography — clean, no justification, no hyphenation --- */
 .page-content p{
-  margin-bottom:1.35em;text-align:justify;hyphens:auto;text-indent:1.5em;
+  margin-bottom:1.35em;
+  text-align:left;
+  text-indent:0;
+  line-height:1.9;
+  word-break:normal;
+  overflow-wrap:break-word;
+  hyphens:none;
+  -webkit-hyphens:none;
+  -ms-hyphens:none;
 }
-.page-content p:first-of-type{text-indent:0}
-.page-content p:first-of-type::first-letter{
-  font-family:'Cormorant Garamond',serif;font-size:3.4em;
-  font-weight:600;float:left;line-height:.85;
-  margin:.08em .12em 0 0;color:var(--gold);
-}
+
 .page-content .h1{
   font-family:'Cormorant Garamond','Noto Serif Bengali',serif;
   font-weight:600;font-style:italic;font-size:1.6rem;
-  color:var(--ink);margin:2.2em 0 .8em;text-align:center;text-indent:0;
+  color:var(--ink);margin:2.2em 0 .8em;
+  text-align:center;text-indent:0;line-height:1.3;
 }
 .page-content .h2{
   font-family:'Cormorant Garamond','Noto Serif Bengali',serif;
   font-weight:600;font-size:1.2rem;color:var(--ink);
-  margin:1.8em 0 .6em;text-indent:0;letter-spacing:.01em;
+  margin:1.8em 0 .6em;text-indent:0;
+  letter-spacing:.01em;line-height:1.4;
 }
 .page-content .poem{
   text-indent:0;text-align:center;font-style:italic;
-  line-height:1.95;margin:1.8em 0;color:var(--ink-soft);
+  line-height:2.05;margin:1.8em 0;color:var(--ink-soft);
+  white-space:normal;
 }
 .page-content blockquote{
   margin:1.8em 0;padding:1em 1.4em;
   border-left:3px solid var(--gold);
   background:rgba(201,168,106,.06);
   font-style:italic;color:var(--ink-soft);text-indent:0;
+  line-height:1.85;
 }
 .page-content .divider{
   text-align:center;color:var(--gold);
   letter-spacing:.8em;margin:2.5em 0;font-size:.75rem;opacity:.7;
 }
+
 .page-footer{
   text-align:center;margin-top:80px;padding-top:40px;
   border-top:1px solid rgba(184,137,75,.25);
@@ -268,9 +284,11 @@ iframe{
   letter-spacing:.42em;text-transform:uppercase;color:var(--gold);opacity:.7;
 }
 
+/* ==================== ANIMATIONS ==================== */
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
+/* ==================== RESPONSIVE ==================== */
 @media (max-width:700px){
   .topbar{padding:10px 12px;gap:8px}
   .back{padding:8px 12px;font-size:0;letter-spacing:0;gap:0}
@@ -291,9 +309,8 @@ iframe{
   .sk-book{width:52px;height:70px}
   .err h2{font-size:1.2rem}
   .err p{font-size:.9rem}
-  .book-page{padding:44px 22px 70px;font-size:1.05rem;line-height:1.75}
+  .book-page{padding:44px 22px 70px;font-size:1.05rem;line-height:1.8}
   .page-header{margin-bottom:40px;padding-bottom:28px}
-  .page-content p:first-of-type::first-letter{font-size:2.8em}
 }
 </style>
 </head>
@@ -334,135 +351,214 @@ iframe{
 
 <script src="config.js"></script>
 <script>
+/* =========================================================
+   SETUP
+   ========================================================= */
 const params = new URLSearchParams(location.search);
 const bookId = params.get('book');
 
-const tEl = document.getElementById('t');
-const aEl = document.getElementById('a');
-const frame = document.getElementById('frame');
-const loading = document.getElementById('loading');
-const err = document.getElementById('err');
-const errMsg = document.getElementById('errMsg');
-const ext = document.getElementById('ext');
-const fs = document.getElementById('fs');
+const tEl       = document.getElementById('t');
+const aEl       = document.getElementById('a');
+const frame     = document.getElementById('frame');
+const loading   = document.getElementById('loading');
+const err       = document.getElementById('err');
+const errMsg    = document.getElementById('errMsg');
+const ext       = document.getElementById('ext');
+const fs        = document.getElementById('fs');
 
-function cleanUrl(u){return (u||'').trim().replace(/^["']|["']$/g,'')}
-function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-
+/* =========================================================
+   HELPERS
+   ========================================================= */
+function cleanUrl(u){
+  return (u || '').trim().replace(/^["']|["']$/g, '');
+}
+function esc(s){
+  return String(s||'').replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
 function showError(msg){
   if(loading) loading.style.display = 'none';
   err.classList.add('on');
   if(msg) errMsg.textContent = msg;
 }
 
+/* =========================================================
+   MOUNT IFRAME (for PDFs)
+   ========================================================= */
 function mountIframe(src){
   const iframe = document.createElement('iframe');
   iframe.src = src;
   iframe.allow = 'autoplay; fullscreen';
-  iframe.setAttribute('allowfullscreen','true');
-  iframe.setAttribute('loading','eager');
+  iframe.setAttribute('allowfullscreen', 'true');
+  iframe.setAttribute('loading', 'eager');
+
   iframe.addEventListener('load', () => {
     loading.classList.add('out');
     setTimeout(() => { if(loading.parentNode) loading.remove(); }, 500);
   });
+
   frame.insertBefore(iframe, loading);
   ext.href = src;
 }
 
+/* =========================================================
+   TEXT CONTENT RENDERER
+   Supported syntax:
+     # Heading 1        → centered heading
+     ## Heading 2       → subheading
+     > Quote            → gold-bordered quote
+     ---                → ✦ ✦ ✦ divider
+     Line breaks        → poem-style (short lines)
+     Plain paragraphs   → regular prose
+   ========================================================= */
 function renderTextContent(raw){
   if(!raw) return '';
-  let t = esc(raw).trim();
+  const t = esc(raw).trim();
+  if(!t) return '';
+
+  // Split into blocks by blank lines
   const blocks = t.split(/\n\s*\n/);
+
   return blocks.map(block => {
     const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
-    if(block.startsWith('# ')){
-      return `<h2 class="h1">${block.slice(2).trim()}</h2>`;
+    if(!lines.length) return '';
+
+    const first = lines[0];
+
+    // H1 — block starts with "# "
+    if(first.startsWith('# ')){
+      return '<h2 class="h1">' + first.slice(2).trim() + '</h2>';
     }
-    if(block.startsWith('## ')){
-      return `<h3 class="h2">${block.slice(3).trim()}</h3>`;
+
+    // H2 — block starts with "## "
+    if(first.startsWith('## ')){
+      return '<h3 class="h2">' + first.slice(3).trim() + '</h3>';
     }
-    if(block.startsWith('> ')){
-      const quote = lines.map(l => l.replace(/^>\s?/,'')).join(' ');
-      return `<blockquote>${quote}</blockquote>`;
+
+    // Quote — block starts with ">"
+    if(first.startsWith('>')){
+      const quote = lines.map(l => l.replace(/^>\s?/, '').trim()).join(' ');
+      return '<blockquote>' + quote + '</blockquote>';
     }
-    if(/^(\*\s*){3,}$|^(-\s*){3,}$|^(_\s*){3,}$/.test(block)){
-      return `<div class="divider">✦ ✦ ✦</div>`;
+
+    // Divider — three or more of * - _ on their own line
+    if(/^([*\-_]\s*){3,}$/.test(block.trim())){
+      return '<div class="divider">✦ ✦ ✦</div>';
     }
-    if(lines.length > 1 && lines.every(l => l.length < 60)){
-      return `<p class="poem">${lines.join('<br>')}</p>`;
+
+    // Poem mode — 2+ lines, each short
+    if(lines.length >= 2 && lines.every(l => l.length < 70)){
+      return '<p class="poem">' + lines.join('<br>') + '</p>';
     }
-    return `<p>${lines.join(' ')}</p>`;
+
+    // Regular paragraph — join lines with space
+    return '<p>' + lines.join(' ') + '</p>';
   }).join('');
 }
 
+/* =========================================================
+   MOUNT TEXT READER (for text-based books)
+   ========================================================= */
 function mountTextReader(book){
   const html = renderTextContent(book.content || '');
+
   const view = document.createElement('div');
   view.className = 'text-reader';
-  view.innerHTML = `
-    <article class="book-page">
-      <header class="page-header">
-        <div class="orn">✦</div>
-        <h1>${esc(book.title)}</h1>
-        ${book.subtitle ? `<p class="sub">${esc(book.subtitle)}</p>` : ''}
-        <p class="byline">by ${esc(book.author||'Anonymous')}</p>
-        <div class="hr"></div>
-      </header>
-      <div class="page-content">${html}</div>
-      <footer class="page-footer">
-        <div class="orn">❦</div>
-        <p>The End</p>
-      </footer>
-    </article>
-  `;
+  view.innerHTML =
+    '<article class="book-page">' +
+      '<header class="page-header">' +
+        '<div class="orn">✦</div>' +
+        '<h1>' + esc(book.title) + '</h1>' +
+        (book.subtitle ? '<p class="sub">' + esc(book.subtitle) + '</p>' : '') +
+        '<p class="byline">by ' + esc(book.author || 'Anonymous') + '</p>' +
+        '<div class="hr"></div>' +
+      '</header>' +
+      '<div class="page-content">' + html + '</div>' +
+      '<footer class="page-footer">' +
+        '<div class="orn">❦</div>' +
+        '<p>The End</p>' +
+      '</footer>' +
+    '</article>';
+
   frame.insertBefore(view, loading);
   loading.classList.add('out');
   setTimeout(() => { if(loading.parentNode) loading.remove(); }, 500);
 }
 
+/* =========================================================
+   LOAD ARCHIVE — merge books.json + JSONBin
+   ========================================================= */
 async function loadArchive(){
   const CFG = window.EA_CONFIG || {};
+
+  // 1) Base: books.json (old static books)
+  let base = [];
+  try{
+    const res = await fetch('./books.json', {cache:'no-cache'});
+    if(res.ok){
+      const d = await res.json();
+      if(Array.isArray(d)) base = d;
+    }
+  }catch(e){ console.warn('books.json load failed', e); }
+
+  // 2) Overlay: JSONBin (admin additions/edits/deletes)
+  let overlay = [];
   if(CFG.BIN_ID && CFG.MASTER_KEY && !CFG.BIN_ID.startsWith('YOUR_')){
     try{
-      const res = await fetch('https://api.jsonbin.io/v3/b/' + CFG.BIN_ID + '/latest', {
-        headers: { 'X-Master-Key': CFG.MASTER_KEY }
-      });
+      const res = await fetch(
+        'https://api.jsonbin.io/v3/b/' + CFG.BIN_ID + '/latest',
+        {headers: {'X-Master-Key': CFG.MASTER_KEY}}
+      );
       if(res.ok){
         const data = await res.json();
         const record = data.record || data;
-        if(Array.isArray(record)) return record;
-        if(record && Array.isArray(record.books)) return record.books;
+        if(Array.isArray(record)) overlay = record;
       }
     }catch(e){ console.warn('JSONBin load failed', e); }
   }
-  try{
-    const res = await fetch('./books.json', {cache:'no-cache'});
-    if(res.ok) return await res.json();
-  }catch(e){ console.warn('books.json fallback failed', e); }
-  return [];
+
+  // 3) Merge — overlay overrides base by id; _deleted tombstones remove
+  const map = new Map();
+  base.forEach(b => map.set(b.id, b));
+  overlay.forEach(b => {
+    if(b._deleted){ map.delete(b.id); }
+    else { map.set(b.id, b); }
+  });
+
+  return Array.from(map.values()).filter(b => !b._deleted);
 }
 
+/* =========================================================
+   MAIN
+   ========================================================= */
 if(!bookId){
   tEl.textContent = 'No volume selected';
   showError('No book was selected. Return to the library and pick a volume.');
 } else {
   loadArchive()
     .then(list => {
-      const book = (list||[]).find(b => b.id === bookId);
+      const book = (list || []).find(b => b.id === bookId);
+
       if(!book){
         tEl.textContent = 'Not found';
         showError('This volume does not exist in the archive.');
         return;
       }
+
       document.title = book.title + ' — The Epilogue Archive';
       tEl.textContent = book.title;
       aEl.textContent = book.author ? ('by ' + book.author) : '';
 
+      // Text book OR PDF book
       if(book.type === 'text' || book.content){
         mountTextReader(book);
       } else {
         const pdfUrl = cleanUrl(book.pdf);
-        if(!pdfUrl){ showError('This volume has no document attached.'); return; }
+        if(!pdfUrl){
+          showError('This volume has no document attached.');
+          return;
+        }
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
             setTimeout(() => mountIframe(pdfUrl), 80);
@@ -477,6 +573,9 @@ if(!bookId){
     });
 }
 
+/* =========================================================
+   FULLSCREEN
+   ========================================================= */
 fs.addEventListener('click', () => {
   if(!document.fullscreenElement){
     document.documentElement.requestFullscreen?.().catch(() => {});
@@ -487,6 +586,12 @@ fs.addEventListener('click', () => {
 document.addEventListener('fullscreenchange', () => {
   fs.textContent = document.fullscreenElement ? '⤡' : '⛶';
 });
+
+/* =========================================================
+   KEYBOARD SHORTCUTS
+   Esc → Back to library
+   F   → Toggle fullscreen
+   ========================================================= */
 document.addEventListener('keydown', (e) => {
   if(e.key === 'Escape' && !document.fullscreenElement){
     location.href = 'index.html';
