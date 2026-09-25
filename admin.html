@@ -35,12 +35,14 @@ body{font-family:'Cormorant Garamond','Noto Serif Bengali',serif;background:var(
 .btn{padding:10px 18px;font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;border:1px solid var(--gold-soft);background:transparent;color:var(--gold-bright);cursor:pointer;transition:all .25s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
 .btn:hover{background:rgba(201,168,106,.12);border-color:var(--gold)}
 .btn.primary{background:var(--gold);color:var(--bg);border-color:var(--gold);font-weight:600}
+.btn.primary:hover{opacity:.85;background:var(--gold)}
 .btn.danger{border-color:rgba(168,58,58,.5);color:#e08888}
 .btn.danger:hover{background:rgba(168,58,58,.15);border-color:var(--red)}
+.btn.ghost{color:var(--ink-mute);border-color:rgba(201,168,106,.15)}
 .form-card{background:rgba(30,22,14,.5);border:1px solid var(--line);padding:32px;margin-bottom:40px}
 .form-card h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:1.4rem;color:var(--paper);margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--line)}
 .field{margin-bottom:18px}
-.field label{display:block;font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:8px}
+.field > label{display:block;font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:8px}
 .field input,.field select,.field textarea{width:100%;padding:12px 14px;background:rgba(20,14,8,.6);border:1px solid var(--line);color:var(--paper);font-family:'Cormorant Garamond','Noto Serif Bengali',serif;font-size:1rem;outline:none;transition:border-color .2s}
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}
 .field textarea{min-height:320px;resize:vertical;line-height:1.7;font-family:'Noto Serif Bengali','Cormorant Garamond',serif;font-size:1.02rem}
@@ -52,6 +54,91 @@ body{font-family:'Cormorant Garamond','Noto Serif Bengali',serif;background:var(
 .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:600px){.row{grid-template-columns:1fr}}
 .form-actions{display:flex;gap:10px;margin-top:8px;flex-wrap:wrap}
+
+/* ===== FEATURES SECTION ===== */
+.features-section{
+  margin-top:8px;
+  padding:20px 22px;
+  background:rgba(20,14,8,.4);
+  border:1px dashed rgba(201,168,106,.25);
+  border-radius:2px;
+}
+.features-section > label{
+  display:block;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:6px;
+}
+.features-section .feat-hint{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:.85rem;
+  color:var(--ink-mute);
+  margin-bottom:16px;
+  letter-spacing:.01em;
+}
+.feat-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:10px;
+}
+.feat-grid[hidden]{display:none}
+.feat-toggle{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  background:rgba(201,168,106,.05);
+  border:1px solid rgba(201,168,106,.15);
+  border-radius:2px;
+  cursor:pointer;
+  transition:all .2s ease;
+  user-select:none;
+}
+.feat-toggle:hover{
+  background:rgba(201,168,106,.1);
+  border-color:var(--gold-soft);
+}
+.feat-toggle input{display:none}
+.feat-toggle .sw{
+  width:32px;height:17px;
+  background:rgba(201,168,106,.15);
+  border-radius:9px;
+  position:relative;
+  flex-shrink:0;
+  transition:background .25s;
+}
+.feat-toggle .sw::after{
+  content:"";position:absolute;
+  top:2px;left:2px;
+  width:13px;height:13px;
+  background:#8a7658;border-radius:50%;
+  transition:all .25s cubic-bezier(.2,.8,.2,1);
+}
+.feat-toggle input:checked + .sw{
+  background:rgba(201,168,106,.55);
+}
+.feat-toggle input:checked + .sw::after{
+  left:17px;background:#f2e8d5;
+  box-shadow:0 0 6px rgba(228,192,132,.5);
+}
+.feat-toggle .lbl{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.92rem;
+  color:rgba(242,232,213,.9);
+  line-height:1.25;
+}
+.feat-toggle .lbl small{
+  display:block;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.5rem;
+  letter-spacing:.15em;
+  color:var(--ink-mute);
+  margin-top:3px;
+  text-transform:uppercase;
+}
+
+/* ===== LIST ===== */
 .list-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--line);flex-wrap:wrap;gap:10px}
 .list-head h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:1.3rem}
 .list-head .count{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.3em;color:var(--ink-mute);text-transform:uppercase}
@@ -78,16 +165,8 @@ body{font-family:'Cormorant Garamond','Noto Serif Bengali',serif;background:var(
   <div class="monogram">Epilogue</div>
   <h1>The Archive</h1>
   <p>Sign in with your admin credentials</p>
-
-  <div class="field">
-    <label>Email</label>
-    <input type="email" id="email" placeholder="you@gmail.com" autocomplete="username">
-  </div>
-  <div class="field">
-    <label>Password</label>
-    <input type="password" id="pw" placeholder="••••••••" autocomplete="current-password">
-  </div>
-
+  <div class="field"><label>Email</label><input type="email" id="email" placeholder="you@gmail.com" autocomplete="username"></div>
+  <div class="field"><label>Password</label><input type="password" id="pw" placeholder="••••••••" autocomplete="current-password"></div>
   <button id="loginBtn">Unlock Panel</button>
   <div class="err-msg" id="pwErr">Incorrect email or password. Try again.</div>
 </div>
@@ -134,9 +213,98 @@ body{font-family:'Cormorant Garamond','Noto Serif Bengali',serif;background:var(
         <textarea id="content" placeholder="এখানে আপনার লেখা পেস্ট করুন..."></textarea>
         <div class="hint"># হেডিং · ## সাবহেডিং · &gt; উদ্ধৃতি · --- ডিভাইডার · খালি লাইন = নতুন প্যারা</div>
       </div>
+
+      <!-- ===== FEATURES SECTION ===== -->
+      <div class="field features-section" id="featuresSection">
+        <label>Design Features</label>
+        <div class="feat-hint">চাইলে কিছু বন্ধ করুন — শুধু এই বইয়ের জন্য প্রযোজ্য হবে</div>
+
+        <!-- Story features -->
+        <div class="feat-grid" data-cat="story" id="feat-story">
+          <label class="feat-toggle">
+            <input type="checkbox" data-feat="dropcap" checked>
+            <span class="sw"></span>
+            <span class="lbl">Drop Cap<small>প্রথম অক্ষর বড়</small></span>
+          </label>
+          <label class="feat-toggle">
+            <input type="checkbox" data-feat="smallcaps" checked>
+            <span class="sw"></span>
+            <span class="lbl">Small Caps<small>প্রথম লাইন</small></span>
+          </label>
+          <label class="feat-toggle">
+            <input type="checkbox" data-feat="divider" checked>
+            <span class="sw"></span>
+            <span class="lbl">Scene Divider<small>· · · · ·</small></span>
+          </label>
+          <label class="feat-toggle">
+            <input type="checkbox" data-feat="pullquote" checked>
+            <span class="sw"></span>
+            <span class="lbl">Pull Quote<small>হাইলাইট উক্তি</small></span>
+          </label>
+        </div>
+
+        <!-- Poetry features -->
+        <div class="feat-grid" data-cat="poetry" id="feat-poetry" hidden>
+          <label class="feat-toggle">
+            <input type="checkbox" data-feat="vline" checked>
+            <span class="sw"></span>
+            <span class="lbl">Vertical Line<small>বাম দিকে সোনালি লাইন</small></span>
+          </label>
+          <label class="feat-toggle">
+            <input type="checkbox" data-feat="stanzanum" checked>
+            <span class="sw"></span>
+            <span class="lbl">Numbered Stanzas<small>I · II · III</small></span>
+          </label>
+          <label class="feat-toggle">
+            <input type="checkbox" data-feat="attribution" checked>
+            <span class="sw"></span>
+            <span class="lbl">Attribution<small>— লেখকের নাম</small></span>
+          </label>
+        </div>
+
+        <!-- Essay features -->
+        <div class="feat-grid" data-cat="essay" id="feat-essay" hidden>
+          <label class="feat-toggle">
+            <input type="checkbox" data-feat="secnum" checked>
+            <span class="sw"></span>
+            <span class="lbl">Section Numbers<small>১. ২. ৩. হেডিংয়ে</small></span>
+          </label>
+          <label class="feat-toggle">
+            <input type="checkbox" data-feat="essaycaps" checked>
+            <span class="sw"></span>
+            <span class="lbl">Small Caps Opening<small>প্রথম লাইন</small></span>
+          </label>
+        </div>
+
+        <!-- Quote features -->
+        <div class="feat-grid" data-cat="quote" id="feat-quote" hidden>
+          <label class="feat-toggle">
+            <input type="checkbox" data-feat="sizeaware" checked>
+            <span class="sw"></span>
+            <span class="lbl">Size-aware<small>ছোট quote বড় হবে</small></span>
+          </label>
+          <label class="feat-toggle">
+            <input type="checkbox" data-feat="quotenum" checked>
+            <span class="sw"></span>
+            <span class="lbl">Numbered Quotes<small>I · II · III</small></span>
+          </label>
+          <label class="feat-toggle">
+            <input type="checkbox" data-feat="quoteattr" checked>
+            <span class="sw"></span>
+            <span class="lbl">Attribution<small>— লেখকের নাম</small></span>
+          </label>
+        </div>
+
+        <!-- Letter — no toggles (fixed style) -->
+        <div class="feat-grid" data-cat="letter" id="feat-letter" hidden>
+          <div style="grid-column:1/-1;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.9rem;color:var(--ink-mute);padding:8px 2px;">চিঠির সাজ সম্পূর্ণ স্বয়ংক্রিয় — কোনো option নেই।</div>
+        </div>
+      </div>
+
       <div class="form-actions">
         <button type="submit" class="btn primary" id="saveBtn">Save Volume</button>
         <button type="button" class="btn" id="cancelEdit" style="display:none">Cancel Edit</button>
+        <button type="button" class="btn ghost" id="resetFeatures">Reset Features</button>
       </div>
     </form>
   </div>
@@ -157,10 +325,50 @@ const API='https://api.jsonbin.io/v3/b/'+CFG.BIN_ID;
 let ALL_BOOKS=[];
 let editingId=null;
 
+const FEAT_KEYS = ['dropcap','smallcaps','divider','pullquote','vline','stanzanum','attribution','secnum','essaycaps','sizeaware','quotenum','quoteattr'];
+
 function toast(msg,isErr){const t=document.getElementById('toast');t.textContent=msg;t.classList.toggle('err',!!isErr);t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2800)}
 function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function slugify(s){return String(s||'').toLowerCase().trim().replace(/[\s]+/g,'-').replace(/[^\w\u0980-\u09FF\-]+/g,'').replace(/\-+/g,'-').slice(0,40)||'item-'+Date.now()}
 
+/* ===== FEATURES UI ===== */
+function updateFeatureVisibility(){
+  const cat = document.getElementById('category').value;
+  document.querySelectorAll('.feat-grid').forEach(g => {
+    g.hidden = g.dataset.cat !== cat;
+  });
+}
+document.getElementById('category').addEventListener('change', updateFeatureVisibility);
+
+function readFeatureToggles(){
+  const obj = {};
+  FEAT_KEYS.forEach(k => {
+    const inp = document.querySelector('.feat-toggle input[data-feat="'+k+'"]');
+    if(inp) obj[k] = !!inp.checked;
+  });
+  return obj;
+}
+
+function applyFeatureToggles(features){
+  const f = features || {};
+  FEAT_KEYS.forEach(k => {
+    const inp = document.querySelector('.feat-toggle input[data-feat="'+k+'"]');
+    if(inp) inp.checked = f[k] !== false;  // default true
+  });
+}
+
+function resetFeatureToggles(){
+  FEAT_KEYS.forEach(k => {
+    const inp = document.querySelector('.feat-toggle input[data-feat="'+k+'"]');
+    if(inp) inp.checked = true;
+  });
+}
+document.getElementById('resetFeatures').addEventListener('click', () => {
+  resetFeatureToggles();
+  toast('All features enabled');
+});
+
+/* ===== LOAD ===== */
 async function loadBooks(){
   let base=[];
   try{const res=await fetch('./books.json',{cache:'no-cache'});if(res.ok){const d=await res.json();if(Array.isArray(d))base=d}}catch(e){console.warn('books.json failed',e)}
@@ -212,6 +420,7 @@ function setType(type){
   document.getElementById('tText').classList.toggle('on',type==='text');
   document.getElementById('pdfField').style.display=type==='pdf'?'':'none';
   document.getElementById('contentField').style.display=type==='text'?'':'none';
+  document.getElementById('featuresSection').style.display=type==='text'?'':'none';
 }
 document.getElementById('tPdf').addEventListener('click',()=>setType('pdf'));
 document.getElementById('tText').addEventListener('click',()=>setType('text'));
@@ -224,6 +433,8 @@ function clearForm(){
   document.getElementById('saveBtn').textContent='Save Volume';
   document.getElementById('cancelEdit').style.display='none';
   setType('pdf');
+  resetFeatureToggles();
+  updateFeatureVisibility();
 }
 document.getElementById('cancelEdit').addEventListener('click',clearForm);
 
@@ -239,6 +450,8 @@ function startEdit(id){
   document.getElementById('pdf').value=b.pdf||'';
   document.getElementById('content').value=b.content||'';
   setType(b.type||'pdf');
+  applyFeatureToggles(b.features);
+  updateFeatureVisibility();
   document.getElementById('formTitle').textContent='Editing: '+b.title;
   document.getElementById('saveBtn').textContent='Update Volume';
   document.getElementById('cancelEdit').style.display='';
@@ -256,7 +469,14 @@ document.getElementById('bookForm').addEventListener('submit',async(e)=>{
   const content=document.getElementById('content').value;
   if(type==='pdf'&&!pdf){toast('PDF URL is required',true);return}
   if(type==='text'&&!content.trim()){toast('Content is required',true);return}
-  const payload={id:editingId||slugify(title)+'-'+Date.now().toString(36),title,author,category,subtitle,type,...(type==='pdf'?{pdf}:{content}),updatedAt:Date.now()};
+  const features = readFeatureToggles();
+  const payload={
+    id:editingId||slugify(title)+'-'+Date.now().toString(36),
+    title,author,category,subtitle,type,
+    ...(type==='pdf'?{pdf}:{content}),
+    features,
+    updatedAt:Date.now()
+  };
   const btn=document.getElementById('saveBtn');
   const wasEditing=!!editingId;
   btn.disabled=true;btn.textContent='Saving…';
@@ -292,7 +512,11 @@ function unlock(email){
   sessionStorage.setItem('ea:adminEmail',email||'');
   initPanel();
 }
-async function initPanel(){ALL_BOOKS=await loadBooks();renderList()}
+async function initPanel(){
+  ALL_BOOKS=await loadBooks();
+  renderList();
+  updateFeatureVisibility();
+}
 
 document.getElementById('loginBtn').addEventListener('click',()=>{
   const email=document.getElementById('email').value.trim();
