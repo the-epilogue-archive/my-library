@@ -5,11 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reading — The Epilogue Archive</title>
 
-<!-- ⚡ PERFORMANCE -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://drive.google.com" crossorigin>
+<link rel="preconnect" href="https://api.jsonbin.io" crossorigin>
 <link rel="dns-prefetch" href="https://drive.google.com">
+<link rel="dns-prefetch" href="https://api.jsonbin.io">
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Noto+Serif+Bengali:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -26,27 +27,16 @@
   --gold-soft:rgba(201,168,106,.4);
   --line:rgba(201,168,106,.2);
 }
-
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-
 body{
   font-family:'Cormorant Garamond','Noto Serif Bengali',Georgia,serif;
-  background:var(--bg);
-  color:var(--paper);
-  display:flex;
-  flex-direction:column;
-  min-height:100vh;
-  overflow:hidden;
-  -webkit-font-smoothing:antialiased;
-  position:relative;
+  background:var(--bg);color:var(--paper);
+  display:flex;flex-direction:column;min-height:100vh;
+  overflow:hidden;-webkit-font-smoothing:antialiased;position:relative;
 }
-
 body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
+  content:"";position:fixed;inset:0;z-index:-1;
   background:
     repeating-linear-gradient(90deg,
       rgba(255,220,180,.012) 0px,
@@ -59,146 +49,67 @@ body::before{
   pointer-events:none;
 }
 body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
+  content:"";position:fixed;inset:0;z-index:-1;
   background:radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.6) 100%);
   pointer-events:none;
 }
 
-/* ==================== TOP BAR ==================== */
 .topbar{
-  flex-shrink:0;
-  position:relative;
-  z-index:3;
-  display:flex;
-  align-items:center;
-  gap:18px;
+  flex-shrink:0;position:relative;z-index:3;
+  display:flex;align-items:center;gap:18px;
   padding:14px 26px;
-  background:
-    linear-gradient(180deg, rgba(30,22,14,.95), rgba(15,12,9,.98));
+  background:linear-gradient(180deg, rgba(30,22,14,.95), rgba(15,12,9,.98));
   border-bottom:1px solid var(--line);
   box-shadow:0 4px 20px -6px rgba(0,0,0,.8);
 }
 .topbar::after{
-  content:"";
-  position:absolute;
-  left:0;right:0;bottom:-1px;
-  height:1px;
-  background:linear-gradient(90deg,
-    transparent,
-    rgba(201,168,106,.5) 20%,
-    rgba(228,192,132,.7) 50%,
-    rgba(201,168,106,.5) 80%,
-    transparent);
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(201,168,106,.5) 20%,rgba(228,192,132,.7) 50%,rgba(201,168,106,.5) 80%,transparent);
 }
-
 .back{
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-  color:var(--gold-bright);
-  text-decoration:none;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:.64rem;
-  letter-spacing:.32em;
-  text-transform:uppercase;
-  padding:9px 16px;
-  border:1px solid var(--gold-soft);
-  background:rgba(20,14,8,.5);
-  transition:all .3s ease;
-  white-space:nowrap;
-  flex-shrink:0;
+  display:inline-flex;align-items:center;gap:9px;
+  color:var(--gold-bright);text-decoration:none;
+  font-family:'IBM Plex Mono',monospace;font-size:.64rem;
+  letter-spacing:.32em;text-transform:uppercase;
+  padding:9px 16px;border:1px solid var(--gold-soft);
+  background:rgba(20,14,8,.5);transition:all .3s ease;
+  white-space:nowrap;flex-shrink:0;
 }
-.back::before{
-  content:"←";
-  font-size:.85rem;
-  transition:transform .3s ease;
-}
-.back:hover{
-  background:rgba(201,168,106,.12);
-  border-color:var(--gold);
-  letter-spacing:.38em;
-}
+.back::before{content:"←";font-size:.85rem;transition:transform .3s ease}
+.back:hover{background:rgba(201,168,106,.12);border-color:var(--gold);letter-spacing:.38em}
 .back:hover::before{transform:translateX(-3px)}
-
-.title-block{
-  flex:1;
-  min-width:0;
-  text-align:center;
-  padding:0 12px;
-}
+.title-block{flex:1;min-width:0;text-align:center;padding:0 12px}
 .title-block .t{
   font-family:'Cormorant Garamond','Noto Serif Bengali',serif;
-  font-style:italic;
-  font-weight:500;
-  font-size:1.15rem;
-  letter-spacing:.01em;
-  color:var(--paper);
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  display:block;
-  text-shadow:0 0 24px rgba(201,168,106,.15);
+  font-style:italic;font-weight:500;font-size:1.15rem;
+  letter-spacing:.01em;color:var(--paper);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  display:block;text-shadow:0 0 24px rgba(201,168,106,.15);
 }
 .title-block .a{
-  display:block;
-  margin-top:3px;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:.58rem;
-  letter-spacing:.32em;
-  text-transform:uppercase;
+  display:block;margin-top:3px;
+  font-family:'IBM Plex Mono',monospace;font-size:.58rem;
+  letter-spacing:.32em;text-transform:uppercase;
   color:var(--ink-mute);
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
 }
-
 .actions{display:flex;gap:8px;flex-shrink:0}
 .ib{
-  width:36px;
-  height:36px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  background:rgba(20,14,8,.5);
-  border:1px solid var(--gold-soft);
-  color:var(--gold-bright);
-  cursor:pointer;
-  font-family:inherit;
-  font-size:.95rem;
-  text-decoration:none;
-  transition:all .25s ease;
-  line-height:1;
+  width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;
+  background:rgba(20,14,8,.5);border:1px solid var(--gold-soft);
+  color:var(--gold-bright);cursor:pointer;font-family:inherit;
+  font-size:.95rem;text-decoration:none;transition:all .25s ease;line-height:1;
 }
 .ib:hover{
-  background:rgba(201,168,106,.15);
-  border-color:var(--gold);
-  color:var(--paper);
-  box-shadow:0 0 20px rgba(201,168,106,.2);
+  background:rgba(201,168,106,.15);border-color:var(--gold);
+  color:var(--paper);box-shadow:0 0 20px rgba(201,168,106,.2);
 }
 .ib:active{transform:scale(.94)}
 
-/* ==================== STAGE ==================== */
-.stage{
-  flex:1;
-  min-height:0;
-  padding:22px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-}
-
+.stage{flex:1;min-height:0;padding:22px;display:flex;align-items:center;justify-content:center;position:relative}
 .frame{
-  position:relative;
-  width:100%;
-  max-width:1250px;
-  height:100%;
-  background:var(--paper);
-  padding:8px;
-  border-radius:2px;
+  position:relative;width:100%;max-width:1250px;height:100%;
+  background:var(--paper);padding:8px;border-radius:2px;
   box-shadow:
     inset 14px 0 24px -18px rgba(0,0,0,.5),
     inset -8px 0 16px -14px rgba(0,0,0,.35),
@@ -209,29 +120,16 @@ body::after{
   animation:fadeIn .55s ease both;
 }
 .frame::before{
-  content:"";
-  position:absolute;
-  inset:14px;
-  border:1px solid rgba(184,137,75,.35);
-  pointer-events:none;
-  z-index:2;
+  content:"";position:absolute;inset:14px;
+  border:1px solid rgba(184,137,75,.35);pointer-events:none;z-index:2;
 }
 .frame::after{
-  content:"";
-  position:absolute;
-  inset:18px;
-  border:1px solid rgba(184,137,75,.14);
-  pointer-events:none;
-  z-index:2;
+  content:"";position:absolute;inset:18px;
+  border:1px solid rgba(184,137,75,.14);pointer-events:none;z-index:2;
 }
 .corner{
-  position:absolute;
-  width:22px;
-  height:22px;
-  border:1.5px solid var(--gold);
-  opacity:.55;
-  pointer-events:none;
-  z-index:3;
+  position:absolute;width:22px;height:22px;
+  border:1.5px solid var(--gold);opacity:.55;pointer-events:none;z-index:3;
 }
 .corner.tl{top:22px;left:22px;border-right:none;border-bottom:none}
 .corner.tr{top:22px;right:22px;border-left:none;border-bottom:none}
@@ -239,36 +137,19 @@ body::after{
 .corner.br{bottom:22px;right:22px;border-left:none;border-top:none}
 
 iframe{
-  width:100%;
-  height:100%;
-  border:none;
-  background:var(--paper);
-  display:block;
-  position:relative;
-  z-index:1;
-  border-radius:1px;
+  width:100%;height:100%;border:none;
+  background:var(--paper);display:block;
+  position:relative;z-index:1;border-radius:1px;
 }
 
-/* ==================== LOADING ==================== */
 .loading{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:22px;
-  background:var(--paper);
-  z-index:5;
-  transition:opacity .45s ease;
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:22px;background:var(--paper);z-index:5;transition:opacity .45s ease;
 }
-.loading.out{
-  opacity:0;
-  pointer-events:none;
-}
+.loading.out{opacity:0;pointer-events:none}
 .sk-book{
-  width:64px;
-  height:88px;
+  width:64px;height:88px;
   background:linear-gradient(90deg,
     rgba(201,168,106,.08) 0%,
     rgba(201,168,106,.22) 50%,
@@ -276,90 +157,119 @@ iframe{
   background-size:200% 100%;
   animation:shimmer 1.3s infinite;
   border-radius:2px 4px 4px 2px;
-  box-shadow:
-    inset 6px 0 12px -6px rgba(0,0,0,.5),
-    0 8px 20px -8px rgba(0,0,0,.4);
+  box-shadow:inset 6px 0 12px -6px rgba(0,0,0,.5),0 8px 20px -8px rgba(0,0,0,.4);
   position:relative;
 }
-.sk-book::before{
-  content:"";
-  position:absolute;
-  inset:8px;
-  border:1px solid rgba(201,168,106,.25);
-}
+.sk-book::before{content:"";position:absolute;inset:8px;border:1px solid rgba(201,168,106,.25)}
 .loading-msg{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:.66rem;
-  letter-spacing:.42em;
-  text-transform:uppercase;
-  color:var(--ink-soft);
-  opacity:.85;
+  font-family:'IBM Plex Mono',monospace;font-size:.66rem;
+  letter-spacing:.42em;text-transform:uppercase;
+  color:var(--ink-soft);opacity:.85;
 }
 
-/* ==================== ERROR ==================== */
 .err{
-  position:absolute;
-  inset:0;
-  display:none;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:16px;
-  background:var(--paper);
-  z-index:6;
-  text-align:center;
-  padding:36px;
+  position:absolute;inset:0;display:none;
+  flex-direction:column;align-items:center;justify-content:center;
+  gap:16px;background:var(--paper);z-index:6;text-align:center;padding:36px;
 }
 .err.on{display:flex}
-.err .mark{
-  font-size:2rem;
-  color:var(--gold);
-  opacity:.85;
-}
+.err .mark{font-size:2rem;color:var(--gold);opacity:.85}
 .err h2{
   font-family:'Cormorant Garamond','Noto Serif Bengali',serif;
-  font-style:italic;
-  font-weight:500;
-  font-size:1.45rem;
-  color:var(--ink);
-  line-height:1.2;
+  font-style:italic;font-weight:500;font-size:1.45rem;
+  color:var(--ink);line-height:1.2;
 }
 .err p{
-  font-size:1rem;
-  font-style:italic;
-  color:var(--ink-soft);
-  max-width:420px;
-  line-height:1.55;
+  font-size:1rem;font-style:italic;color:var(--ink-soft);
+  max-width:420px;line-height:1.55;
 }
 .err a{
-  margin-top:10px;
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  padding:11px 24px;
-  border:1px solid var(--gold);
-  color:var(--ink);
-  text-decoration:none;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:.62rem;
-  letter-spacing:.34em;
-  text-transform:uppercase;
+  margin-top:10px;display:inline-flex;align-items:center;gap:10px;
+  padding:11px 24px;border:1px solid var(--gold);color:var(--ink);
+  text-decoration:none;font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;
   transition:all .28s ease;
 }
-.err a:hover{
-  background:var(--gold);
-  color:var(--paper);
-  letter-spacing:.4em;
+.err a:hover{background:var(--gold);color:var(--paper);letter-spacing:.4em}
+
+/* TEXT READER */
+.text-reader{
+  position:absolute;inset:0;background:var(--paper);
+  overflow-y:auto;z-index:1;padding:0;scroll-behavior:smooth;
+}
+.text-reader::-webkit-scrollbar{width:8px}
+.text-reader::-webkit-scrollbar-thumb{background:rgba(184,137,75,.4);border-radius:4px}
+.book-page{
+  max-width:720px;margin:0 auto;
+  padding:70px 42px 100px;color:var(--ink);
+  font-family:'Cormorant Garamond','Noto Serif Bengali',Georgia,serif;
+  font-size:1.15rem;line-height:1.85;
+}
+.page-header{
+  text-align:center;margin-bottom:60px;
+  padding-bottom:40px;border-bottom:1px solid rgba(184,137,75,.3);
+}
+.page-header .orn{font-size:.8rem;color:var(--gold);letter-spacing:.5em;margin-bottom:20px}
+.page-header h1{
+  font-family:'Cormorant Garamond','Noto Serif Bengali',serif;
+  font-weight:500;font-style:italic;
+  font-size:clamp(2rem,5vw,3rem);line-height:1.15;
+  color:var(--ink);letter-spacing:-.005em;margin-bottom:14px;
+}
+.page-header .sub{
+  font-style:italic;font-weight:300;font-size:1rem;
+  color:var(--ink-soft);margin-bottom:16px;letter-spacing:.02em;
+}
+.page-header .byline{
+  font-family:'IBM Plex Mono',monospace;font-size:.66rem;
+  letter-spacing:.32em;text-transform:uppercase;color:var(--gold);
+}
+.page-header .hr{width:60px;height:1px;background:var(--gold);margin:26px auto 0;opacity:.6}
+.page-content p{
+  margin-bottom:1.35em;text-align:justify;hyphens:auto;text-indent:1.5em;
+}
+.page-content p:first-of-type{text-indent:0}
+.page-content p:first-of-type::first-letter{
+  font-family:'Cormorant Garamond',serif;font-size:3.4em;
+  font-weight:600;float:left;line-height:.85;
+  margin:.08em .12em 0 0;color:var(--gold);
+}
+.page-content .h1{
+  font-family:'Cormorant Garamond','Noto Serif Bengali',serif;
+  font-weight:600;font-style:italic;font-size:1.6rem;
+  color:var(--ink);margin:2.2em 0 .8em;text-align:center;text-indent:0;
+}
+.page-content .h2{
+  font-family:'Cormorant Garamond','Noto Serif Bengali',serif;
+  font-weight:600;font-size:1.2rem;color:var(--ink);
+  margin:1.8em 0 .6em;text-indent:0;letter-spacing:.01em;
+}
+.page-content .poem{
+  text-indent:0;text-align:center;font-style:italic;
+  line-height:1.95;margin:1.8em 0;color:var(--ink-soft);
+}
+.page-content blockquote{
+  margin:1.8em 0;padding:1em 1.4em;
+  border-left:3px solid var(--gold);
+  background:rgba(201,168,106,.06);
+  font-style:italic;color:var(--ink-soft);text-indent:0;
+}
+.page-content .divider{
+  text-align:center;color:var(--gold);
+  letter-spacing:.8em;margin:2.5em 0;font-size:.75rem;opacity:.7;
+}
+.page-footer{
+  text-align:center;margin-top:80px;padding-top:40px;
+  border-top:1px solid rgba(184,137,75,.25);
+}
+.page-footer .orn{font-size:1rem;color:var(--gold);margin-bottom:10px}
+.page-footer p{
+  font-family:'IBM Plex Mono',monospace;font-size:.6rem;
+  letter-spacing:.42em;text-transform:uppercase;color:var(--gold);opacity:.7;
 }
 
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(10px)}
-  to{opacity:1;transform:translateY(0)}
-}
-@keyframes shimmer{
-  0%{background-position:200% 0}
-  100%{background-position:-200% 0}
-}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
 @media (max-width:700px){
   .topbar{padding:10px 12px;gap:8px}
@@ -381,6 +291,9 @@ iframe{
   .sk-book{width:52px;height:70px}
   .err h2{font-size:1.2rem}
   .err p{font-size:.9rem}
+  .book-page{padding:44px 22px 70px;font-size:1.05rem;line-height:1.75}
+  .page-header{margin-bottom:40px;padding-bottom:28px}
+  .page-content p:first-of-type::first-letter{font-size:2.8em}
 }
 </style>
 </head>
@@ -419,6 +332,7 @@ iframe{
   </div>
 </div>
 
+<script src="config.js"></script>
 <script>
 const params = new URLSearchParams(location.search);
 const bookId = params.get('book');
@@ -432,38 +346,109 @@ const errMsg = document.getElementById('errMsg');
 const ext = document.getElementById('ext');
 const fs = document.getElementById('fs');
 
-function cleanUrl(u){
-  return (u || '').trim().replace(/^["']|["']$/g, '');
-}
+function cleanUrl(u){return (u||'').trim().replace(/^["']|["']$/g,'')}
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
 function showError(msg){
   if(loading) loading.style.display = 'none';
   err.classList.add('on');
   if(msg) errMsg.textContent = msg;
 }
+
 function mountIframe(src){
   const iframe = document.createElement('iframe');
   iframe.src = src;
   iframe.allow = 'autoplay; fullscreen';
-  iframe.setAttribute('allowfullscreen', 'true');
-  iframe.setAttribute('loading', 'eager');
-
+  iframe.setAttribute('allowfullscreen','true');
+  iframe.setAttribute('loading','eager');
   iframe.addEventListener('load', () => {
     loading.classList.add('out');
     setTimeout(() => { if(loading.parentNode) loading.remove(); }, 500);
   });
-
   frame.insertBefore(iframe, loading);
   ext.href = src;
+}
+
+function renderTextContent(raw){
+  if(!raw) return '';
+  let t = esc(raw).trim();
+  const blocks = t.split(/\n\s*\n/);
+  return blocks.map(block => {
+    const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
+    if(block.startsWith('# ')){
+      return `<h2 class="h1">${block.slice(2).trim()}</h2>`;
+    }
+    if(block.startsWith('## ')){
+      return `<h3 class="h2">${block.slice(3).trim()}</h3>`;
+    }
+    if(block.startsWith('> ')){
+      const quote = lines.map(l => l.replace(/^>\s?/,'')).join(' ');
+      return `<blockquote>${quote}</blockquote>`;
+    }
+    if(/^(\*\s*){3,}$|^(-\s*){3,}$|^(_\s*){3,}$/.test(block)){
+      return `<div class="divider">✦ ✦ ✦</div>`;
+    }
+    if(lines.length > 1 && lines.every(l => l.length < 60)){
+      return `<p class="poem">${lines.join('<br>')}</p>`;
+    }
+    return `<p>${lines.join(' ')}</p>`;
+  }).join('');
+}
+
+function mountTextReader(book){
+  const html = renderTextContent(book.content || '');
+  const view = document.createElement('div');
+  view.className = 'text-reader';
+  view.innerHTML = `
+    <article class="book-page">
+      <header class="page-header">
+        <div class="orn">✦</div>
+        <h1>${esc(book.title)}</h1>
+        ${book.subtitle ? `<p class="sub">${esc(book.subtitle)}</p>` : ''}
+        <p class="byline">by ${esc(book.author||'Anonymous')}</p>
+        <div class="hr"></div>
+      </header>
+      <div class="page-content">${html}</div>
+      <footer class="page-footer">
+        <div class="orn">❦</div>
+        <p>The End</p>
+      </footer>
+    </article>
+  `;
+  frame.insertBefore(view, loading);
+  loading.classList.add('out');
+  setTimeout(() => { if(loading.parentNode) loading.remove(); }, 500);
+}
+
+async function loadArchive(){
+  const CFG = window.EA_CONFIG || {};
+  if(CFG.BIN_ID && CFG.MASTER_KEY && !CFG.BIN_ID.startsWith('YOUR_')){
+    try{
+      const res = await fetch('https://api.jsonbin.io/v3/b/' + CFG.BIN_ID + '/latest', {
+        headers: { 'X-Master-Key': CFG.MASTER_KEY }
+      });
+      if(res.ok){
+        const data = await res.json();
+        const record = data.record || data;
+        if(Array.isArray(record)) return record;
+        if(record && Array.isArray(record.books)) return record.books;
+      }
+    }catch(e){ console.warn('JSONBin load failed', e); }
+  }
+  try{
+    const res = await fetch('./books.json', {cache:'no-cache'});
+    if(res.ok) return await res.json();
+  }catch(e){ console.warn('books.json fallback failed', e); }
+  return [];
 }
 
 if(!bookId){
   tEl.textContent = 'No volume selected';
   showError('No book was selected. Return to the library and pick a volume.');
 } else {
-  fetch('./books.json', {cache:'no-cache'})
-    .then(res => res.json())
+  loadArchive()
     .then(list => {
-      const book = (list || []).find(b => b.id === bookId);
+      const book = (list||[]).find(b => b.id === bookId);
       if(!book){
         tEl.textContent = 'Not found';
         showError('This volume does not exist in the archive.');
@@ -473,18 +458,17 @@ if(!bookId){
       tEl.textContent = book.title;
       aEl.textContent = book.author ? ('by ' + book.author) : '';
 
-      const pdfUrl = cleanUrl(book.pdf);
-      if(!pdfUrl){
-        showError('This volume has no document attached.');
-        return;
-      }
-
-      /* ⚡ Defer iframe mounting so the page paints first */
-      requestAnimationFrame(() => {
+      if(book.type === 'text' || book.content){
+        mountTextReader(book);
+      } else {
+        const pdfUrl = cleanUrl(book.pdf);
+        if(!pdfUrl){ showError('This volume has no document attached.'); return; }
         requestAnimationFrame(() => {
-          setTimeout(() => mountIframe(pdfUrl), 80);
+          requestAnimationFrame(() => {
+            setTimeout(() => mountIframe(pdfUrl), 80);
+          });
         });
-      });
+      }
     })
     .catch(err => {
       console.error('Archive error:', err);
@@ -503,7 +487,6 @@ fs.addEventListener('click', () => {
 document.addEventListener('fullscreenchange', () => {
   fs.textContent = document.fullscreenElement ? '⤡' : '⛶';
 });
-
 document.addEventListener('keydown', (e) => {
   if(e.key === 'Escape' && !document.fullscreenElement){
     location.href = 'index.html';
