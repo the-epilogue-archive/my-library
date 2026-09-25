@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://api.jsonbin.io" crossorigin>
 <link rel="preconnect" href="https://fonts.maateen.me" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Noto+Serif+Bengali:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@500;600;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Noto+Serif+Bengali:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- 🇧🇩 Bengali Handwriting font — BenSen -->
 <link href="https://fonts.maateen.me/bensen-handwriting/font.css" rel="stylesheet">
@@ -120,7 +120,7 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
 .book-page[data-cat="essay"] .page-content blockquote{background:transparent;border-left:2px solid var(--gold);padding-left:1.3em;font-size:1.1rem}
 
 /* =========================================================
-   LETTER — aged paper + postmark + bilingual signature
+   LETTER
    ========================================================= */
 .book-page[data-cat="letter"]{
   background:
@@ -182,20 +182,20 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
   z-index:2;
 }
 
-/* Date — Dancing Script, top right */
+/* Date — same font as body, color same as before */
 .letter-date{
   display:block;
   text-align:right;
-  font-family:'Dancing Script','Cormorant Garamond','Noto Serif Bengali',cursive;
-  font-size:1.35rem;
+  font-family:'Cormorant Garamond','Noto Serif Bengali',Georgia,serif;
+  font-size:1.15rem;
   font-weight:500;
   color:#5a3d20;
   margin-bottom:32px;
   padding-bottom:12px;
   border-bottom:1px dashed rgba(139,90,45,.28);
   font-style:normal;
-  opacity:.9;
-  letter-spacing:.005em;
+  opacity:.92;
+  letter-spacing:.01em;
   position:relative;
   z-index:1;
 }
@@ -213,7 +213,7 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
   letter-spacing:.005em;
 }
 
-/* ===== Greeting — bilingual ===== */
+/* ===== Greeting ===== */
 .book-page[data-cat="letter"] .page-content .greeting{
   font-style:normal;
   font-weight:400;
@@ -222,21 +222,19 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
   line-height:1.5;
   letter-spacing:.005em;
 }
-/* Bengali — BenSen Handwriting */
 .book-page[data-cat="letter"] .page-content .greeting.bn{
   font-family:'BenSen Handwriting','Noto Serif Bengali',cursive;
   font-size:1.55rem;
   font-weight:400;
   line-height:1.6;
 }
-/* English — Caveat */
 .book-page[data-cat="letter"] .page-content .greeting.en{
   font-family:'Caveat',cursive;
   font-size:1.8rem;
   font-weight:600;
 }
 
-/* ===== Valediction — bilingual ===== */
+/* ===== Valediction ===== */
 .book-page[data-cat="letter"] .page-content .valediction{
   font-style:normal;
   font-weight:400;
@@ -257,7 +255,7 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
   font-weight:600;
 }
 
-/* ===== Signature — bilingual ===== */
+/* ===== Signature ===== */
 .book-page[data-cat="letter"] .page-content p.signature{
   font-style:normal;
   text-align:right;
@@ -274,21 +272,18 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
   transform:rotate(-1.6deg);
   transform-origin:right center;
 }
-/* Bengali signature — BenSen */
 .book-page[data-cat="letter"] .page-content p.signature.bn{
   font-family:'BenSen Handwriting','Noto Serif Bengali',cursive;
   font-size:1.7rem;
   font-weight:400;
   line-height:1.5;
 }
-/* English signature — Caveat */
 .book-page[data-cat="letter"] .page-content p.signature.en{
   font-family:'Caveat',cursive;
   font-size:1.95rem;
   font-weight:600;
 }
 
-/* Letter footer — hidden */
 .book-page[data-cat="letter"] .page-footer{display:none}
 
 /* ===== ANIMATIONS ===== */
@@ -326,7 +321,7 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
   .book-page[data-cat="letter"] .page-content .valediction.en{font-size:1.35rem}
   .book-page[data-cat="letter"] .page-content p.signature.bn{font-size:1.4rem}
   .book-page[data-cat="letter"] .page-content p.signature.en{font-size:1.6rem}
-  .letter-date{font-size:1.15rem}
+  .letter-date{font-size:1rem}
 }
 </style>
 </head>
@@ -401,6 +396,9 @@ const VALEDICTION_PATTERNS = [
 function isGreeting(t){return GREETING_PATTERNS.some(p=>p.test(String(t||'').trim()))}
 function isValediction(t){return VALEDICTION_PATTERNS.some(p=>p.test(String(t||'').trim()))}
 
+/* =========================================================
+   DATE HELPERS
+   ========================================================= */
 function extractDate(blocks){
   if(!blocks.length) return {date:null,rest:blocks};
   const first = blocks[0].trim();
@@ -412,12 +410,31 @@ function extractDate(blocks){
   return {date:null, rest:blocks};
 }
 
+/* --- Bengali digits --- */
+function toBengaliDigits(n){
+  const map = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+  return String(n).replace(/\d/g, d => map[+d]);
+}
+
+/* --- Bengali ordinal suffix, grammar-correct --- */
+function bengaliOrdinalSuffix(d){
+  if(d === 1) return 'লা';
+  if(d === 2) return 'রা';
+  if(d === 3) return 'রা';
+  if(d === 4) return 'ঠা';
+  if(d >= 5 && d <= 18) return 'ই';
+  return 'শে'; // 19–31
+}
+
+/* --- Bengali date: ২৫শে সেপ্টেম্বর ২০২৬ --- */
 function todayBengali(){
   const t = new Date();
   const months = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
-  return t.getDate() + 'ই ' + months[t.getMonth()] + ' ' + t.getFullYear();
+  const d = t.getDate();
+  return toBengaliDigits(d) + bengaliOrdinalSuffix(d) + ' ' + months[t.getMonth()] + ' ' + toBengaliDigits(t.getFullYear());
 }
 
+/* --- English date: 25th September, 2026 --- */
 function todayEnglish(){
   const t = new Date();
   const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -439,9 +456,10 @@ function renderTextContent(raw, category){
   if(cat === 'letter'){
     let dateHtml = '';
     const d = extractDate(blocks);
-    if(d.date){ dateHtml = '<span class="letter-date">' + d.date + '</span>'; blocks = d.rest; }
-    else {
-      // ভাষা দেখে date বাছাই — বাংলা হলে বাংলা, English হলে English
+    if(d.date){
+      dateHtml = '<span class="letter-date">' + d.date + '</span>';
+      blocks = d.rest;
+    } else {
       const hasBengali = /[\u0980-\u09FF]/.test(raw);
       const dateStr = hasBengali ? todayBengali() : todayEnglish();
       dateHtml = '<span class="letter-date">' + dateStr + '</span>';
