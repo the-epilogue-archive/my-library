@@ -44,9 +44,6 @@ body.light .search input{background:rgba(255,255,255,.6);color:var(--ink)}
 .pill{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;padding:8px 14px;background:transparent;border:1px solid var(--line);color:var(--ink-mute);cursor:pointer;transition:all .25s ease;border-radius:1px}
 .pill:hover{color:var(--gold-bright);border-color:var(--gold-soft)}
 .pill.on{color:var(--bg);background:var(--gold);border-color:var(--gold);font-weight:500}
-.pill-admin{color:var(--gold-bright);border-color:var(--gold-soft);display:inline-flex;align-items:center;gap:6px;text-decoration:none}
-.pill-admin:hover{background:rgba(201,168,106,.15);border-color:var(--gold);color:var(--gold-bright)}
-.pill-admin::before{content:"⚙";font-size:.75rem}
 .featured{max-width:1140px;margin:0 auto 70px;animation:fadeUp .7s ease .15s both}
 .featured-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:22px;display:flex;align-items:center;gap:14px}
 .featured-label::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--gold-soft),transparent)}
@@ -103,7 +100,7 @@ footer::before{content:"✦ ✦ ✦";display:block;color:var(--gold-soft);font-s
 <button class="theme-btn" id="themeBtn">☾</button>
 
 <header class="masthead">
-  <a class="monogram" href="admin.html" title="Admin Panel">Epilogue</a>
+  <a class="monogram" href="admin.html" title="Epilogue">Epilogue</a>
   <div class="eyebrow">Est. MMXXV · Curated Library</div>
   <h1>The <em>Epilogue</em><br>Archive</h1>
   <p class="tagline">a quiet collection of tales, poetry &amp; forgotten letters</p>
@@ -118,7 +115,7 @@ footer::before{content:"✦ ✦ ✦";display:block;color:var(--gold-soft);font-s
     <button class="pill" data-cat="poetry">Poetry</button>
     <button class="pill" data-cat="essay">Essay</button>
     <button class="pill" data-cat="quote">Quote</button>
-    <a class="pill pill-admin" href="admin.html">Admin</a>
+    <button class="pill" data-cat="letter">Letter</button>
   </div>
 </div>
 
@@ -186,7 +183,6 @@ loadArchive().then(data=>{
   input.addEventListener('input',e=>{clearTimeout(t);t=setTimeout(()=>{Q=e.target.value.trim();render()},140)});
   document.getElementById('filters').addEventListener('click',e=>{
     const btn=e.target.closest('.pill');if(!btn)return;
-    if(btn.classList.contains('pill-admin'))return;
     document.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));
     btn.classList.add('on');CUR=btn.dataset.cat;render();
   });
