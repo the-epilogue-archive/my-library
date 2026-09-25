@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://drive.google.com" crossorigin>
 <link rel="preconnect" href="https://api.jsonbin.io" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Noto+Serif+Bengali:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Noto+Serif+Bengali:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Great+Vibes&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0f0c09;--bg-2:#16110c;--paper:#f2e8d5;--paper-2:#e2d5b8;--ink:#1c1610;--ink-soft:#6e5f4a;--ink-mute:#a08c6f;--gold:#c9a86a;--gold-bright:#e4c084;--gold-soft:rgba(201,168,106,.4);--line:rgba(201,168,106,.2)}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -17,7 +17,7 @@ body{font-family:'Cormorant Garamond','Noto Serif Bengali',Georgia,serif;backgro
 body::before{content:"";position:fixed;inset:0;z-index:-1;background:repeating-linear-gradient(90deg,rgba(255,220,180,.012) 0,rgba(0,0,0,0) 1px,rgba(0,0,0,0) 4px,rgba(0,0,0,.02) 5px),radial-gradient(ellipse at 50% -20%,rgba(201,168,106,.14) 0,transparent 55%),radial-gradient(ellipse at 50% 120%,rgba(139,40,40,.1) 0,transparent 60%),linear-gradient(180deg,#0f0c09 0,#17110c 50%,#0f0c09 100%);pointer-events:none}
 body::after{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.6) 100%);pointer-events:none}
 
-/* ==================== TOP BAR ==================== */
+/* ===== TOP BAR ===== */
 .topbar{flex-shrink:0;position:relative;z-index:3;display:flex;align-items:center;gap:18px;padding:14px 26px;background:linear-gradient(180deg,rgba(30,22,14,.95),rgba(15,12,9,.98));border-bottom:1px solid var(--line);box-shadow:0 4px 20px -6px rgba(0,0,0,.8)}
 .topbar::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,106,.5) 20%,rgba(228,192,132,.7) 50%,rgba(201,168,106,.5) 80%,transparent)}
 .back{display:inline-flex;align-items:center;gap:9px;color:var(--gold-bright);text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.32em;text-transform:uppercase;padding:9px 16px;border:1px solid var(--gold-soft);background:rgba(20,14,8,.5);transition:all .3s ease;white-space:nowrap;flex-shrink:0}
@@ -30,11 +30,9 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradi
 .actions{display:flex;gap:8px;flex-shrink:0}
 .ib{width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;background:rgba(20,14,8,.5);border:1px solid var(--gold-soft);color:var(--gold-bright);cursor:pointer;font-family:inherit;font-size:.95rem;text-decoration:none;transition:all .25s ease;line-height:1}
 .ib:hover{background:rgba(201,168,106,.15);border-color:var(--gold);color:var(--paper);box-shadow:0 0 20px rgba(201,168,106,.2)}
-
-/* Reading progress bar */
 .progress-bar{position:absolute;bottom:-1px;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--gold),var(--gold-bright));box-shadow:0 0 12px rgba(201,168,106,.6);z-index:10;transition:width .1s linear;pointer-events:none}
 
-/* ==================== STAGE ==================== */
+/* ===== STAGE ===== */
 .stage{flex:1;min-height:0;padding:22px;display:flex;align-items:center;justify-content:center;position:relative}
 .frame{position:relative;width:100%;max-width:1250px;height:100%;background:var(--paper);padding:8px;border-radius:2px;box-shadow:inset 14px 0 24px -18px rgba(0,0,0,.5),inset -8px 0 16px -14px rgba(0,0,0,.35),0 1px 0 rgba(255,255,255,.5) inset,0 20px 44px -18px rgba(0,0,0,.85),0 0 0 1px rgba(201,168,106,.15),0 0 60px rgba(201,168,106,.08);animation:fadeIn .55s ease both}
 .frame::before{content:"";position:absolute;inset:14px;border:1px solid rgba(184,137,75,.35);pointer-events:none;z-index:2}
@@ -46,14 +44,14 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradi
 .corner.br{bottom:22px;right:22px;border-left:none;border-top:none}
 iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;position:relative;z-index:1;border-radius:1px}
 
-/* ==================== LOADING ==================== */
+/* ===== LOADING ===== */
 .loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;background:var(--paper);z-index:5;transition:opacity .45s ease}
 .loading.out{opacity:0;pointer-events:none}
 .sk-book{width:64px;height:88px;background:linear-gradient(90deg,rgba(201,168,106,.08) 0,rgba(201,168,106,.22) 50%,rgba(201,168,106,.08) 100%);background-size:200% 100%;animation:shimmer 1.3s infinite;border-radius:2px 4px 4px 2px;box-shadow:inset 6px 0 12px -6px rgba(0,0,0,.5),0 8px 20px -8px rgba(0,0,0,.4);position:relative}
 .sk-book::before{content:"";position:absolute;inset:8px;border:1px solid rgba(201,168,106,.25)}
 .loading-msg{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-soft);opacity:.85}
 
-/* ==================== ERROR ==================== */
+/* ===== ERROR ===== */
 .err{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:var(--paper);z-index:6;text-align:center;padding:36px}
 .err.on{display:flex}
 .err .mark{font-size:2rem;color:var(--gold);opacity:.85}
@@ -62,12 +60,12 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
 .err a{margin-top:10px;display:inline-flex;align-items:center;gap:10px;padding:11px 24px;border:1px solid var(--gold);color:var(--ink);text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;transition:all .28s ease}
 .err a:hover{background:var(--gold);color:var(--paper);letter-spacing:.4em}
 
-/* ==================== TEXT READER ==================== */
+/* ===== TEXT READER ===== */
 .text-reader{position:absolute;inset:0;background:var(--paper);overflow-y:auto;z-index:1;padding:0;scroll-behavior:smooth}
 .text-reader::-webkit-scrollbar{width:8px}
 .text-reader::-webkit-scrollbar-thumb{background:rgba(184,137,75,.4);border-radius:4px}
 
-.book-page{max-width:720px;margin:0 auto;padding:80px 44px 110px;color:var(--ink);font-family:'Cormorant Garamond','Noto Serif Bengali',Georgia,serif;font-size:1.18rem;line-height:1.95}
+.book-page{max-width:720px;margin:0 auto;padding:80px 44px 110px;color:var(--ink);font-family:'Cormorant Garamond','Noto Serif Bengali',Georgia,serif;font-size:1.18rem;line-height:1.95;position:relative}
 
 .page-header{text-align:center;margin-bottom:64px;padding-bottom:44px;border-bottom:1px solid rgba(184,137,75,.3)}
 .page-header .orn{font-size:.85rem;color:var(--gold);letter-spacing:.5em;margin-bottom:22px}
@@ -76,7 +74,6 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
 .page-header .byline{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
 .page-header .hr{width:60px;height:1px;background:var(--gold);margin:28px auto 0;opacity:.6}
 
-/* Base paragraph */
 .page-content p{margin-bottom:1.5em;text-align:left;text-indent:0;line-height:1.95;word-break:normal;overflow-wrap:break-word;hyphens:none;-webkit-hyphens:none}
 .page-content .h1{font-family:'Cormorant Garamond','Noto Serif Bengali',serif;font-weight:600;font-style:italic;font-size:1.65rem;color:var(--ink);margin:2.4em 0 .9em;text-align:center;text-indent:0;line-height:1.3}
 .page-content .h2{font-family:'Cormorant Garamond','Noto Serif Bengali',serif;font-weight:600;font-size:1.22rem;color:var(--ink);margin:2em 0 .7em;text-indent:0;letter-spacing:.01em;line-height:1.4}
@@ -88,9 +85,7 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
 .page-footer .orn{font-size:1.05rem;color:var(--gold);margin-bottom:12px}
 .page-footer p{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);opacity:.7}
 
-/* =========================================================
-   QUOTE
-   ========================================================= */
+/* ===== QUOTE ===== */
 .book-page[data-cat="quote"] .page-content{display:flex;flex-direction:column;gap:2.4em;margin-top:1em}
 .book-page[data-cat="quote"] .page-content p{text-align:center;font-style:italic;font-size:1.3rem;line-height:1.75;color:var(--ink);padding:0 20px;margin:0}
 .book-page[data-cat="quote"] .quote-card{position:relative;text-align:center;padding:30px 44px;background:rgba(201,168,106,.05);border-top:1px solid rgba(184,137,75,.25);border-bottom:1px solid rgba(184,137,75,.25)}
@@ -100,9 +95,7 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
 .book-page[data-cat="quote"] .quote-card .qtext{font-family:'Cormorant Garamond','Noto Serif Bengali',serif;font-style:italic;font-size:1.42rem;line-height:1.7;color:var(--ink);margin:0}
 .book-page[data-cat="quote"] .page-content blockquote{text-align:center;border:none;background:rgba(201,168,106,.08);padding:22px 30px;font-size:1.35rem;border-radius:4px;margin:0}
 
-/* =========================================================
-   POETRY
-   ========================================================= */
+/* ===== POETRY ===== */
 .book-page[data-cat="poetry"] .page-content{font-size:1.2rem}
 .book-page[data-cat="poetry"] .page-content p{text-align:center;font-style:italic;line-height:2.25;color:var(--ink);margin-bottom:2.2em;letter-spacing:.01em}
 .book-page[data-cat="poetry"] .page-content .poem{line-height:2.3;margin:2.4em 0;font-size:1.2rem}
@@ -110,164 +103,223 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
 .book-page[data-cat="poetry"] .page-content .h2{font-size:1.15rem;text-align:center;font-style:italic;margin:2.2em 0 1em}
 .book-page[data-cat="poetry"] .page-content blockquote{text-align:center;border:none;border-top:1px solid rgba(184,137,75,.3);border-bottom:1px solid rgba(184,137,75,.3);background:transparent;padding:1.3em 2em;font-size:1.15rem;border-radius:0}
 
-/* =========================================================
-   STORY
-   ========================================================= */
+/* ===== STORY ===== */
 .book-page[data-cat="story"] .page-content p{font-size:1.18rem;line-height:1.95}
 .book-page[data-cat="story"] .page-content blockquote{font-size:1.15rem;padding-left:1.6em}
 
-/* =========================================================
-   ESSAY
-   ========================================================= */
+/* ===== ESSAY ===== */
 .book-page[data-cat="essay"] .page-content p{font-size:1.15rem;line-height:1.85;margin-bottom:1.4em}
 .book-page[data-cat="essay"] .page-content .h1{text-align:left;font-size:1.7rem;letter-spacing:-.005em;margin:2.2em 0 .6em}
 .book-page[data-cat="essay"] .page-content .h2{font-size:1.22rem;margin:1.9em 0 .5em}
 .book-page[data-cat="essay"] .page-content blockquote{background:transparent;border-left:2px solid var(--gold);padding-left:1.3em;font-size:1.1rem}
 
 /* =========================================================
-   LETTER — rich letter styling
+   LETTER — full vintage letter experience
    ========================================================= */
 .book-page[data-cat="letter"]{
   background:
-    linear-gradient(180deg, rgba(245,236,213,.5) 0%, rgba(242,232,213,.6) 100%),
-    repeating-linear-gradient(0deg, transparent 0, transparent 31px, rgba(184,137,75,.08) 31px, rgba(184,137,75,.08) 32px);
-  padding-top:60px;
+    /* Small ink spots */
+    radial-gradient(circle at 22% 12%, rgba(80,50,25,.18) 0%, transparent 0.6%),
+    radial-gradient(circle at 82% 38%, rgba(80,50,25,.14) 0%, transparent 0.5%),
+    radial-gradient(circle at 14% 62%, rgba(80,50,25,.12) 0%, transparent 0.7%),
+    radial-gradient(circle at 71% 82%, rgba(80,50,25,.1) 0%, transparent 0.5%),
+    radial-gradient(circle at 45% 26%, rgba(80,50,25,.09) 0%, transparent 0.4%),
+    /* Aging patches */
+    radial-gradient(ellipse at 12% 20%, rgba(139,90,45,.12) 0%, transparent 35%),
+    radial-gradient(ellipse at 88% 78%, rgba(139,90,45,.1) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 55%, rgba(160,110,60,.06) 0%, transparent 60%),
+    /* Paper grain */
+    repeating-linear-gradient(0deg, rgba(120,80,40,.014) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(120,80,40,.008) 0 1px, transparent 1px 5px),
+    /* Base aged paper */
+    linear-gradient(180deg, #f9f1dc 0%, #f2e6c5 40%, #ecdcb0 100%);
+  box-shadow:
+    inset 0 0 100px rgba(139,90,45,.14),
+    inset 0 0 0 1px rgba(139,90,45,.06);
+  padding:70px 52px 90px;
+  max-width:760px;
 }
+
+/* Horizontal fold line */
+.book-page[data-cat="letter"]::before{
+  content:"";
+  position:absolute;
+  left:0;right:0;
+  top:34%;
+  height:1px;
+  background:linear-gradient(90deg,transparent 0%,rgba(139,90,45,.16) 20%,rgba(139,90,45,.16) 80%,transparent 100%);
+  pointer-events:none;
+  z-index:0;
+}
+/* Second fold line */
+.book-page[data-cat="letter"]::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;
+  top:68%;
+  height:1px;
+  background:linear-gradient(90deg,transparent 0%,rgba(139,90,45,.14) 20%,rgba(139,90,45,.14) 80%,transparent 100%);
+  pointer-events:none;
+  z-index:0;
+}
+
 .book-page[data-cat="letter"] .page-header{
   border-bottom:none;
-  padding-bottom:20px;
-  margin-bottom:36px;
+  padding-bottom:16px;
+  margin-bottom:30px;
   position:relative;
+  z-index:1;
 }
 .book-page[data-cat="letter"] .page-header::after{
   content:"";
   display:block;
-  width:80px;
-  height:2px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-  margin:20px auto 0;
+  width:100px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold) 30%,var(--gold) 70%,transparent);
+  margin:24px auto 0;
+  opacity:.7;
 }
 .book-page[data-cat="letter"] .page-header h1{
   font-style:normal;
   font-weight:600;
   letter-spacing:-.005em;
 }
+.book-page[data-cat="letter"] .page-header .orn{color:var(--gold);opacity:.75}
 
-/* Date — auto-inserted at top-right */
+/* Auto-generated date — top right, handwritten */
 .letter-date{
   display:block;
   text-align:right;
-  font-family:'Dancing Script','Cormorant Garamond',cursive;
-  font-size:1.15rem;
-  color:var(--ink-soft);
-  margin-bottom:28px;
-  padding-bottom:10px;
-  border-bottom:1px dashed rgba(184,137,75,.3);
+  font-family:'Caveat','Great Vibes',cursive;
+  font-size:1.55rem;
+  font-weight:600;
+  color:#5a3d20;
+  margin-bottom:34px;
+  padding-bottom:14px;
+  border-bottom:1px dashed rgba(139,90,45,.28);
   font-style:normal;
-  opacity:.85;
+  opacity:.92;
+  letter-spacing:.01em;
+  position:relative;
+  z-index:1;
+}
+/* Tiny flourish under the date */
+.letter-date::after{
+  content:"✦";
+  position:absolute;
+  right:0;
+  bottom:-9px;
+  font-size:.5rem;
+  color:var(--gold);
+  background:linear-gradient(180deg, #f2e6c5, #f2e6c5);
+  padding:0 4px;
 }
 
 .book-page[data-cat="letter"] .page-content{
   font-family:'Cormorant Garamond','Noto Serif Bengali',Georgia,serif;
+  position:relative;
+  z-index:1;
 }
 .book-page[data-cat="letter"] .page-content p{
-  font-size:1.2rem;
-  line-height:2;
-  margin-bottom:1.55em;
+  font-size:1.22rem;
+  line-height:2.05;
+  margin-bottom:1.6em;
   text-indent:0;
+  color:#2a1c10;
+  text-shadow:0.3px 0.3px 0.4px rgba(90,60,30,.12);
+  letter-spacing:.005em;
 }
 
-/* Greeting — detected "প্রিয়...", "Dear...", "সুপ্রিয়..." */
+/* Greeting — handwritten cursive */
 .book-page[data-cat="letter"] .page-content .greeting{
-  font-family:'Dancing Script','Cormorant Garamond',cursive;
-  font-size:1.55rem;
+  font-family:'Caveat','Great Vibes','Cormorant Garamond','Noto Serif Bengali',cursive,serif;
+  font-size:1.75rem;
   font-style:normal;
   font-weight:600;
-  color:var(--ink);
-  margin-bottom:1.6em;
+  color:#3a2510;
+  margin-bottom:1.7em;
+  line-height:1.45;
   letter-spacing:.005em;
-  line-height:1.4;
+  text-shadow:0.4px 0.4px 0.5px rgba(90,60,30,.15);
 }
 
-/* Valediction — detected "ভালো থেকো,", "ইতি,", "তোমার..." etc */
+/* Valediction (ভালো থেকো, ইতি, etc.) */
 .book-page[data-cat="letter"] .page-content .valediction{
-  font-style:italic;
-  color:var(--ink-soft);
-  margin-top:2.2em;
-  margin-bottom:.8em;
-  font-size:1.15rem;
-  text-align:left;
+  font-family:'Caveat','Cormorant Garamond','Noto Serif Bengali',cursive,serif;
+  font-size:1.4rem;
+  font-weight:600;
+  font-style:normal;
+  color:#3a2510;
+  margin-top:2em;
+  margin-bottom:.6em;
+  line-height:1.5;
+  letter-spacing:.005em;
 }
 
-/* Signature — last paragraph */
+/* Signature — beautiful handwriting, no emoji */
 .book-page[data-cat="letter"] .page-content p.signature,
 .book-page[data-cat="letter"] .page-content p:last-child{
-  font-family:'Dancing Script','Cormorant Garamond',cursive;
-  font-size:1.65rem;
+  font-family:'Great Vibes','Caveat','Cormorant Garamond','Noto Serif Bengali',cursive,serif;
+  font-size:2.5rem;
   font-style:normal;
-  font-weight:600;
+  font-weight:400;
   text-align:right;
-  margin-top:1.2em;
-  padding-top:1.4em;
-  padding-right:1em;
-  color:var(--ink);
-  line-height:1.3;
-  border-top:1px dashed rgba(184,137,75,.35);
+  color:#1f1408;
+  line-height:1.25;
+  letter-spacing:.01em;
+  margin-top:2.6em;
+  margin-bottom:.4em;
+  padding-top:1.6em;
+  padding-right:1.4em;
+  border-top:1px dashed rgba(139,90,45,.35);
   position:relative;
+  text-shadow:0.5px 0.5px 0.8px rgba(90,60,30,.18);
 }
-.book-page[data-cat="letter"] .page-content p.signature::after,
-.book-page[data-cat="letter"] .page-content p:last-child::after{
-  content:"✒";
-  position:absolute;
-  right:-8px;
-  top:1.4em;
-  font-size:1.1rem;
-  color:var(--gold);
-  opacity:.5;
+/* For Bengali signatures that fall back to Noto — keep readable */
+.book-page[data-cat="letter"] .page-content p.signature:lang(bn),
+.book-page[data-cat="letter"] .page-content p:last-child:lang(bn){
+  font-size:2rem;
+  font-weight:500;
 }
 
-/* Wax seal feel (subtle) */
 .book-page[data-cat="letter"] .page-footer{
   border-top:none;
+  margin-top:60px;
+  padding-top:0;
   position:relative;
+  z-index:1;
 }
-.book-page[data-cat="letter"] .page-footer::before{
-  content:"";
-  position:absolute;
-  top:20px;
-  left:50%;
-  transform:translateX(-50%);
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  background:radial-gradient(circle at 35% 30%, #a83a3a 0%, #6a1c1c 70%, #4a1010 100%);
-  box-shadow:inset -2px -2px 6px rgba(0,0,0,.4), inset 2px 2px 4px rgba(255,180,180,.2), 0 4px 10px rgba(0,0,0,.3);
-  opacity:.85;
+.book-page[data-cat="letter"] .page-footer .orn{display:none}
+.book-page[data-cat="letter"] .page-footer p{
+  font-size:.55rem;
+  color:rgba(139,90,45,.55);
+  letter-spacing:.5em;
+  margin-top:22px;
 }
-.book-page[data-cat="letter"] .page-footer::after{
-  content:"E";
-  position:absolute;
-  top:32px;
-  left:50%;
-  transform:translateX(-50%);
-  font-family:'Cormorant Garamond',serif;
-  font-style:italic;
-  font-weight:600;
-  font-size:1rem;
-  color:rgba(255,220,220,.75);
-  letter-spacing:.05em;
-}
-.book-page[data-cat="letter"] .page-footer .orn{opacity:0}
 
-/* =========================================================
-   ANIMATIONS
-   ========================================================= */
+/* Wax seal — shown only on letters */
+.wax-seal{
+  display:none;
+  width:92px;
+  height:92px;
+  margin:0 auto 8px;
+  filter:drop-shadow(0 8px 16px rgba(74,14,14,.45)) drop-shadow(0 2px 4px rgba(0,0,0,.25));
+}
+.book-page[data-cat="letter"] .wax-seal{
+  display:block;
+  animation:sealIn .9s cubic-bezier(.34,1.4,.5,1) .2s both;
+}
+@keyframes sealIn{
+  0%{opacity:0;transform:scale(.5) rotate(-30deg);}
+  60%{opacity:1;transform:scale(1.08) rotate(3deg);}
+  100%{opacity:1;transform:scale(1) rotate(0deg);}
+}
+
+/* ===== ANIMATIONS ===== */
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
+/* ===== RESPONSIVE ===== */
 @media (max-width:700px){
   .topbar{padding:10px 12px;gap:8px}
   .back{padding:8px 12px;font-size:0;letter-spacing:0;gap:0}
@@ -289,10 +341,14 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
   .book-page[data-cat="quote"] .quote-card .qtext{font-size:1.2rem}
   .book-page[data-cat="quote"] .quote-card .qmark{font-size:2.6rem}
   .book-page[data-cat="poetry"] .page-content p{line-height:2.15}
-  .book-page[data-cat="letter"] .page-content .greeting{font-size:1.3rem}
+  /* Letter mobile */
+  .book-page[data-cat="letter"]{padding:52px 26px 70px}
+  .book-page[data-cat="letter"] .page-content p{font-size:1.08rem;line-height:1.95}
+  .book-page[data-cat="letter"] .page-content .greeting{font-size:1.5rem}
   .book-page[data-cat="letter"] .page-content p.signature,
-  .book-page[data-cat="letter"] .page-content p:last-child{font-size:1.35rem;padding-right:.5em}
-  .letter-date{font-size:1rem}
+  .book-page[data-cat="letter"] .page-content p:last-child{font-size:2rem;padding-right:.6em}
+  .letter-date{font-size:1.3rem}
+  .wax-seal{width:76px;height:76px}
 }
 </style>
 </head>
@@ -350,13 +406,13 @@ function mountIframe(src){
 }
 
 /* =========================================================
-   LETTER HELPERS — greeting / valediction detection
+   LETTER HELPERS
    ========================================================= */
 const GREETING_PATTERNS = [
-  /^(প্রিয়|প্রিয়তম|সুপ্রিয়|আদরের|ওগো|হে|Dear|My dear|Dearest|Hello)\b/i
+  /^(প্রিয়|প্রিয়তম|প্রিয়তমা|সুপ্রিয়|আদরের|ওগো|হে|Dear|My dear|Dearest|Hello|To)\b(?=\s|,|$)/i
 ];
 const VALEDICTION_PATTERNS = [
-  /^(ভালো\s*থেকো|ভালো\s*থেকো|ইতি|সবটুকু\s*ভালোবাসা|ভালবাসা|আন্তরিকভাবে|তোমার\s*সুহৃদ|অনুগত|বিদায়|শুভেচ্ছা|সশ্রদ্ধ|শ্রদ্ধা|Regards|Best|Yours|Sincerely|Love|With love|Warmly|Thanks)\b/i
+  /^(ভালো\s*থেকো|ভালো\s*থাকো|ভাল\s*থেকো|ভালবাসা|সবটুকু\s*ভালোবাসা|আন্তরিকভাবে|তোমার\s*সুহৃদ|অনুগত|বিদায়|শুভেচ্ছা|সশ্রদ্ধ|শ্রদ্ধা|ইতি|Regards|Best|Yours|Sincerely|Love|With love|Warmly|Thanks|Farewell|Goodbye)\b/i
 ];
 
 function isGreeting(text){
@@ -368,24 +424,26 @@ function isValediction(text){
   return VALEDICTION_PATTERNS.some(p => p.test(t));
 }
 
-/* Extract a date from the first block if it looks like one */
 function extractDate(blocks){
   if(!blocks.length) return { date: null, rest: blocks };
   const first = blocks[0].trim();
-  // "DATE: ..." or "তারিখ: ..." or a pure date line
-  const dateMatch = first.match(/^(?:DATE|তারিখ|Date)\s*[:\-]\s*(.+)$/i);
-  if(dateMatch){
-    return { date: dateMatch[1].trim(), rest: blocks.slice(1) };
-  }
-  // Pure date-ish line (short, contains digits and separators)
-  if(first.length < 40 && /^[\d\-\/\s.,আ-হ০-৯ইং]+$/.test(first) && /\d/.test(first)){
+  const m = first.match(/^(?:DATE|তারিখ|Date)\s*[:\-]\s*(.+)$/i);
+  if(m) return { date: m[1].trim(), rest: blocks.slice(1) };
+  // Pure date-ish line
+  if(first.length < 45 && /^[\d\-\/\s.,আ-হ০-৯ইং]+$/.test(first) && /\d/.test(first)){
     return { date: first, rest: blocks.slice(1) };
   }
   return { date: null, rest: blocks };
 }
 
+function bengaliToday(){
+  const t = new Date();
+  const months = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+  return t.getDate() + 'ই ' + months[t.getMonth()] + ' ' + t.getFullYear();
+}
+
 /* =========================================================
-   TEXT CONTENT RENDERER — category aware
+   TEXT RENDERER
    ========================================================= */
 function renderTextContent(raw, category){
   if(!raw) return '';
@@ -394,7 +452,7 @@ function renderTextContent(raw, category){
   let blocks = t.split(/\n\s*\n/);
   const cat = (category || '').toLowerCase();
 
-  /* -------- LETTER: special preprocessing -------- */
+  /* -------- LETTER -------- */
   if(cat === 'letter'){
     let dateHtml = '';
     const d = extractDate(blocks);
@@ -402,11 +460,7 @@ function renderTextContent(raw, category){
       dateHtml = '<span class="letter-date">' + d.date + '</span>';
       blocks = d.rest;
     } else {
-      // Auto-generate today's date in Bengali style
-      const today = new Date();
-      const months = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
-      const dateStr = today.getDate() + 'ই ' + months[today.getMonth()] + ' ' + today.getFullYear();
-      dateHtml = '<span class="letter-date">' + dateStr + '</span>';
+      dateHtml = '<span class="letter-date">' + bengaliToday() + '</span>';
     }
 
     const total = blocks.length;
@@ -424,18 +478,19 @@ function renderTextContent(raw, category){
       if(/^([*\-_]\s*){3,}$/.test(block.trim())) return '<div class="divider">✦ ✦ ✦</div>';
 
       const text = lines.join(' ');
+      const textBr = lines.join('<br>');
 
-      // Greeting (first block only)
+      // Greeting (only first block)
       if(i === 0 && isGreeting(text)){
-        return '<p class="greeting">' + text + '</p>';
+        return '<p class="greeting">' + textBr + '</p>';
       }
-      // Signature (last block) — will be styled as signature by CSS
+      // Signature (last block, when total > 1)
       if(i === total - 1 && total > 1){
-        return '<p class="signature">' + text + '</p>';
+        return '<p class="signature">' + textBr + '</p>';
       }
-      // Valediction (second to last or before signature)
+      // Valediction
       if(isValediction(text)){
-        return '<p class="valediction">' + text + '</p>';
+        return '<p class="valediction">' + textBr + '</p>';
       }
       return '<p>' + text + '</p>';
     }).join('');
@@ -443,7 +498,7 @@ function renderTextContent(raw, category){
     return dateHtml + rendered;
   }
 
-  /* -------- Other categories -------- */
+  /* -------- OTHER CATEGORIES -------- */
   return blocks.map(block => {
     const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
     if(!lines.length) return '';
@@ -468,6 +523,45 @@ function renderTextContent(raw, category){
   }).join('');
 }
 
+/* =========================================================
+   WAX SEAL SVG (crown)
+   ========================================================= */
+function waxSealSvg(){
+  return `
+    <svg class="wax-seal" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <radialGradient id="waxGrad" cx="35%" cy="28%">
+          <stop offset="0%" stop-color="#c34a4a"/>
+          <stop offset="45%" stop-color="#8e2020"/>
+          <stop offset="100%" stop-color="#4a0e0e"/>
+        </radialGradient>
+        <radialGradient id="waxShine" cx="30%" cy="22%">
+          <stop offset="0%" stop-color="rgba(255,220,220,.4)"/>
+          <stop offset="55%" stop-color="rgba(255,220,220,0)"/>
+        </radialGradient>
+      </defs>
+      <path d="M40 5 C 55 3, 70 15, 73 30 C 76 44, 72 60, 60 69 C 48 78, 30 78, 20 70 C 10 62, 6 46, 8 32 C 10 18, 25 7, 40 5 Z" fill="url(#waxGrad)"/>
+      <path d="M40 5 C 55 3, 70 15, 73 30 C 76 44, 72 60, 60 69 C 48 78, 30 78, 20 70 C 10 62, 6 46, 8 32 C 10 18, 25 7, 40 5 Z" fill="url(#waxShine)"/>
+      <circle cx="40" cy="40" r="23" fill="none" stroke="rgba(255,210,210,.3)" stroke-width="1.2"/>
+      <circle cx="40" cy="40" r="20" fill="none" stroke="rgba(60,10,10,.5)" stroke-width="0.6"/>
+      <g transform="translate(40 40)">
+        <path d="M -12 4 L -12 2 L -9 -8 L -4 -1 L 0 -10 L 4 -1 L 9 -8 L 12 2 L 12 4 Z"
+              fill="rgba(255,220,220,.5)"
+              stroke="rgba(255,220,220,.85)"
+              stroke-width="0.6"
+              stroke-linejoin="round"/>
+        <rect x="-12" y="4" width="24" height="2" fill="rgba(255,220,220,.65)"/>
+        <circle cx="-8" cy="9" r="0.8" fill="rgba(255,220,220,.55)"/>
+        <circle cx="-2.5" cy="9" r="0.8" fill="rgba(255,220,220,.55)"/>
+        <circle cx="2.5" cy="9" r="0.8" fill="rgba(255,220,220,.55)"/>
+        <circle cx="8" cy="9" r="0.8" fill="rgba(255,220,220,.55)"/>
+        <circle cx="-9" cy="-8" r="1" fill="rgba(255,235,235,.9)"/>
+        <circle cx="0" cy="-10" r="1.2" fill="rgba(255,235,235,.9)"/>
+        <circle cx="9" cy="-8" r="1" fill="rgba(255,235,235,.9)"/>
+      </g>
+    </svg>`;
+}
+
 function mountTextReader(book){
   const cat = (book.category||'story').toLowerCase();
   const html = renderTextContent(book.content || '', cat);
@@ -483,18 +577,20 @@ function mountTextReader(book){
         '<div class="hr"></div>' +
       '</header>' +
       '<div class="page-content">' + html + '</div>' +
-      '<footer class="page-footer"><div class="orn">❦</div><p>The End</p></footer>' +
+      '<footer class="page-footer">' +
+        waxSealSvg() +
+        '<div class="orn">❦</div>' +
+        '<p>The End</p>' +
+      '</footer>' +
     '</article>';
   frame.insertBefore(view, loading);
   loading.classList.add('out');
   setTimeout(()=>{if(loading.parentNode)loading.remove()},500);
-
-  /* Attach scroll progress to text reader */
   attachProgress(view);
 }
 
 /* =========================================================
-   READING PROGRESS (light — passive scroll listener)
+   PROGRESS BAR
    ========================================================= */
 function attachProgress(scroller){
   if(!scroller || !progressBar) return;
@@ -512,7 +608,7 @@ function attachProgress(scroller){
 }
 
 /* =========================================================
-   LOAD — merge books.json + JSONBin
+   LOAD
    ========================================================= */
 async function loadArchive(){
   const CFG=window.EA_CONFIG||{};
