@@ -8,7 +8,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://drive.google.com" crossorigin>
 <link rel="preconnect" href="https://api.jsonbin.io" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Noto+Serif+Bengali:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@500;600;700&family=Caveat:wght@500;600;700&family=Atma:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.maateen.me" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Noto+Serif+Bengali:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@500;600;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- 🇧🇩 Bengali Handwriting font — BenSen -->
+<link href="https://fonts.maateen.me/bensen-handwriting/font.css" rel="stylesheet">
+
 <style>
 :root{--bg:#0f0c09;--bg-2:#16110c;--paper:#f2e8d5;--paper-2:#e2d5b8;--ink:#1c1610;--ink-soft:#6e5f4a;--ink-mute:#a08c6f;--gold:#c9a86a;--gold-bright:#e4c084;--gold-soft:rgba(201,168,106,.4);--line:rgba(201,168,106,.2)}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -210,19 +216,22 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
 /* ===== Greeting — bilingual ===== */
 .book-page[data-cat="letter"] .page-content .greeting{
   font-style:normal;
-  font-weight:500;
+  font-weight:400;
   color:#3a2510;
   margin-bottom:1.7em;
   line-height:1.5;
   letter-spacing:.005em;
 }
+/* Bengali — BenSen Handwriting */
 .book-page[data-cat="letter"] .page-content .greeting.bn{
-  font-family:'Atma','Noto Serif Bengali',serif;
-  font-size:1.4rem;
-  font-weight:500;
+  font-family:'BenSen Handwriting','Noto Serif Bengali',cursive;
+  font-size:1.55rem;
+  font-weight:400;
+  line-height:1.6;
 }
+/* English — Caveat */
 .book-page[data-cat="letter"] .page-content .greeting.en{
-  font-family:'Caveat','Dancing Script','Cormorant Garamond',cursive;
+  font-family:'Caveat',cursive;
   font-size:1.8rem;
   font-weight:600;
 }
@@ -230,29 +239,30 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
 /* ===== Valediction — bilingual ===== */
 .book-page[data-cat="letter"] .page-content .valediction{
   font-style:normal;
-  font-weight:500;
+  font-weight:400;
   color:#3a2510;
   margin-top:2em;
   margin-bottom:.7em;
   line-height:1.5;
 }
 .book-page[data-cat="letter"] .page-content .valediction.bn{
-  font-family:'Atma','Noto Serif Bengali',serif;
-  font-size:1.3rem;
-  font-weight:500;
+  font-family:'BenSen Handwriting','Noto Serif Bengali',cursive;
+  font-size:1.4rem;
+  font-weight:400;
+  line-height:1.6;
 }
 .book-page[data-cat="letter"] .page-content .valediction.en{
-  font-family:'Caveat','Dancing Script','Cormorant Garamond',cursive;
+  font-family:'Caveat',cursive;
   font-size:1.55rem;
   font-weight:600;
 }
 
-/* ===== Signature — bilingual, no bold synthesis ===== */
+/* ===== Signature — bilingual ===== */
 .book-page[data-cat="letter"] .page-content p.signature{
   font-style:normal;
   text-align:right;
   color:#241708;
-  line-height:1.35;
+  line-height:1.4;
   letter-spacing:.005em;
   margin-top:2.2em;
   margin-bottom:.4em;
@@ -263,22 +273,22 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
   z-index:1;
   transform:rotate(-1.6deg);
   transform-origin:right center;
-  text-shadow:0.3px 0.3px 0.5px rgba(90,60,30,.12);
 }
-/* Bengali signature — Atma, weight 500 (no synthesis) */
+/* Bengali signature — BenSen */
 .book-page[data-cat="letter"] .page-content p.signature.bn{
-  font-family:'Atma','Noto Serif Bengali',serif;
-  font-size:1.55rem;
-  font-weight:500;
+  font-family:'BenSen Handwriting','Noto Serif Bengali',cursive;
+  font-size:1.7rem;
+  font-weight:400;
+  line-height:1.5;
 }
-/* English signature — Caveat, larger */
+/* English signature — Caveat */
 .book-page[data-cat="letter"] .page-content p.signature.en{
-  font-family:'Caveat','Dancing Script','Cormorant Garamond',cursive;
-  font-size:1.9rem;
+  font-family:'Caveat',cursive;
+  font-size:1.95rem;
   font-weight:600;
 }
 
-/* Letter footer — hidden, no seal */
+/* Letter footer — hidden */
 .book-page[data-cat="letter"] .page-footer{display:none}
 
 /* ===== ANIMATIONS ===== */
@@ -310,11 +320,11 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
   .book-page[data-cat="letter"]{padding:52px 24px 70px}
   .book-page[data-cat="letter"] .postmark{width:78px;height:78px;top:36px;left:18px;opacity:.5}
   .book-page[data-cat="letter"] .page-content p{font-size:1.08rem;line-height:1.95}
-  .book-page[data-cat="letter"] .page-content .greeting.bn{font-size:1.25rem}
-  .book-page[data-cat="letter"] .page-content .greeting.en{font-size:1.6rem}
+  .book-page[data-cat="letter"] .page-content .greeting.bn{font-size:1.3rem}
+  .book-page[data-cat="letter"] .page-content .greeting.en{font-size:1.55rem}
   .book-page[data-cat="letter"] .page-content .valediction.bn{font-size:1.15rem}
-  .book-page[data-cat="letter"] .page-content .valediction.en{font-size:1.4rem}
-  .book-page[data-cat="letter"] .page-content p.signature.bn{font-size:1.3rem}
+  .book-page[data-cat="letter"] .page-content .valediction.en{font-size:1.35rem}
+  .book-page[data-cat="letter"] .page-content p.signature.bn{font-size:1.4rem}
   .book-page[data-cat="letter"] .page-content p.signature.en{font-size:1.6rem}
   .letter-date{font-size:1.15rem}
 }
@@ -376,13 +386,8 @@ function mountIframe(src){
 /* =========================================================
    LANGUAGE DETECTION
    ========================================================= */
-/* Bengali Unicode: U+0980–U+09FF */
-function isBengali(text){
-  return /[\u0980-\u09FF]/.test(String(text||''));
-}
-function langSuffix(text){
-  return isBengali(text) ? ' bn' : ' en';
-}
+function isBengali(text){return /[\u0980-\u09FF]/.test(String(text||''));}
+function langSuffix(text){return isBengali(text) ? ' bn' : ' en';}
 
 /* =========================================================
    LETTER PATTERNS
