@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+Bengali:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 <link href="https://fonts.maateen.me/bensen-handwriting/font.css" rel="stylesheet">
 <style>
-:root{--bg:#0d0a07;--paper:#fbf5e3;--ink:#2a2118;--ink-soft:#3a2d20;--ink-mute:#8a7a5f;--gold:#c9a86a;--gold-bright:#e4c084;--gold-soft:rgba(201,168,106,.4);--line:rgba(201,168,106,.2);--accent:#8a5f28}
+:root{--bg:#0d0a07;--ink:#2a2118;--ink-soft:#3a2d20;--ink-mute:#8a7a5f;--gold:#c9a86a;--gold-bright:#e4c084;--gold-soft:rgba(201,168,106,.4);--line:rgba(201,168,106,.2);--accent:#8a5f28}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{font-family:'EB Garamond','Noto Serif Bengali',Georgia,serif;background:var(--bg);color:#f2e8d5;display:flex;flex-direction:column;min-height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased;position:relative}
@@ -37,123 +37,140 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-grad
 .copy-link-btn.ok{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 .stage{flex:1;min-height:0;padding:22px;display:flex;align-items:center;justify-content:center;position:relative}
-.frame{position:relative;width:100%;max-width:1250px;height:100%;background:var(--paper);padding:8px;border-radius:2px;box-shadow:inset 14px 0 24px -18px rgba(0,0,0,.5),inset -8px 0 16px -14px rgba(0,0,0,.35),0 20px 44px -18px rgba(0,0,0,.85),0 0 0 1px rgba(201,168,106,.15);animation:fadeIn .55s ease both}
-.frame::before{content:"";position:absolute;inset:14px;border:1px solid rgba(184,137,75,.28);pointer-events:none;z-index:2}
-.frame::after{content:"";position:absolute;inset:18px;border:1px solid rgba(184,137,75,.1);pointer-events:none;z-index:2}
-.corner{position:absolute;width:22px;height:22px;border:1.5px solid var(--gold);opacity:.5;pointer-events:none;z-index:3}
+.frame{position:relative;width:100%;max-width:1250px;height:100%;background:#f0e2c4;padding:8px;border-radius:2px;box-shadow:inset 14px 0 24px -18px rgba(0,0,0,.5),inset -8px 0 16px -14px rgba(0,0,0,.35),0 20px 44px -18px rgba(0,0,0,.85),0 0 0 1px rgba(201,168,106,.15);animation:fadeIn .55s ease both}
+.frame::before{content:"";position:absolute;inset:14px;border:1px solid rgba(139,90,45,.32);pointer-events:none;z-index:2}
+.frame::after{content:"";position:absolute;inset:18px;border:1px solid rgba(139,90,45,.12);pointer-events:none;z-index:2}
+.corner{position:absolute;width:22px;height:22px;border:1.5px solid #8a5f28;opacity:.5;pointer-events:none;z-index:3}
 .corner.tl{top:22px;left:22px;border-right:none;border-bottom:none}
 .corner.tr{top:22px;right:22px;border-left:none;border-bottom:none}
 .corner.bl{bottom:22px;left:22px;border-right:none;border-top:none}
 .corner.br{bottom:22px;right:22px;border-left:none;border-top:none}
-iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;position:relative;z-index:1}
+iframe{width:100%;height:100%;border:none;background:#f0e2c4;display:block;position:relative;z-index:1}
 
-.loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;background:var(--paper);z-index:5;transition:opacity .45s ease}
+.loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;background:#f0e2c4;z-index:5;transition:opacity .45s ease}
 .loading.out{opacity:0;pointer-events:none}
-.sk-book{width:64px;height:88px;background:linear-gradient(90deg,rgba(201,168,106,.08) 0,rgba(201,168,106,.22) 50%,rgba(201,168,106,.08) 100%);background-size:200% 100%;animation:shimmer 1.3s infinite;border-radius:2px 4px 4px 2px;position:relative}
-.sk-book::before{content:"";position:absolute;inset:8px;border:1px solid rgba(201,168,106,.25)}
+.sk-book{width:64px;height:88px;background:linear-gradient(90deg,rgba(139,90,45,.08) 0,rgba(139,90,45,.2) 50%,rgba(139,90,45,.08) 100%);background-size:200% 100%;animation:shimmer 1.3s infinite;border-radius:2px 4px 4px 2px;position:relative}
+.sk-book::before{content:"";position:absolute;inset:8px;border:1px solid rgba(139,90,45,.25)}
 .loading-msg{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.42em;text-transform:uppercase;color:#6e5f4a;opacity:.85}
-.err{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:var(--paper);z-index:6;text-align:center;padding:36px}
+.err{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:#f0e2c4;z-index:6;text-align:center;padding:36px}
 .err.on{display:flex}
-.err .mark{font-size:2rem;color:var(--gold);opacity:.85}
+.err .mark{font-size:2rem;color:#8a5f28;opacity:.85}
 .err h2{font-family:'Lora','Noto Serif Bengali',serif;font-style:italic;font-weight:500;font-size:1.45rem;color:var(--ink);line-height:1.2}
 .err p{font-size:1rem;font-style:italic;color:var(--ink-soft);max-width:420px;line-height:1.55}
-.err a{margin-top:10px;display:inline-flex;align-items:center;gap:10px;padding:11px 24px;border:1px solid var(--gold);color:var(--ink);text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;transition:all .28s ease;border-radius:1px}
+.err a{margin-top:10px;display:inline-flex;align-items:center;gap:10px;padding:11px 24px;border:1px solid #8a5f28;color:var(--ink);text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;transition:all .28s ease;border-radius:1px}
 
-.text-reader{position:absolute;inset:0;overflow-y:auto;z-index:1;padding:0;scroll-behavior:smooth;background:linear-gradient(180deg,#fbf5e3 0%,#f5ebd3 60%,#f0e5cc 100%)}
+/* ============ TEXT READER — NAYA PARCHMENT PAPER ============ */
+.text-reader{
+  position:absolute;inset:0;overflow-y:auto;z-index:1;padding:0;scroll-behavior:smooth;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(139,90,45,.08) 0%, transparent 35%),
+    radial-gradient(circle at 92% 88%, rgba(139,90,45,.07) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 45%, rgba(160,110,60,.05) 0%, transparent 65%),
+    linear-gradient(180deg, #f7ecd4 0%, #efdfbd 45%, #e5d3a8 100%);
+}
 .text-reader::-webkit-scrollbar{width:8px}
-.text-reader::-webkit-scrollbar-thumb{background:rgba(184,137,75,.4);border-radius:4px}
+.text-reader::-webkit-scrollbar-thumb{background:rgba(139,90,45,.4);border-radius:4px}
 
-.reader-cover-page{min-height:calc(100vh - 160px);display:flex;align-items:center;justify-content:center;padding:70px 40px 100px;background:linear-gradient(180deg,#fcf6e6 0%,#f4e9ce 60%,#ecdcb4 100%);position:relative}
-.reader-cover-page img{max-width:min(480px,90%);max-height:70vh;display:block;border-radius:2px;box-shadow:0 30px 60px -20px rgba(0,0,0,.55),0 0 0 1px rgba(184,137,75,.35),0 4px 12px rgba(0,0,0,.2);animation:coverIn 1s cubic-bezier(.2,.8,.2,1) both}
+.reader-cover-page{min-height:calc(100vh - 160px);display:flex;align-items:center;justify-content:center;padding:70px 40px 100px;background:linear-gradient(180deg,#f7ecd4 0%,#efdfbd 60%,#e5d3a8 100%);position:relative}
+.reader-cover-page img{max-width:min(480px,90%);max-height:70vh;display:block;border-radius:2px;box-shadow:0 30px 60px -20px rgba(0,0,0,.55),0 0 0 1px rgba(139,90,45,.4),0 4px 12px rgba(0,0,0,.2);animation:coverIn 1s cubic-bezier(.2,.8,.2,1) both}
 @keyframes coverIn{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
-.reader-cover-page::after{content:"↓ scroll to read";position:absolute;bottom:36px;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.42em;text-transform:uppercase;color:#8a5f28;opacity:.55;animation:scrollHint 2.2s ease-in-out infinite}
-@keyframes scrollHint{0%,100%{opacity:.55;transform:translateX(-50%) translateY(0)}50%{opacity:.95;transform:translateX(-50%) translateY(6px)}}
+.reader-cover-page::after{content:"↓ scroll to read";position:absolute;bottom:36px;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.42em;text-transform:uppercase;color:#8a5f28;opacity:.6;animation:scrollHint 2.2s ease-in-out infinite}
+@keyframes scrollHint{0%,100%{opacity:.6;transform:translateX(-50%) translateY(0)}50%{opacity:1;transform:translateX(-50%) translateY(6px)}}
 
-/* ==================== BOOK PAGE ==================== */
+/* ============ BOOK PAGE ============ */
 .book-page{max-width:720px;margin:0 auto;padding:96px 46px 130px;color:var(--ink-soft);font-family:'EB Garamond','Noto Serif Bengali',Georgia,serif;font-size:1.15rem;line-height:1.78;position:relative}
 
-/* Header */
 .page-header{text-align:center;margin-bottom:64px}
 .page-header h1{font-family:'Lora','Noto Serif Bengali',serif;font-weight:500;font-style:italic;font-size:clamp(2.1rem,5.5vw,3.2rem);line-height:1.1;color:var(--ink);letter-spacing:-.012em;margin-bottom:14px}
 .page-header .sub{font-family:'Lora','Noto Serif Bengali',serif;font-style:italic;font-weight:400;font-size:1.02rem;color:var(--ink-mute);margin-bottom:20px;letter-spacing:.02em;line-height:1.5}
 .page-header .byline{font-family:'Lora','Noto Serif Bengali',serif;font-style:italic;font-size:.92rem;color:var(--ink-mute);letter-spacing:.01em;display:inline-block}
-.page-header .byline::before{content:"— ";color:var(--accent)}
-.page-header .hr{width:60px;height:1px;background:var(--accent);margin:34px auto 0;opacity:.45}
+.page-header .byline::before{content:"— ";color:#8a5f28}
+.page-header .hr{width:60px;height:1px;background:#8a5f28;margin:34px auto 0;opacity:.5}
 
-/* Body — English */
+/* Body English — EB Garamond justified */
 .page-content p{margin-bottom:1.35em;text-align:justify;text-indent:1.5em;line-height:1.78;font-family:'EB Garamond',Georgia,serif;font-size:1.16rem;color:var(--ink-soft);letter-spacing:.003em;hyphens:none}
 .page-content p:first-of-type{text-indent:0}
-/* Body — Bengali */
+/* Body Bengali — left-aligned */
 .page-content p.bn{font-family:'Noto Serif Bengali',serif;font-size:1.06rem;line-height:1.95;text-align:left;text-indent:1.4em;color:var(--ink-soft);margin-bottom:1.5em}
 /* Headings */
 .page-content .h1{font-family:'Lora','Noto Serif Bengali',serif;font-weight:500;font-style:italic;font-size:1.6rem;color:var(--ink);margin:2.6em 0 1em;text-align:center;text-indent:0;line-height:1.35}
 .page-content .h2{font-family:'Lora','Noto Serif Bengali',serif;font-weight:600;font-size:1.2rem;color:var(--ink);margin:2.2em 0 .7em;text-indent:0;line-height:1.4}
-.page-content .divider{text-align:center;color:var(--accent);letter-spacing:.9em;margin:2.8em 0;font-size:.75rem;opacity:.55;padding-left:.9em}
+.page-content .divider{text-align:center;color:#8a5f28;letter-spacing:.9em;margin:2.8em 0;font-size:.75rem;opacity:.55;padding-left:.9em}
 
-/* ===== Footer REMOVED — just a thin line ===== */
-.page-footer{margin-top:80px;display:flex;align-items:center;justify-content:center;opacity:.3}
-.page-footer::before{content:"";width:180px;max-width:60%;height:1px;background:linear-gradient(90deg,transparent,rgba(139,90,45,.4),transparent)}
-.page-footer span{display:none}
-.page-footer p{display:none}
-
-/* ===== STORY ===== */
+/* ============ STORY ============ */
 .book-page[data-cat="story"] .page-content p{text-align:justify}
 .book-page[data-cat="story"] .page-content p.bn{text-align:left}
-.book-page .scene-div{text-align:center;color:var(--accent);letter-spacing:1.4em;margin:2.8em 0;font-size:.72rem;opacity:.5;text-indent:0;padding-left:1.4em}
+.book-page .scene-div{text-align:center;color:#8a5f28;letter-spacing:1.4em;margin:2.8em 0;font-size:.72rem;opacity:.5;text-indent:0;padding-left:1.4em}
 .book-page.no-divider .scene-div{display:none}
-.book-page .pull-quote{margin:2.4em 0;padding:1.2em 1.8em;border-left:2px solid var(--gold);background:rgba(201,168,106,.05);font-family:'Lora','Noto Serif Bengali',serif;font-style:italic;color:#4a3a24;font-size:1.08rem;line-height:1.8;text-indent:0;border-radius:0 3px 3px 0}
+.book-page .pull-quote{margin:2.4em 0;padding:1.2em 1.8em;border-left:2px solid var(--gold);background:rgba(139,90,45,.06);font-family:'Lora','Noto Serif Bengali',serif;font-style:italic;color:#4a3a24;font-size:1.08rem;line-height:1.8;text-indent:0;border-radius:0 3px 3px 0}
 .book-page.no-pullquote .pull-quote{border-left:none;background:transparent;padding:0;font-style:normal;color:inherit;font-family:inherit;font-size:inherit}
 
-/* ===== POETRY ===== */
+/* ============ POETRY — NO ITALIC ============ */
 .book-page[data-cat="poetry"] .poem-wrap{position:relative;padding-left:0;margin:1.5em 0}
-.book-page[data-cat="poetry"] .stanza{text-align:left;font-family:'EB Garamond','Noto Serif Bengali',serif;font-size:1.16rem;font-style:italic;line-height:2.05;color:var(--ink-soft);margin-bottom:2.6em;text-indent:0}
+.book-page[data-cat="poetry"] .stanza{
+  text-align:left;
+  font-family:'EB Garamond','Noto Serif Bengali',serif;
+  font-size:1.16rem;
+  font-style:normal;      /* ← italic সরানো */
+  line-height:2;
+  color:var(--ink-soft);
+  margin-bottom:2.6em;
+  text-indent:0;
+}
 .book-page[data-cat="poetry"] .stanza:last-child{margin-bottom:0}
-.book-page[data-cat="poetry"] .stanza .num{display:block;font-family:'IBM Plex Mono',monospace;font-style:normal;font-size:.55rem;letter-spacing:.32em;color:var(--accent);opacity:.55;margin-bottom:10px}
+.book-page[data-cat="poetry"] .stanza .num{display:block;font-family:'IBM Plex Mono',monospace;font-style:normal;font-size:.55rem;letter-spacing:.32em;color:#8a5f28;opacity:.55;margin-bottom:10px}
 .book-page.no-stanzanum[data-cat="poetry"] .stanza .num{display:none}
 .book-page[data-cat="poetry"] .poem-attr{margin-top:2.6em;padding-top:1.2em;border-top:1px dashed rgba(139,90,45,.22);font-family:'Lora',serif;font-style:italic;font-size:.95rem;color:var(--ink-mute);text-indent:0}
-.book-page[data-cat="poetry"] .poem-attr::before{content:"— ";color:var(--accent);font-style:normal}
+.book-page[data-cat="poetry"] .poem-attr::before{content:"— ";color:#8a5f28;font-style:normal}
 .book-page.no-attribution[data-cat="poetry"] .poem-attr{display:none}
 
-/* ===== ESSAY ===== */
+/* ============ ESSAY ============ */
 .book-page[data-cat="essay"] .page-content p{font-size:1.14rem;line-height:1.78;margin-bottom:1.3em;text-indent:0}
 .book-page[data-cat="essay"] .essay-sec{margin-bottom:2.2em}
 .book-page[data-cat="essay"] .essay-sec h4{font-family:'Lora','Noto Serif Bengali',serif;font-weight:600;font-size:1.22rem;color:var(--ink);margin-bottom:.65em;display:flex;align-items:baseline;gap:14px}
-.book-page[data-cat="essay"] .essay-sec h4 .n{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.24em;color:var(--accent);opacity:.75;font-weight:600;min-width:26px}
+.book-page[data-cat="essay"] .essay-sec h4 .n{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.24em;color:#8a5f28;opacity:.75;font-weight:600;min-width:26px}
 .book-page.no-secnum[data-cat="essay"] .essay-sec h4 .n{display:none}
-.book-page[data-cat="essay"] blockquote{margin:2em 0;padding:1.2em 1.6em;border-left:2px solid var(--gold);background:rgba(201,168,106,.05);font-family:'Lora','Noto Serif Bengali',serif;font-style:italic;color:#4a3a24;line-height:1.8;border-radius:0 3px 3px 0}
+.book-page[data-cat="essay"] blockquote{margin:2em 0;padding:1.2em 1.6em;border-left:2px solid var(--gold);background:rgba(139,90,45,.06);font-family:'Lora','Noto Serif Bengali',serif;font-style:italic;color:#4a3a24;line-height:1.8;border-radius:0 3px 3px 0}
 
-/* ===== QUOTE ===== */
+/* ============ QUOTE ============ */
 .book-page[data-cat="quote"] .page-content{display:flex;flex-direction:column;gap:0}
 .book-page[data-cat="quote"] .q{position:relative;margin-bottom:3em;text-indent:0}
 .book-page[data-cat="quote"] .q:last-child{margin-bottom:0}
-.book-page[data-cat="quote"] .q .qn{position:absolute;top:-6px;left:-4px;font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.24em;color:var(--accent);opacity:.55;font-style:normal;font-weight:600}
+.book-page[data-cat="quote"] .q .qn{position:absolute;top:-6px;left:-4px;font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.24em;color:#8a5f28;opacity:.55;font-style:normal;font-weight:600}
 .book-page.no-quotenum[data-cat="quote"] .q .qn{display:none}
 .book-page[data-cat="quote"] .q.small{text-align:center;font-family:'Lora','Noto Serif Bengali',serif;font-style:italic;font-size:1.5rem;line-height:1.5;color:var(--ink);padding:26px}
 .book-page[data-cat="quote"] .q.small::before,
-.book-page[data-cat="quote"] .q.small::after{content:"❝";font-family:Georgia,serif;font-style:normal;color:var(--gold);opacity:.5;font-size:1.2em;vertical-align:-.15em;padding:0 .1em}
+.book-page[data-cat="quote"] .q.small::after{content:"❝";font-family:Georgia,serif;font-style:normal;color:var(--gold);opacity:.55;font-size:1.2em;vertical-align:-.15em;padding:0 .1em}
 .book-page[data-cat="quote"] .q.small::after{content:"❞"}
-.book-page[data-cat="quote"] .q.big{padding:24px 30px;background:rgba(201,168,106,.05);border-left:2px solid var(--gold);border-radius:0 3px 3px 0;font-family:'Lora','Noto Serif Bengali',serif;font-style:italic;font-size:1.12rem;line-height:1.8;color:var(--ink-soft)}
-.book-page.no-sizeaware[data-cat="quote"] .q.small{font-size:1.12rem;text-align:left;padding:24px 30px;background:rgba(201,168,106,.05);border-left:2px solid var(--gold);border-radius:0 3px 3px 0;line-height:1.8}
+.book-page[data-cat="quote"] .q.big{padding:24px 30px;background:rgba(139,90,45,.06);border-left:2px solid var(--gold);border-radius:0 3px 3px 0;font-family:'Lora','Noto Serif Bengali',serif;font-style:italic;font-size:1.12rem;line-height:1.8;color:var(--ink-soft)}
+.book-page.no-sizeaware[data-cat="quote"] .q.small{font-size:1.12rem;text-align:left;padding:24px 30px;background:rgba(139,90,45,.06);border-left:2px solid var(--gold);border-radius:0 3px 3px 0;line-height:1.8}
 .book-page.no-sizeaware[data-cat="quote"] .q.small::before,
 .book-page.no-sizeaware[data-cat="quote"] .q.small::after{content:"";padding:0}
 .book-page[data-cat="quote"] .q .attr{display:block;text-align:right;margin-top:12px;font-family:'Lora','Noto Serif Bengali',serif;font-style:italic;font-size:.88rem;color:var(--ink-mute)}
-.book-page[data-cat="quote"] .q .attr::before{content:"— ";color:var(--accent);font-style:normal}
+.book-page[data-cat="quote"] .q .attr::before{content:"— ";color:#8a5f28;font-style:normal}
 .book-page.no-quoteattr[data-cat="quote"] .q .attr{display:none}
 
-/* ===== LETTER ===== */
+/* ============ LETTER ============ */
 .book-page[data-cat="letter"]{
-  background:radial-gradient(circle at 22% 12%, rgba(80,50,25,.13) 0%, transparent 0.6%),radial-gradient(circle at 82% 38%, rgba(80,50,25,.1) 0%, transparent 0.5%),radial-gradient(circle at 14% 62%, rgba(80,50,25,.09) 0%, transparent 0.7%),radial-gradient(ellipse at 12% 20%, rgba(139,90,45,.1) 0%, transparent 35%),radial-gradient(ellipse at 88% 78%, rgba(139,90,45,.08) 0%, transparent 40%),repeating-linear-gradient(0deg, rgba(120,80,40,.012) 0 1px, transparent 1px 3px),linear-gradient(180deg, #fcf6e2 0%, #f2e7cc 45%, #ecdcb0 100%);
-  box-shadow:inset 0 0 100px rgba(139,90,45,.12);
+  background:
+    radial-gradient(circle at 22% 12%, rgba(80,50,25,.14) 0%, transparent 0.6%),
+    radial-gradient(circle at 82% 38%, rgba(80,50,25,.11) 0%, transparent 0.5%),
+    radial-gradient(circle at 14% 62%, rgba(80,50,25,.09) 0%, transparent 0.7%),
+    radial-gradient(ellipse at 12% 20%, rgba(139,90,45,.11) 0%, transparent 35%),
+    radial-gradient(ellipse at 88% 78%, rgba(139,90,45,.09) 0%, transparent 40%),
+    repeating-linear-gradient(0deg, rgba(120,80,40,.014) 0 1px, transparent 1px 3px),
+    linear-gradient(180deg, #f7ead0 0%, #eedcba 45%, #e5d1a3 100%);
+  box-shadow:inset 0 0 100px rgba(139,90,45,.14);
   padding:80px 54px 100px;max-width:760px;
 }
-.book-page[data-cat="letter"]::before{content:"";position:absolute;left:0;right:0;top:34%;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(139,90,45,.14) 20%,rgba(139,90,45,.14) 80%,transparent 100%);pointer-events:none;z-index:0}
-.book-page[data-cat="letter"]::after{content:"";position:absolute;left:0;right:0;top:68%;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(139,90,45,.12) 20%,rgba(139,90,45,.12) 80%,transparent 100%);pointer-events:none;z-index:0}
+.book-page[data-cat="letter"]::before{content:"";position:absolute;left:0;right:0;top:34%;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(139,90,45,.15) 20%,rgba(139,90,45,.15) 80%,transparent 100%);pointer-events:none;z-index:0}
+.book-page[data-cat="letter"]::after{content:"";position:absolute;left:0;right:0;top:68%;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(139,90,45,.13) 20%,rgba(139,90,45,.13) 80%,transparent 100%);pointer-events:none;z-index:0}
 .book-page[data-cat="letter"] .page-header{border-bottom:none;padding-bottom:16px;margin-bottom:30px;position:relative;z-index:1}
 .book-page[data-cat="letter"] .page-header h1{font-style:normal;font-weight:600}
 .book-page[data-cat="letter"] .page-header .hr{display:none}
 .book-page .postmark{display:none}
-.book-page[data-cat="letter"] .postmark{display:block;position:absolute;top:54px;left:34px;width:106px;height:106px;opacity:.5;transform:rotate(-9deg);pointer-events:none;z-index:2}
-.letter-date{display:block;text-align:right;font-family:'Lora','Noto Serif Bengali',Georgia,serif;font-style:italic;font-size:1.05rem;font-weight:500;color:#5a3d20;margin-bottom:32px;padding-bottom:14px;border-bottom:1px dashed rgba(139,90,45,.25);position:relative;z-index:1;opacity:.9}
+.book-page[data-cat="letter"] .postmark{display:block;position:absolute;top:54px;left:34px;width:106px;height:106px;opacity:.55;transform:rotate(-9deg);pointer-events:none;z-index:2}
+.letter-date{display:block;text-align:right;font-family:'Lora','Noto Serif Bengali',Georgia,serif;font-style:italic;font-size:1.05rem;font-weight:500;color:#5a3d20;margin-bottom:32px;padding-bottom:14px;border-bottom:1px dashed rgba(139,90,45,.28);position:relative;z-index:1;opacity:.9}
 .book-page[data-cat="letter"] .page-content{font-family:'EB Garamond','Noto Serif Bengali',Georgia,serif;position:relative;z-index:1}
 .book-page[data-cat="letter"] .page-content p{font-family:'EB Garamond','Noto Serif Bengali',Georgia,serif;font-size:1.14rem;line-height:2;margin-bottom:1.6em;text-indent:0;text-align:left;color:#2a1c10}
 .book-page[data-cat="letter"] .page-content p.bn{font-family:'Noto Serif Bengali',serif;font-size:1.06rem;line-height:2.05;text-align:left}
@@ -163,11 +180,10 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
 .book-page[data-cat="letter"] .valediction{font-style:normal;font-weight:500;color:#3a2510;margin-top:2em;margin-bottom:.7em;line-height:1.5}
 .book-page[data-cat="letter"] .valediction.bn{font-family:'BenSen Handwriting','Noto Serif Bengali',cursive;font-size:1.4rem;font-weight:400;line-height:1.6}
 .book-page[data-cat="letter"] .valediction.en{font-family:'Caveat',cursive;font-size:1.6rem;font-weight:600}
-.book-page[data-cat="letter"] .signature{font-style:normal;text-align:right;color:#241708;line-height:1.4;margin-top:2.2em;margin-bottom:.4em;padding-top:1.6em;padding-right:1.2em;border-top:1px dashed rgba(139,90,45,.28);position:relative;z-index:1;transform:rotate(-1.4deg);transform-origin:right center}
+.book-page[data-cat="letter"] .signature{font-style:normal;text-align:right;color:#241708;line-height:1.4;margin-top:2.2em;margin-bottom:.4em;padding-top:1.6em;padding-right:1.2em;border-top:1px dashed rgba(139,90,45,.3);position:relative;z-index:1;transform:rotate(-1.4deg);transform-origin:right center}
 .book-page[data-cat="letter"] .signature.bn{font-family:'BenSen Handwriting','Noto Serif Bengali',cursive;font-size:1.7rem;font-weight:400;line-height:1.5}
 .book-page[data-cat="letter"] .signature.en{font-family:'Caveat',cursive;font-size:1.95rem;font-weight:600}
-.book-page[data-cat="letter"] .page-content blockquote{margin:1.8em 0;padding:1.2em 1.5em;border-left:2px solid var(--gold);background:rgba(201,168,106,.05);font-family:'Lora',serif;font-style:italic;color:#4a3a24;line-height:1.8;border-radius:0 3px 3px 0}
-.book-page[data-cat="letter"] .page-footer{display:none}
+.book-page[data-cat="letter"] .page-content blockquote{margin:1.8em 0;padding:1.2em 1.5em;border-left:2px solid var(--gold);background:rgba(139,90,45,.06);font-family:'Lora',serif;font-style:italic;color:#4a3a24;line-height:1.8;border-radius:0 3px 3px 0}
 
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
@@ -253,24 +269,7 @@ function renderEssay(blocks,f){const sn=featOn(f,'secnum');let c=0;return blocks
 function renderQuote(blocks,f){const sa=featOn(f,'sizeaware');const qn=featOn(f,'quotenum');const qa=featOn(f,'quoteattr');return blocks.map((b,i)=>{const lines=b.split('\n').map(l=>l.trim()).filter(Boolean);if(!lines.length)return'';let a=null;if(lines.length>1&&/^[—\-]/.test(lines[lines.length-1])){a=lines.pop().trim().replace(/^[—\-]\s*/,'')}const text=lines.join(' ');const isShort=lines.length===1&&text.length<90;const cls=(sa&&isShort)?'small':'big';const num=qn?'<span class="qn">'+roman(i+1)+'</span>':'';const at=(qa&&a)?'<span class="attr">'+esc(a)+'</span>':'';return'<div class="q '+cls+'">'+num+esc(text)+at+'</div>'}).join('')}
 function renderLetter(blocks,raw){let dh='';const d=extractDate(blocks);if(d.date){dh='<span class="letter-date">'+esc(d.date)+'</span>';blocks=d.rest}else{const hasBn=/[\u0980-\u09FF]/.test(raw);dh='<span class="letter-date">'+esc(hasBn?todayBn():todayEn())+'</span>'}const total=blocks.length;const rendered=blocks.map((b,i)=>{const lines=b.split('\n').map(l=>l.trim()).filter(Boolean);if(!lines.length)return'';const first=lines[0];if(first.startsWith('# '))return'<h2 class="h1">'+esc(first.slice(2).trim())+'</h2>';if(first.startsWith('## '))return'<h3 class="h2">'+esc(first.slice(3).trim())+'</h3>';if(first.charAt(0)==='>'){const q=lines.map(l=>l.replace(/^>\s?/,'').trim()).filter(Boolean).join(' ');return'<blockquote>'+esc(q)+'</blockquote>'}if(/^([*\-_]\s*){3,}$/.test(b.trim()))return'<div class="divider">✦ ✦ ✦</div>';const text=lines.join(' ');const tBr=lines.map(l=>esc(l)).join('<br>');const bn=isBengali(text);const suf=bn?' bn':' en';const pCls=bn?' class="bn"':'';if(i===0&&isGreeting(text))return'<p class="greeting'+suf+'">'+tBr+'</p>';if(i===total-1&&total>1)return'<p class="signature'+suf+'">'+tBr+'</p>';if(isValediction(text))return'<p class="valediction'+suf+'">'+tBr+'</p>';return'<p'+pCls+'>'+tBr+'</p>'}).join('');return dh+rendered}
 function renderTextContent(raw,cat,f){if(!raw)return'';const t=String(raw).trim();if(!t)return'';const blocks=t.split(/\n\s*\n/).map(b=>b.trim()).filter(Boolean);const c=(cat||'').toLowerCase();if(c==='letter')return renderLetter(blocks,t);if(c==='poetry')return renderPoetry(blocks,f);if(c==='essay')return renderEssay(blocks,f);if(c==='quote')return renderQuote(blocks,f);return renderStory(blocks,f)}
-
-/* ⚡ IMPORTANT: This version IGNORES old feature flags for drop cap, small caps, etc.
-   Only the "no-*" flags (turning OFF features) are respected. */
-function buildPageClasses(cat,f){
-  const classes=['book-page'];
-  const x=f||{};
-  // Clean Classic — never apply drop cap or decorative caps
-  if(x.divider===false)classes.push('no-divider');
-  if(x.pullquote===false)classes.push('no-pullquote');
-  if(x.stanzanum===false)classes.push('no-stanzanum');
-  if(x.attribution===false)classes.push('no-attribution');
-  if(x.secnum===false)classes.push('no-secnum');
-  if(x.sizeaware===false)classes.push('no-sizeaware');
-  if(x.quotenum===false)classes.push('no-quotenum');
-  if(x.quoteattr===false)classes.push('no-quoteattr');
-  return classes.join(' ');
-}
-
+function buildPageClasses(cat,f){const classes=['book-page'];const x=f||{};if(x.divider===false)classes.push('no-divider');if(x.pullquote===false)classes.push('no-pullquote');if(x.stanzanum===false)classes.push('no-stanzanum');if(x.attribution===false)classes.push('no-attribution');if(x.secnum===false)classes.push('no-secnum');if(x.sizeaware===false)classes.push('no-sizeaware');if(x.quotenum===false)classes.push('no-quotenum');if(x.quoteattr===false)classes.push('no-quoteattr');return classes.join(' ')}
 function postmarkSvg(){return'<svg class="postmark" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><path id="pmPath" d="M 60 60 m -43 0 a 43 43 0 1 1 86 0 a 43 43 0 1 1 -86 0"/></defs><circle cx="60" cy="60" r="55" fill="none" stroke="#8b3a2a" stroke-width="1.9" opacity="0.75"/><circle cx="60" cy="60" r="48" fill="none" stroke="#8b3a2a" stroke-width="0.6" opacity="0.55"/><text font-family="IBM Plex Mono, monospace" font-size="7" font-weight="500" letter-spacing="1.5" fill="#8b3a2a" opacity="0.85"><textPath href="#pmPath" startOffset="0%">· EPILOGUE · POST OFFICE · EST · MMXXV ·</textPath></text><g transform="translate(60 60)" fill="#8b3a2a" opacity="0.85"><path d="M 0 -13 L 2.4 -2.4 L 13 0 L 2.4 2.4 L 0 13 L -2.4 2.4 L -13 0 L -2.4 -2.4 Z"/><circle cx="0" cy="0" r="2" fill="#f2e6c5" opacity="0.6"/></g></svg>'}
 
 function mountTextReader(book){
@@ -292,7 +291,6 @@ function mountTextReader(book){
         '<div class="hr"></div>'+
       '</header>'+
       '<div class="page-content">'+html+'</div>'+
-      '<div class="page-footer"></div>'+
     '</article>';
   frame.insertBefore(view,loading);
   loading.classList.add('out');
