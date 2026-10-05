@@ -16,7 +16,7 @@
 <style>
 :root{
   --bg:#0d0a07;--bg-2:#14100b;
-  --paper:#f9f2e1;--paper-2:#f2e7cd;--paper-3:#ead9b4;
+  --paper:#fbf5e3;--paper-2:#f5ebd3;
   --ink:#2a2118;--ink-soft:#3a2d20;--ink-mute:#8a7a5f;
   --gold:#c9a86a;--gold-bright:#e4c084;--gold-soft:rgba(201,168,106,.4);
   --line:rgba(201,168,106,.2);
@@ -73,16 +73,8 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
 .err a{margin-top:10px;display:inline-flex;align-items:center;gap:10px;padding:11px 24px;border:1px solid var(--gold);color:var(--ink);text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;transition:all .28s ease;border-radius:1px}
 .err a:hover{background:var(--gold);color:var(--paper);letter-spacing:.4em}
 
-/* ==================== TEXT READER — AGED PAPER ==================== */
-.text-reader{
-  position:absolute;inset:0;overflow-y:auto;z-index:1;padding:0;scroll-behavior:smooth;
-  background:
-    radial-gradient(circle at 8% 12%, rgba(139,90,45,.06) 0%, transparent 40%),
-    radial-gradient(circle at 92% 88%, rgba(139,90,45,.05) 0%, transparent 40%),
-    radial-gradient(ellipse at 50% 50%, rgba(160,110,60,.04) 0%, transparent 70%),
-    repeating-linear-gradient(0deg, rgba(120,80,40,.01) 0 1px, transparent 1px 4px),
-    linear-gradient(180deg, #fbf5e3 0%, #f5ebd3 40%, #ecdcba 100%);
-}
+/* ==================== TEXT READER — Warm Paper ==================== */
+.text-reader{position:absolute;inset:0;overflow-y:auto;z-index:1;padding:0;scroll-behavior:smooth;background:linear-gradient(180deg,#fbf5e3 0%,#f5ebd3 60%,#f0e5cc 100%)}
 .text-reader::-webkit-scrollbar{width:8px}
 .text-reader::-webkit-scrollbar-thumb{background:rgba(184,137,75,.4);border-radius:4px}
 
@@ -94,81 +86,46 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
 .reader-cover-page::after{content:"↓ scroll to read";position:absolute;bottom:36px;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.42em;text-transform:uppercase;color:#8a5f28;opacity:.55;animation:scrollHint 2.2s ease-in-out infinite}
 @keyframes scrollHint{0%,100%{opacity:.55;transform:translateX(-50%) translateY(0)}50%{opacity:.95;transform:translateX(-50%) translateY(6px)}}
 
-/* ==================== BOOK PAGE ==================== */
+/* ==================== BOOK PAGE — CLEAN CLASSIC ==================== */
 .book-page{
   max-width:720px;margin:0 auto;
-  padding:100px 46px 140px;
+  padding:96px 46px 130px;
   color:var(--ink-soft);
   font-family:'EB Garamond','Noto Serif Bengali',Georgia,serif;
   font-size:1.15rem;line-height:1.78;
   position:relative;
 }
 
-/* ==================== PAGE HEADER ==================== */
-.page-header{
-  text-align:center;
-  margin-bottom:76px;
-  padding-bottom:56px;
-  border-bottom:1px solid rgba(139,90,45,.22);
-  position:relative;
-}
-.page-header::after{
-  content:"";
-  position:absolute;
-  bottom:-4px;
-  left:50%;
-  transform:translateX(-50%);
-  width:8px;height:8px;
-  background:var(--paper);
-  border:1px solid rgba(139,90,45,.35);
-  transform:translateX(-50%) rotate(45deg);
-}
-.page-header .orn{
-  font-size:.7rem;
-  color:var(--gold);
-  letter-spacing:1.2em;
-  margin-bottom:28px;
-  opacity:.75;
-  padding-left:1.2em;
-}
+/* Header */
+.page-header{text-align:center;margin-bottom:64px;padding-bottom:0;border-bottom:none}
+.page-header .orn{display:none}
 .page-header h1{
   font-family:'Lora','Noto Serif Bengali',serif;
-  font-weight:500;
-  font-style:italic;
-  font-size:clamp(2.2rem,5.5vw,3.4rem);
-  line-height:1.1;
-  color:var(--ink);
+  font-weight:500;font-style:italic;
+  font-size:clamp(2.1rem,5.5vw,3.2rem);
+  line-height:1.1;color:var(--ink);
   letter-spacing:-.012em;
-  margin-bottom:20px;
+  margin-bottom:14px;
 }
 .page-header .sub{
   font-family:'Lora','Noto Serif Bengali',serif;
-  font-style:italic;
-  font-weight:400;
-  font-size:1.05rem;
-  color:var(--ink-mute);
-  margin-bottom:24px;
-  letter-spacing:.02em;
+  font-style:italic;font-weight:400;
+  font-size:1.02rem;color:var(--ink-mute);
+  margin-bottom:20px;letter-spacing:.02em;
   line-height:1.5;
 }
 .page-header .byline{
   font-family:'Lora','Noto Serif Bengali',serif;
   font-style:italic;
-  font-size:.95rem;
+  font-size:.92rem;
   color:var(--ink-mute);
   letter-spacing:.01em;
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
+  display:inline-block;
 }
-.page-header .byline::before{
-  content:"—";
-  color:var(--accent);
-  font-style:normal;
-  opacity:.7;
-}
+.page-header .byline::before{content:"— ";color:var(--accent)}
+.page-header .hr{width:60px;height:1px;background:var(--accent);margin:34px auto 0;opacity:.45}
 
-/* ==================== BODY (English) ==================== */
+/* Body — English (EB Garamond, justified) */
 .page-content p{
   margin-bottom:1.35em;
   text-align:justify;
@@ -185,7 +142,7 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
 }
 .page-content p:first-of-type{text-indent:0}
 
-/* ==================== BODY (Bengali) ==================== */
+/* Body — Bengali (Noto Serif Bengali, left-aligned) */
 .page-content p.bn{
   font-family:'Noto Serif Bengali',serif;
   font-size:1.06rem;
@@ -201,13 +158,10 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
 .page-content .h1{
   font-family:'Lora','Noto Serif Bengali',serif;
   font-weight:500;font-style:italic;
-  font-size:1.6rem;
-  color:var(--ink);
+  font-size:1.6rem;color:var(--ink);
   margin:2.6em 0 1em;
-  text-align:center;
-  text-indent:0;
-  line-height:1.35;
-  letter-spacing:-.005em;
+  text-align:center;text-indent:0;
+  line-height:1.35;letter-spacing:-.005em;
 }
 .page-content .h2{
   font-family:'Lora','Noto Serif Bengali',serif;
@@ -224,102 +178,95 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
   letter-spacing:.9em;
   margin:2.8em 0;
   font-size:.75rem;
-  opacity:.6;
+  opacity:.55;
   padding-left:.9em;
 }
 
-/* ==================== PAGE FOOTER — minimal, no "The End" ==================== */
-.page-footer{
-  margin-top:110px;
-  padding-top:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:18px;
-  opacity:.55;
-}
-.page-footer::before,
-.page-footer::after{
-  content:"";
-  flex:1;
-  max-width:120px;
-  height:1px;
-  background:linear-gradient(90deg,transparent,rgba(139,90,45,.35),transparent);
-}
-.page-footer .orn{
-  font-size:.7rem;
-  color:var(--accent);
-  letter-spacing:.4em;
-  padding-left:.4em;
-}
+/* Footer — very minimal */
+.page-footer{margin-top:100px;padding-top:0;display:flex;align-items:center;justify-content:center;gap:18px;opacity:.4}
+.page-footer::before,.page-footer::after{content:"";flex:1;max-width:90px;height:1px;background:linear-gradient(90deg,transparent,rgba(139,90,45,.3),transparent)}
+.page-footer .orn{font-size:.7rem;color:var(--accent);letter-spacing:.4em;padding-left:.4em}
 .page-footer p{display:none}
 
 /* =========================================================
-   STORY
+   STORY — Clean, no drop cap by default
    ========================================================= */
+.book-page[data-cat="story"] .page-content p{text-align:justify}
 .book-page[data-cat="story"] .page-content p.bn{text-align:left}
-.book-page[data-cat="story"] .page-content p:first-of-type:not(.bn){
+
+/* Drop cap: only when explicitly enabled via features.dropcap === true */
+.book-page.with-dropcap[data-cat="story"] .page-content p:first-of-type:not(.bn){
   text-indent:0;
 }
-.book-page[data-cat="story"] .page-content p:first-of-type:not(.bn)::first-letter{
+.book-page.with-dropcap[data-cat="story"] .page-content p:first-of-type:not(.bn)::first-letter{
   font-family:'EB Garamond',Georgia,serif;
-  font-size:4.2em;
+  font-size:3.6em;
   font-weight:500;
   float:left;
-  line-height:.78;
-  margin:.02em .12em -.02em 0;
+  line-height:.82;
+  margin:.04em .12em 0 0;
   color:var(--accent);
-  padding-right:10px;
-  border-right:2px solid rgba(139,90,45,.3);
-  margin-right:14px;
 }
-.book-page[data-cat="story"] .page-content p:first-of-type.bn::first-letter{
+.book-page.with-dropcap[data-cat="story"] .page-content p:first-of-type.bn::first-letter{
   font-family:'Noto Serif Bengali',serif;
-  font-size:3.4em;
+  font-size:3.2em;
   font-weight:600;
   float:left;
-  line-height:.82;
-  margin:.05em .18em 0 0;
+  line-height:.85;
+  margin:.05em .14em 0 0;
   color:var(--accent);
 }
-.book-page.no-dropcap[data-cat="story"] .page-content p:first-of-type::first-letter{
-  font-family:inherit;font-size:inherit;font-weight:inherit;float:none;line-height:inherit;margin:0;color:inherit;padding:0;border:none;
+
+/* Small caps: only when enabled */
+.book-page.with-smallcaps[data-cat="story"] .page-content p:first-of-type:not(.bn)::first-line{
+  font-variant:small-caps;
+  letter-spacing:.03em;
+  color:#4a3a24;
+  font-weight:500;
 }
-.book-page.no-dropcap[data-cat="story"] .page-content p:first-of-type{text-indent:1.5em}
-.book-page.no-smallcaps[data-cat="story"] .page-content p:first-of-type::first-line{
-  font-variant:normal;letter-spacing:0;color:inherit;font-weight:inherit;
-}
+
+/* Scene divider */
 .book-page .scene-div{
   text-align:center;
   color:var(--accent);
   letter-spacing:1.4em;
   margin:2.8em 0;
-  font-size:.75rem;
-  opacity:.55;
+  font-size:.72rem;
+  opacity:.5;
   text-indent:0;
   padding-left:1.4em;
 }
 .book-page.no-divider .scene-div{display:none}
+
+/* Pull quote — simple, clean */
 .book-page .pull-quote{
   margin:2.4em 0;
-  padding:1.4em 1.8em;
-  border-left:3px solid var(--gold);
-  background:linear-gradient(90deg,rgba(201,168,106,.08) 0%,rgba(201,168,106,.02) 100%);
+  padding:1.2em 1.8em;
+  border-left:2px solid var(--gold);
+  background:rgba(201,168,106,.05);
   font-family:'Lora','Noto Serif Bengali',serif;
   font-style:italic;
   color:#4a3a24;
-  font-size:1.1rem;
+  font-size:1.08rem;
   line-height:1.8;
   text-indent:0;
-  border-radius:0 4px 4px 0;
+  border-radius:0 3px 3px 0;
 }
-.book-page.no-pullquote .pull-quote{border-left:none;background:transparent;padding:0;font-style:normal;color:inherit;font-family:inherit}
+.book-page.no-pullquote .pull-quote{
+  border-left:none;
+  background:transparent;
+  padding:0;
+  font-style:normal;
+  color:inherit;
+  font-family:inherit;
+  font-size:inherit;
+}
 
 /* =========================================================
    POETRY
    ========================================================= */
-.book-page[data-cat="poetry"] .poem-wrap{position:relative;padding-left:30px;border-left:2px solid rgba(184,137,75,.35);margin:1.5em 0}
-.book-page.no-vline[data-cat="poetry"] .poem-wrap{padding-left:0;border-left:none}
+.book-page[data-cat="poetry"] .poem-wrap{position:relative;padding-left:0;border-left:none;margin:1.5em 0}
+.book-page.with-vline[data-cat="poetry"] .poem-wrap{padding-left:26px;border-left:2px solid rgba(184,137,75,.3)}
 .book-page[data-cat="poetry"] .stanza{
   text-align:left;
   font-family:'EB Garamond','Noto Serif Bengali',serif;
@@ -335,13 +282,13 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
   font-family:'IBM Plex Mono',monospace;
   font-style:normal;font-size:.55rem;
   letter-spacing:.32em;
-  color:var(--accent);opacity:.6;
+  color:var(--accent);opacity:.55;
   margin-bottom:10px;
 }
 .book-page.no-stanzanum[data-cat="poetry"] .stanza .num{display:none}
 .book-page[data-cat="poetry"] .poem-attr{
   margin-top:2.6em;padding-top:1.2em;
-  border-top:1px dashed rgba(139,90,45,.25);
+  border-top:1px dashed rgba(139,90,45,.22);
   font-family:'Lora',serif;font-style:italic;
   font-size:.95rem;color:var(--ink-mute);
   text-indent:0;
@@ -361,17 +308,24 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
   letter-spacing:-.005em;
   display:flex;align-items:baseline;gap:14px;
 }
-.book-page[data-cat="essay"] .essay-sec h4 .n{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.24em;color:var(--accent);opacity:.8;font-weight:600;min-width:26px}
+.book-page[data-cat="essay"] .essay-sec h4 .n{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.68rem;letter-spacing:.24em;
+  color:var(--accent);opacity:.75;
+  font-weight:600;min-width:26px;
+}
 .book-page.no-secnum[data-cat="essay"] .essay-sec h4 .n{display:none}
-.book-page[data-cat="essay"] p.opening::first-line{font-variant:small-caps;letter-spacing:.06em;color:#4a3a24;font-weight:500}
-.book-page.no-essaycaps[data-cat="essay"] p.opening::first-line{font-variant:normal;letter-spacing:0;color:inherit;font-weight:inherit}
+.book-page.with-essaycaps[data-cat="essay"] p.opening::first-line{
+  font-variant:small-caps;letter-spacing:.06em;
+  color:#4a3a24;font-weight:500;
+}
 .book-page[data-cat="essay"] blockquote{
   margin:2em 0;padding:1.2em 1.6em;
-  border-left:3px solid var(--gold);
-  background:linear-gradient(90deg,rgba(201,168,106,.08) 0%,rgba(201,168,106,.02) 100%);
+  border-left:2px solid var(--gold);
+  background:rgba(201,168,106,.05);
   font-family:'Lora','Noto Serif Bengali',serif;
   font-style:italic;color:#4a3a24;
-  line-height:1.8;border-radius:0 4px 4px 0;
+  line-height:1.8;border-radius:0 3px 3px 0;
 }
 
 /* =========================================================
@@ -384,7 +338,7 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
   position:absolute;top:-6px;left:-4px;
   font-family:'IBM Plex Mono',monospace;
   font-size:.55rem;letter-spacing:.24em;
-  color:var(--accent);opacity:.6;
+  color:var(--accent);opacity:.55;
   font-style:normal;font-weight:600;
 }
 .book-page.no-quotenum[data-cat="quote"] .q .qn{display:none}
@@ -392,38 +346,44 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
   text-align:center;
   font-family:'Lora','Noto Serif Bengali',serif;
   font-style:italic;
-  font-size:1.55rem;
+  font-size:1.5rem;
   line-height:1.5;
   color:var(--ink);
-  padding:30px 30px;
+  padding:26px 26px;
   letter-spacing:.005em;
-  position:relative;
 }
 .book-page[data-cat="quote"] .q.small::before,
 .book-page[data-cat="quote"] .q.small::after{
   content:"❝";
   font-family:Georgia,serif;font-style:normal;
-  color:var(--gold);opacity:.55;
-  font-size:1.3em;vertical-align:-.15em;
-  padding:0 .12em;
+  color:var(--gold);opacity:.5;
+  font-size:1.2em;vertical-align:-.15em;
+  padding:0 .1em;
 }
 .book-page[data-cat="quote"] .q.small::after{content:"❞"}
 .book-page[data-cat="quote"] .q.big{
-  padding:26px 32px 26px 34px;
-  background:linear-gradient(90deg,rgba(201,168,106,.08) 0%,rgba(201,168,106,.02) 100%);
-  border-left:3px solid var(--gold);
-  border-radius:0 4px 4px 0;
+  padding:24px 30px 24px 30px;
+  background:rgba(201,168,106,.05);
+  border-left:2px solid var(--gold);
+  border-radius:0 3px 3px 0;
   font-family:'Lora','Noto Serif Bengali',serif;
   font-style:italic;
-  font-size:1.15rem;
+  font-size:1.12rem;
   line-height:1.8;
   color:var(--ink-soft);
 }
-.book-page.no-sizeaware[data-cat="quote"] .q.small{font-size:1.15rem;text-align:left;padding:26px 32px 26px 34px;background:linear-gradient(90deg,rgba(201,168,106,.08) 0%,rgba(201,168,106,.02) 100%);border-left:3px solid var(--gold);border-radius:0 4px 4px 0;line-height:1.8;font-style:italic}
+.book-page.no-sizeaware[data-cat="quote"] .q.small{
+  font-size:1.12rem;text-align:left;
+  padding:24px 30px 24px 30px;
+  background:rgba(201,168,106,.05);
+  border-left:2px solid var(--gold);
+  border-radius:0 3px 3px 0;
+  line-height:1.8;
+}
 .book-page.no-sizeaware[data-cat="quote"] .q.small::before,
 .book-page.no-sizeaware[data-cat="quote"] .q.small::after{content:"";padding:0}
 .book-page[data-cat="quote"] .q .attr{
-  display:block;text-align:right;margin-top:14px;
+  display:block;text-align:right;margin-top:12px;
   font-family:'Lora','Noto Serif Bengali',serif;
   font-style:italic;font-size:.88rem;
   color:var(--ink-mute);letter-spacing:.01em;
@@ -436,30 +396,27 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
    ========================================================= */
 .book-page[data-cat="letter"]{
   background:
-    radial-gradient(circle at 22% 12%, rgba(80,50,25,.14) 0%, transparent 0.6%),
-    radial-gradient(circle at 82% 38%, rgba(80,50,25,.11) 0%, transparent 0.5%),
+    radial-gradient(circle at 22% 12%, rgba(80,50,25,.13) 0%, transparent 0.6%),
+    radial-gradient(circle at 82% 38%, rgba(80,50,25,.1) 0%, transparent 0.5%),
     radial-gradient(circle at 14% 62%, rgba(80,50,25,.09) 0%, transparent 0.7%),
     radial-gradient(circle at 71% 82%, rgba(80,50,25,.08) 0%, transparent 0.5%),
-    radial-gradient(circle at 45% 26%, rgba(80,50,25,.07) 0%, transparent 0.4%),
-    radial-gradient(ellipse at 12% 20%, rgba(139,90,45,.11) 0%, transparent 35%),
-    radial-gradient(ellipse at 88% 78%, rgba(139,90,45,.09) 0%, transparent 40%),
-    radial-gradient(ellipse at 50% 55%, rgba(160,110,60,.055) 0%, transparent 60%),
+    radial-gradient(ellipse at 12% 20%, rgba(139,90,45,.1) 0%, transparent 35%),
+    radial-gradient(ellipse at 88% 78%, rgba(139,90,45,.08) 0%, transparent 40%),
     repeating-linear-gradient(0deg, rgba(120,80,40,.012) 0 1px, transparent 1px 3px),
-    repeating-linear-gradient(90deg, rgba(120,80,40,.007) 0 1px, transparent 1px 5px),
     linear-gradient(180deg, #fcf6e2 0%, #f2e7cc 45%, #ecdcb0 100%);
-  box-shadow:inset 0 0 100px rgba(139,90,45,.13),inset 0 0 0 1px rgba(139,90,45,.055);
+  box-shadow:inset 0 0 100px rgba(139,90,45,.12),inset 0 0 0 1px rgba(139,90,45,.05);
   padding:80px 54px 100px;
   max-width:760px;
 }
-.book-page[data-cat="letter"]::before{content:"";position:absolute;left:0;right:0;top:34%;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(139,90,45,.15) 20%,rgba(139,90,45,.15) 80%,transparent 100%);pointer-events:none;z-index:0}
-.book-page[data-cat="letter"]::after{content:"";position:absolute;left:0;right:0;top:68%;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(139,90,45,.13) 20%,rgba(139,90,45,.13) 80%,transparent 100%);pointer-events:none;z-index:0}
+.book-page[data-cat="letter"]::before{content:"";position:absolute;left:0;right:0;top:34%;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(139,90,45,.14) 20%,rgba(139,90,45,.14) 80%,transparent 100%);pointer-events:none;z-index:0}
+.book-page[data-cat="letter"]::after{content:"";position:absolute;left:0;right:0;top:68%;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(139,90,45,.12) 20%,rgba(139,90,45,.12) 80%,transparent 100%);pointer-events:none;z-index:0}
 .book-page[data-cat="letter"] .page-header{border-bottom:none;padding-bottom:16px;margin-bottom:30px;position:relative;z-index:1}
-.book-page[data-cat="letter"] .page-header::after{content:"";display:block;width:100px;height:1px;background:linear-gradient(90deg,transparent,var(--gold) 30%,var(--gold) 70%,transparent);margin:26px auto 0;opacity:.6;position:static;transform:none;border:none;background-color:transparent}
+.book-page[data-cat="letter"] .page-header::after{content:"";display:block;width:100px;height:1px;background:linear-gradient(90deg,transparent,var(--gold) 30%,var(--gold) 70%,transparent);margin:26px auto 0;opacity:.55}
 .book-page[data-cat="letter"] .page-header h1{font-style:normal;font-weight:600;letter-spacing:-.008em}
-.book-page[data-cat="letter"] .page-header .orn{color:var(--accent);opacity:.7}
+.book-page[data-cat="letter"] .page-header .hr{display:none}
 .book-page .postmark{display:none}
-.book-page[data-cat="letter"] .postmark{display:block;position:absolute;top:54px;left:34px;width:106px;height:106px;opacity:.55;transform:rotate(-9deg);pointer-events:none;z-index:2}
-.letter-date{display:block;text-align:right;font-family:'Lora','Noto Serif Bengali',Georgia,serif;font-style:italic;font-size:1.08rem;font-weight:500;color:#5a3d20;margin-bottom:34px;padding-bottom:14px;border-bottom:1px dashed rgba(139,90,45,.28);letter-spacing:.01em;position:relative;z-index:1;opacity:.9}
+.book-page[data-cat="letter"] .postmark{display:block;position:absolute;top:54px;left:34px;width:106px;height:106px;opacity:.5;transform:rotate(-9deg);pointer-events:none;z-index:2}
+.letter-date{display:block;text-align:right;font-family:'Lora','Noto Serif Bengali',Georgia,serif;font-style:italic;font-size:1.05rem;font-weight:500;color:#5a3d20;margin-bottom:32px;padding-bottom:14px;border-bottom:1px dashed rgba(139,90,45,.25);letter-spacing:.01em;position:relative;z-index:1;opacity:.9}
 .book-page[data-cat="letter"] .page-content{font-family:'EB Garamond','Noto Serif Bengali',Georgia,serif;position:relative;z-index:1}
 .book-page[data-cat="letter"] .page-content p{font-family:'EB Garamond','Noto Serif Bengali',Georgia,serif;font-size:1.14rem;line-height:2;margin-bottom:1.6em;text-indent:0;text-align:left;color:#2a1c10;letter-spacing:.005em}
 .book-page[data-cat="letter"] .page-content p.bn{font-family:'Noto Serif Bengali',serif;font-size:1.06rem;line-height:2.05;text-align:left}
@@ -469,10 +426,10 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
 .book-page[data-cat="letter"] .page-content .valediction{font-style:normal;font-weight:500;color:#3a2510;margin-top:2em;margin-bottom:.7em;line-height:1.5}
 .book-page[data-cat="letter"] .page-content .valediction.bn{font-family:'BenSen Handwriting','Noto Serif Bengali',cursive;font-size:1.4rem;font-weight:400;line-height:1.6}
 .book-page[data-cat="letter"] .page-content .valediction.en{font-family:'Caveat',cursive;font-size:1.6rem;font-weight:600}
-.book-page[data-cat="letter"] .page-content p.signature{font-style:normal;text-align:right;color:#241708;line-height:1.4;margin-top:2.4em;margin-bottom:.4em;padding-top:1.6em;padding-right:1.2em;border-top:1px dashed rgba(139,90,45,.32);position:relative;z-index:1;transform:rotate(-1.6deg);transform-origin:right center}
+.book-page[data-cat="letter"] .page-content p.signature{font-style:normal;text-align:right;color:#241708;line-height:1.4;margin-top:2.2em;margin-bottom:.4em;padding-top:1.6em;padding-right:1.2em;border-top:1px dashed rgba(139,90,45,.28);position:relative;z-index:1;transform:rotate(-1.4deg);transform-origin:right center}
 .book-page[data-cat="letter"] .page-content p.signature.bn{font-family:'BenSen Handwriting','Noto Serif Bengali',cursive;font-size:1.7rem;font-weight:400;line-height:1.5}
 .book-page[data-cat="letter"] .page-content p.signature.en{font-family:'Caveat',cursive;font-size:1.95rem;font-weight:600}
-.book-page[data-cat="letter"] .page-content blockquote{margin:1.8em 0;padding:1.2em 1.5em;border-left:3px solid var(--gold);background:rgba(201,168,106,.06);font-family:'Lora',serif;font-style:italic;color:#4a3a24;line-height:1.8;border-radius:0 4px 4px 0}
+.book-page[data-cat="letter"] .page-content blockquote{margin:1.8em 0;padding:1.2em 1.5em;border-left:2px solid var(--gold);background:rgba(201,168,106,.05);font-family:'Lora',serif;font-style:italic;color:#4a3a24;line-height:1.8;border-radius:0 3px 3px 0}
 .book-page[data-cat="letter"] .page-footer{display:none}
 
 /* ===== ANIMATIONS ===== */
@@ -495,16 +452,17 @@ iframe{width:100%;height:100%;border:none;background:var(--paper);display:block;
   .corner{width:14px;height:14px;border-width:1px}
   .corner.tl{top:14px;left:14px}.corner.tr{top:14px;right:14px}.corner.bl{bottom:14px;left:14px}.corner.br{bottom:14px;right:14px}
   .sk-book{width:52px;height:70px}
-  .book-page{padding:56px 22px 100px;font-size:1.05rem;line-height:1.75}
+  .book-page{padding:56px 22px 90px;font-size:1.05rem;line-height:1.75}
   .page-content p{font-size:1.05rem;line-height:1.78}
   .page-content p.bn{font-size:1rem;line-height:1.9}
-  .page-header{margin-bottom:56px;padding-bottom:40px}
+  .page-header{margin-bottom:48px}
   .page-header h1{font-size:clamp(1.7rem,7vw,2.2rem)}
-  .book-page[data-cat="poetry"] .poem-wrap{padding-left:18px}
+  .book-page[data-cat="poetry"] .poem-wrap{padding-left:0}
+  .book-page.with-vline[data-cat="poetry"] .poem-wrap{padding-left:18px}
   .book-page[data-cat="poetry"] .stanza{font-size:1.05rem;line-height:1.9}
   .book-page[data-cat="quote"] .q.small{font-size:1.25rem;padding:20px 12px}
   .book-page[data-cat="letter"]{padding:56px 24px 80px}
-  .book-page[data-cat="letter"] .postmark{width:76px;height:76px;top:38px;left:18px;opacity:.45}
+  .book-page[data-cat="letter"] .postmark{width:76px;height:76px;top:38px;left:18px;opacity:.4}
   .book-page[data-cat="letter"] .page-content p{font-size:1.05rem;line-height:1.95}
   .book-page[data-cat="letter"] .page-content .greeting.bn{font-size:1.3rem}
   .book-page[data-cat="letter"] .page-content .greeting.en{font-size:1.55rem}
@@ -594,7 +552,10 @@ function todayBengali(){const t=new Date();const months=['জানুয়া�
 function todayEnglish(){const t=new Date();const months=['January','February','March','April','May','June','July','August','September','October','November','December'];const d=t.getDate();const s=(d%10===1&&d!==11)?'st':(d%10===2&&d!==12)?'nd':(d%10===3&&d!==13)?'rd':'th';return d+s+' '+months[t.getMonth()]+', '+t.getFullYear()}
 
 function roman(n){const map=[[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']];let o='';for(const [v,s] of map){while(n>=v){o+=s;n-=v}}return o}
+
+/* Feature check — explicit true only for dropcap/smallcaps (Clean Classic default) */
 function featOn(features,key){const f=features||{};return f[key]!==false}
+function featTrue(features,key){const f=features||{};return f[key]===true}
 
 function pTag(text){
   const bn = isBengali(text);
@@ -725,13 +686,28 @@ function renderTextContent(raw,category,features){
   if(cat==='quote') return renderQuote(blocks,features);
   return renderStory(blocks,features);
 }
+
+/* Build page classes — Clean Classic is default, only turn ON if explicitly true */
 function buildPageClasses(cat,features){
   const classes=['book-page'];
   const f=features||{};
-  const check={story:['dropcap','smallcaps','divider','pullquote'],poetry:['vline','stanzanum','attribution'],essay:['secnum','essaycaps'],quote:['sizeaware','quotenum','quoteattr']};
-  (check[cat]||[]).forEach(k=>{if(f[k]===false)classes.push('no-'+k)});
+  // Drop cap / Small caps / vline / essay caps: OFF by default (Clean Classic)
+  if(f.dropcap===true) classes.push('with-dropcap');
+  if(f.smallcaps===true) classes.push('with-smallcaps');
+  if(f.vline===true) classes.push('with-vline');
+  if(f.essaycaps===true) classes.push('with-essaycaps');
+  // No-* classes for features that default ON and can be turned off
+  if(f.divider===false) classes.push('no-divider');
+  if(f.pullquote===false) classes.push('no-pullquote');
+  if(f.stanzanum===false) classes.push('no-stanzanum');
+  if(f.attribution===false) classes.push('no-attribution');
+  if(f.secnum===false) classes.push('no-secnum');
+  if(f.sizeaware===false) classes.push('no-sizeaware');
+  if(f.quotenum===false) classes.push('no-quotenum');
+  if(f.quoteattr===false) classes.push('no-quoteattr');
   return classes.join(' ');
 }
+
 function postmarkSvg(){
   return '<svg class="postmark" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><path id="pmPath" d="M 60 60 m -43 0 a 43 43 0 1 1 86 0 a 43 43 0 1 1 -86 0"/></defs><circle cx="60" cy="60" r="55" fill="none" stroke="#8b3a2a" stroke-width="1.9" opacity="0.75"/><circle cx="60" cy="60" r="48" fill="none" stroke="#8b3a2a" stroke-width="0.6" opacity="0.55"/><text font-family="IBM Plex Mono, monospace" font-size="7" font-weight="500" letter-spacing="1.5" fill="#8b3a2a" opacity="0.85"><textPath href="#pmPath" startOffset="0%">· EPILOGUE · POST OFFICE · EST · MMXXV ·</textPath></text><g transform="translate(60 60)" fill="#8b3a2a" opacity="0.85"><path d="M 0 -13 L 2.4 -2.4 L 13 0 L 2.4 2.4 L 0 13 L -2.4 2.4 L -13 0 L -2.4 -2.4 Z"/><circle cx="0" cy="0" r="2" fill="#f2e6c5" opacity="0.6"/></g></svg>';
 }
@@ -757,6 +733,7 @@ function mountTextReader(book){
         '<h1>'+esc(book.title)+'</h1>'+
         (book.subtitle?'<p class="sub">'+esc(book.subtitle)+'</p>':'')+
         '<p class="byline">'+esc(book.author||'Anonymous')+'</p>'+
+        '<div class="hr"></div>'+
       '</header>'+
       '<div class="page-content">'+html+'</div>'+
       '<div class="page-footer"><span class="orn">❦</span></div>'+
